@@ -13,5 +13,8 @@
 ### Collections
 
 ### Views
+* MessageForm
 
 ## Gems/Libraries
+* Filepicker
+* Markdown-js

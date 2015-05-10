@@ -2,30 +2,30 @@
 
 ## Rails
 ### Models
-User
+* User
 
 ### Controllers
-Users (new, create, destroy)
-Sessions (new, create, destroy)
-TeamSites (new, create, index)
-Api::TeamSites (create, update, index)
+* Users (new, create, destroy)
+* Sessions (new, create, destroy)
+* TeamSites (new, create, index)
+* Api::TeamSites (create, update, index)
 
 ### Views
-Users/New
-Sessions/New
-TeamSite/New
+* Users/New
+* Sessions/New
+* TeamSite/New
 
 
 ## Backbone
 ### Models
-TeamSites
+* TeamSites
 
 ### Collections
-TeamSites
+* TeamSites
 
 ### Views
-TeamSiteForm
-TeamSiteShow
-TeamSiteIndex
+* TeamSiteForm
+* TeamSiteShow
+* TeamSiteIndex
 
 ## Gems/Libraries

@@ -1,9 +1,10 @@
-# Phase 4: ...
+# Phase 4: Search for Messages
 
 ## Rails
 ### Models
 
 ### Controllers
+Api::MessageController (search)
 
 ### Views
 
@@ -13,5 +14,6 @@
 ### Collections
 
 ### Views
+* SearchShow (composite view, contains MessageShow subviews)
 
 ## Gems/Libraries
