@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
     class_name: "TeamSite",
     foreign_key: :owner_id,
     primary_key: :id
+  has_many :team_site_memberships, dependent: :destroy, inverse_of: :user
+  has_many :team_sites, through: :team_site_memberships, source: :team_site
 
 
 

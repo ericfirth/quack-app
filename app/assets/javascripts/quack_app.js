@@ -4,8 +4,13 @@ window.Quack = {
   Views: {},
   Routers: {},
   initialize: function() {
+    this.currentUser = new Quack.Models.CurrentUser();
+    this.currentUser.fetch();
     new Quack.Routers.Router({
-      $rootEl: $("#main")
+      $rootEl: $("#main"),
+      $header: $("#header"),
+      $footer: $("#footer"),
+      currentUser: this.currentUser
     })
     Backbone.history.start();
   }

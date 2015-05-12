@@ -14,3 +14,14 @@ User.create!(username: 'hawkeye', email: "clint@gmail.com", password: "password"
 User.create!(username: 'the_vision', email: "vision@gmail.com", password: "password")
 User.create!(username: 'scarlet_witch', email: "sw@gmail.com", password: "password")
 User.create!(username: 'ericfirth', email: "ericfirth@gmail.com", password: "password")
+
+TeamSite.create!(name: "avengers_assemble", owner_id: 1)
+
+TeamSiteMembership.create!(team_site_id: 1, user_id: 1)
+TeamSiteMembership.create!(team_site_id: 1, user_id: 2)
+TeamSiteMembership.create!(team_site_id: 1, user_id: 3)
+TeamSiteMembership.create!(team_site_id: 1, user_id: 4)
+TeamSiteMembership.create!(team_site_id: 1, user_id: 5)
+TeamSiteMembership.create!(team_site_id: 1, user_id: 6)
+TeamSiteMembership.create!(team_site_id: 1, user_id: 7)
+TeamSiteMembership.create!(team_site_id: 1, user_id: 8)

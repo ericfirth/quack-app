@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :new, :destroy]
   namespace :api, defaults: { format: :json } do
     resources :team_sites
+    resource :session, only: [:show]
   end
 end
