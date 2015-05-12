@@ -24,11 +24,20 @@ Quack.Routers.Router = Backbone.Router.extend({
   },
 
   newTeamSite: function () {
-
+    var newTeamSite = new Quack.Models.TeamSite();
+    var newView = new Quack.Views.TeamSiteForm({
+      model: newTeamSite,
+      collection: this.teamSites
+    });
+    this._swapView(newView);
   },
 
   showTeamSite: function(id) {
-
+    var teamSite = this.teamSites.getOrFetch(id);
+    var showView = new Quack.Views.TeamSiteShow({
+      model: teamSite
+    })
+    this._swapView(showView)
   },
 
   _swapView: function (view) {

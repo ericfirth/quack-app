@@ -21,6 +21,7 @@ Quack.Views.TeamSitesIndex = Backbone.View.extend({
       teamSites: this.collection,
       authToken: authToken
     });
+    // debugger;
     this.$el.html(content);
     return this;
   }
