@@ -3,7 +3,6 @@ Quack.Routers.Router = Backbone.Router.extend({
     this.$rootEl = options.$rootEl;
     this.$header = options.$header;
     this.$footer = options.$footer;
-    this.currentUser = options.currentUser;
 
     this.teamSites = new Quack.Collections.TeamSites();
     this.teamSites.fetch();
@@ -12,16 +11,24 @@ Quack.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    "" : "index",
+    "" : "indexTeamSites",
+    "team_sites/new": "newTeamSite",
+    "team_sites/:id": "showTeamSite"
+  },
+
+  indexTeamSites: function() {
+    var indexView = new Quack.Views.TeamSitesIndex({
+      collection: this.teamSites
+    });
+    this._swapView(indexView);
+  },
+
+  newTeamSite: function () {
 
   },
 
-  index: function() {
-    var indexView = new Quack.Views.TeamSitesIndex({
-      collection: this.teamSites,
-      currentUser: this.currentUser
-    });
-    this._swapView(indexView);
+  showTeamSite: function(id) {
+
   },
 
   _swapView: function (view) {

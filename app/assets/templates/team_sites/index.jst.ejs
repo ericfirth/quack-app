@@ -1,7 +1,17 @@
-<h1>Welcome <%= user.escape("username") %>! Select the team you want to see:</h1>
+<h1>Welcome <%= Quack.currentUser.escape("username") %>! First, pick a team:</h1>
 
-<!-- <form>
-  <% teamSites.each(function(teamSite) { %>
-
+<form>
+  <select class="team-select">
+    <option value="" disabled selected>Select A Team!</option>
+  <% teamSites.forEach(function(teamSite) { %>
+    <option value="<%= teamSite.get("id") %>"><%= teamSite.get("name") %></option>
     <% }) %>
-</form> -->
+    <option value="new">Create A New Team Site</option>
+  </select>
+</form>
+
+<form class="logout" action="/session" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="hidden" name="authenticity_token" value="<%= authToken %>">
+  <button>Log Out</button>
+</form>

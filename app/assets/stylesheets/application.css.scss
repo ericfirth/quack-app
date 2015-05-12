@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
- 
+
  /*
  HTML RESET & BASICS
  */
@@ -82,4 +82,8 @@
  .sign-inup button {
    display: block;
    margin: auto;
+ }
+
+ .signup {
+   text-align: center;
  }

@@ -9,8 +9,7 @@ window.Quack = {
     new Quack.Routers.Router({
       $rootEl: $("#main"),
       $header: $("#header"),
-      $footer: $("#footer"),
-      currentUser: this.currentUser
+      $footer: $("#footer")
     })
     Backbone.history.start();
   }
