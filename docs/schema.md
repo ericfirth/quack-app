@@ -31,6 +31,7 @@ id             | integer   | not null, primary key
 username       | string    | not null, unique
 password_digest| string    | not null
 session_token  | string    | not null, unique
+email          | string    | not null, unique
 
 ## Channel_Memberships
 column name    | data type | details

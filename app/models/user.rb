@@ -10,6 +10,11 @@ class User < ActiveRecord::Base
 
   attr_reader :password
 
+  has_many :owned_team_sites,
+    class_name: "TeamSite",
+    foreign_key: :owner_id,
+    primary_key: :id
+
 
 
   def self.find_by_credentials(username, password)

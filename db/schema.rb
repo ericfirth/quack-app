@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512140843) do
+ActiveRecord::Schema.define(version: 20150512154753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "team_sites", force: :cascade do |t|
+    t.integer  "owner_id",   null: false
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "team_sites", ["name"], name: "index_team_sites_on_name", unique: true, using: :btree
+  add_index "team_sites", ["owner_id"], name: "index_team_sites_on_owner_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
@@ -25,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150512140843) do
     t.string   "email",           null: false
   end
 
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["password_digest"], name: "index_users_on_password_digest", unique: true, using: :btree
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
