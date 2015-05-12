@@ -6,9 +6,9 @@
 
 ## Minimum Viable Product
 Quack is a clone of Slack built on Rails and Backbone. Users can:
-- [ ] Create accounts
-- [ ] Create sessions (log in)
-- [ ] Create team sites
+- [x] Create accounts
+- [x] Create sessions (log in)
+- [x] Create team sites
 - [ ] Create channels on team sites
 - [ ] Create messages on channels & to other users
 - [ ] Join teams & channels on teams
