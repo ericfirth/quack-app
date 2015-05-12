@@ -1,0 +1,18 @@
+<h1 class="sign-inup-header">Welcome to Quack</h1>
+<section class="sign-inup">
+  <%= render 'layouts/errors' %>
+  <form action="<%= users_url %>" method="post">
+    <input type="hidden" name="_method" value="Post">
+    <%= auth_token %>
+    <label for="user_username">Username<br>
+      <input type="text" name="user[username]" value="<%= @user.username %>">
+    </label><br>
+    <label for="user_email">Email<br>
+    <input type="text" name="user[email]" value="<%= @user.email %>">
+    </label><br>
+    <label for="user_password">Password<br>
+    <input type="password" name="user[password]">
+    </label><br>
+    <button>Sign Up</button>
+  </form>
+</main>

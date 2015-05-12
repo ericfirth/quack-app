@@ -1,15 +1,21 @@
 class User < ActiveRecord::Base
-  validates :username, :session_token, :password_digest, :email, precense: true
+  EMAIL_REGEX = /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
+
+  validates :username, :session_token, :password_digest, :email, presence: true
   validates :username, :session_token, :password_digest, :email, uniqueness: true
   validates :password, length: { minimum: 7, allow_nil: true }
+  validates_format_of :email, with: EMAIL_REGEX, multiline: true
 
   after_initialize :ensure_session_token
 
   attr_reader :password
 
-  def self.search_by_credentials(username, password)
-    user = User.find_by_username(user_params[:username])
-    user.is_password?(password) ? user : nil
+
+
+  def self.find_by_credentials(username, password)
+    @user = User.find_by(username: username)
+    return nil if @user.nil?
+    @user.is_password?(password) ? @user : nil
   end
 
   def self.generate_session_token

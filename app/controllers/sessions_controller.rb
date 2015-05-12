@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
     else
       flash.now[:errors] = "Incorrect Username/Password combination"
       render :new
+    end
   end
 
   def new
