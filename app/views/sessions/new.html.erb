@@ -1,11 +1,11 @@
 <h1 class="sign-inup-header">Sign In</h1>
-<section class="sign-inup">  
+<section class="sign-inup">
   <form action="/session" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <label>Username<br>
+    <label>Username
       <input name="user[username]" type="text"><br>
     </label><br>
-    <label>Password<br>
+    <label>Password
       <input name="user[password]" type="password"><br>
     </label><br>
     <button>Sign In</button>

@@ -13,3 +13,73 @@
  *= require_tree .
  *= require_self
  */
+
+/*
+HTML RESET & BASICS
+*/
+
+html, h1, label, form, p, ul, li, div, body, main, section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-decoration: none;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+.group:after {
+  content="";
+  display: block;
+  clear: both;
+}
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/*
+User/Session new page
+*/
+
+.sign-inup-header {
+  font-size: 36px;
+  text-align:  center;
+  margin: 30px;
+}
+
+.sign-inup {
+  display: block;
+  background: #C39A6B;
+  margin: 20px auto;
+  width: 400px;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.sign-inup label {
+  margin-top: 5px;
+  font-weight: 300;
+  font-size: 24px;
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+.sign-inup input {
+  display: block;
+  width: 75%;
+  margin: auto;
+}
+
+.sign-inup button {
+  display: block;
+  margin: auto;
+}
