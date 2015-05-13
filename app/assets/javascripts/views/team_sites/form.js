@@ -13,10 +13,10 @@ Quack.Views.TeamSiteForm = Backbone.View.extend({
     event.preventDefault();
     var attrs = this.$('.team-site-form').serializeJSON().team_site;
     this.model.set(attrs);
-    debugger;
 
     var success = function () {
       this.collection.add(this.model, { merge: true })
+      this.model.users().add(Quack.currentUser);
       Backbone.history.navigate("", { trigger: true })
     }.bind(this)
 

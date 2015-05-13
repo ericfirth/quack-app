@@ -7,7 +7,9 @@ class Api::TeamSitesController < Api::ApiController
   def create
     @team_site = current_user.owned_team_sites.new(team_site_params)
 
+
     if @team_site.save
+      TeamSiteMembership.create(user_id: current_user.id, team_site_id: @team_site.id)
       render json: @team_site
     else
       render json: @team_site.errors.full_messages, status: :unprocessable_entity
@@ -15,8 +17,8 @@ class Api::TeamSitesController < Api::ApiController
   end
 
   def show
-    @team_site = TeamSite.find(params[:id])
-    render json: @team_site
+    @team_site = TeamSite.includes(:users).find(params[:id])
+    render :show
   end
 
   private

@@ -6,7 +6,7 @@ Quack.Views.TeamSiteShow = Backbone.CompositeView.extend({
   template: JST["team_sites/show"],
 
   render: function() {
-    var content = this.template({teamSite: this.model})
+    var content = this.template({ teamSite: this.model, users: this.model.users() })
     this.$el.html(content);
     return this;
   }
