@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :team_sites
     resource :session, only: [:show]
-    resources :channels
+    resources :channels, except: [:new]
+    resources :message, only: [:show]
     resources :team_site_memberships, only: [:create, :destroy]
   end
 end

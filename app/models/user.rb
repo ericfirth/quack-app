@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
     primary_key: :id
   has_many :team_site_memberships, dependent: :destroy, inverse_of: :user
   has_many :team_sites, through: :team_site_memberships, source: :team_site
+  has_many :messages,
+    class_name: "Message",
+    foreign_key: :sender_id,
+    primary_key: :id
 
 
 

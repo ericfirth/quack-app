@@ -1,6 +1,6 @@
 class Api::ChannelsController < Api::ApiController
   def show
-    @channel = Channel.find(params[:id])
-    render json: @channel
+    @channel = Channel.includes(messages: :sender).find(params[:id])
+    render :show
   end
 end
