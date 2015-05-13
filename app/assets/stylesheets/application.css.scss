@@ -44,6 +44,39 @@
    font-family: 'Open Sans', sans-serif;
  }
 
+ img {
+   height:100%;
+   width: relative;
+ }
+
+ /*
+ Header
+ */
+
+ .header {
+   height: 100px;
+ }
+
+ .header img {
+   float: left;
+ }
+
+/*
+Team Site Show - Sidebar
+*/
+
+.sidebar {
+  float: left;
+  background: #eee;
+}
+
+.sidebar li:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+
+
+
  /*
  User/Session new page
  */

@@ -7,7 +7,7 @@ Quack.Routers.Router = Backbone.Router.extend({
     this.teamSites = new Quack.Collections.TeamSites();
     this.teamSites.fetch();
 
-    // this.headerStart();
+    this.headerStart();
   },
 
   routes: {
@@ -46,7 +46,8 @@ Quack.Routers.Router = Backbone.Router.extend({
     this.$rootEl.html(view.render().$el);
   },
 
-  // headerStart: function() {
-  //
-  // }
+  headerStart: function() {
+    var headerView = new Quack.Views.Header()
+    this.$header.html(headerView.render().$el)
+  }
 })
