@@ -1,7 +1,6 @@
 Quack.Views.MessageShow = Backbone.View.extend({
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);
-    console.log("hi")
   },
 
   tagName: "li",

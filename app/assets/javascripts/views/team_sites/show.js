@@ -17,7 +17,7 @@ Quack.Views.TeamSiteShow = Backbone.CompositeView.extend({
   getChannel: function(event) {
     $target = $(event.target);
     var channel = this.model.channels().getOrFetch($target.data("channel-id"));
-    var channelView = new Quack.Views.ChannelShow({ model: channel })
+    var channelView = new Quack.Views.ChannelShow({ model: channel });
     this._swapContentView(channelView);
   },
 
