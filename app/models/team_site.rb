@@ -8,5 +8,6 @@ class TeamSite < ActiveRecord::Base
     primary_key: :id
   has_many :team_site_memberships, dependent: :destroy, inverse_of: :team_site
   has_many :users, through: :team_site_memberships, source: :user
+  has_many :channels
 
 end

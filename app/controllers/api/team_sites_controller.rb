@@ -17,7 +17,7 @@ class Api::TeamSitesController < Api::ApiController
   end
 
   def show
-    @team_site = TeamSite.includes(:users).find(params[:id])
+    @team_site = TeamSite.includes(:users, :channels).find(params[:id])
     render :show
   end
 

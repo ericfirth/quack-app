@@ -5,3 +5,10 @@
     <li><%= user.get("username") %></li>
   <% }) %>
 </ul>
+
+<h2>Channels:</h2>
+<ul>
+  <% channels.each(function (channel) { %>
+    <li><%= channel.get("title") %></li>
+  <% }) %>
+</ul>

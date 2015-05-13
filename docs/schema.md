@@ -13,15 +13,21 @@ column name    | data type | details
 id             | integer   | not null, primary key
 team_site_id   | integer   | not null, foreign key (references team sites)
 title          | string    | not null
-conversation   | boolean   | not null, default false, determines whether a channel is conversation or not
 
 ## Messages
 column name      | data type | details
 -----------------|-----------|-----------------------
 id               | integer   | not null, primary key
 sender_id        | integer   | not null, foreign key (references users)
-messageable_id   | integer   | not null, foreign key (references users or channels)
-messageable_type | string    | not null (either user or channel)
+channel_id       | integer   | not null, foreign key (references channels)
+text             | string    | not null
+
+## Private Messages
+column name      | data type | details
+-----------------|-----------|-----------------------
+id               | integer   | not null, primary key
+sender_id        | integer   | not null, foreign key (references users)
+receiver_id      | integer   | not null, foreign key (references users)
 text             | string    | not null
 
 ## Users

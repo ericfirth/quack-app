@@ -5,3 +5,7 @@ json.users do
     json.extract! user, :username
   end
 end
+
+json.channels @team_site.channels do |channel|
+  json.title channel.title
+end
