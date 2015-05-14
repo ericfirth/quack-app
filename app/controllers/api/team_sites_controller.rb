@@ -17,6 +17,7 @@ class Api::TeamSitesController < Api::ApiController
   end
 
   def show
+    session[:team_site_id] = params[:id]
     @team_site = TeamSite.includes(:users, :channels).find(params[:id])
     render :show
   end

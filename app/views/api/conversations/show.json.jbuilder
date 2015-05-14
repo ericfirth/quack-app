@@ -2,7 +2,7 @@
 
 json.id @other_user.id
 json.other_user @other_user.username
-json.team_site_id @conversation.first.team_site_id
+json.team_site_id @team_site_id
 
 
 json.messages @conversation do |message|

@@ -1,25 +1,33 @@
 Quack.Views.Sidebar = Backbone.CompositeView.extend({
-  initialize: function() {
+  initialize: function () {
     this.listenTo(this.model, "sync", this.render)
     this.addUserIndex();
     this.addChannelIndex();
   },
 
+  className: "sidebar-composite",
+
+  attributes: function () {
+    return {
+      'data-team-site-id': this.model.id
+    };
+  },
+
   template: JST["static/sidebar"],
 
-  render: function() {
+  render: function () {
     var content = this.template();
     this.$el.html(content)
     this.attachSubviews();
     return this;
   },
 
-  addChannelIndex: function() {
+  addChannelIndex: function () {
     var channelIndex = new Quack.Views.ChannelsIndex({ collection: this.model.channels() })
     this.addSubview(".users-channels", channelIndex);
   },
 
-  addUserIndex: function() {
+  addUserIndex: function () {
     var userIndex = new Quack.Views.UsersIndex({ collection: this.model.users() })
     this.addSubview(".users-channels", userIndex);
   },

@@ -16,7 +16,7 @@ Quack.Models.TeamSite = Backbone.Model.extend({
 
     return this._channels;
   },
-  // 
+  //
   // conversations: function() {
   //   if (!this._conversations) {
   //     this._conversations = new Quack.Collections.Conversation([], { teamSite: this })
@@ -40,6 +40,7 @@ Quack.Models.TeamSite = Backbone.Model.extend({
       this.conversations().set(response.conversations);
       delete response.conversations
     }
+
 
     return response;
   }

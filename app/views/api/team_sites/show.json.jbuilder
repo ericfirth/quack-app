@@ -10,3 +10,5 @@ json.channels @team_site.channels do |channel|
   json.title channel.title
   json.id channel.id
 end
+
+json.channel_to_display @team_site.channels.to_a.sample.id

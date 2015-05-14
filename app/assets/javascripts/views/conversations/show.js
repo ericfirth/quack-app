@@ -14,9 +14,9 @@ Quack.Views.ConversationShow = Backbone.CompositeView.extend({
 
   addNewMessageView: function() {
     var newMessage = new Quack.Models.PrivateMessage();
-    var messageForm = new Quack.Views.MessageForm({ model: newMessage, collection: this.collection, pm: true })
-    this.addSubview(".message-add", messageForm)
-
+    var messageForm = new Quack.Views.PrivateMessageForm({ model: newMessage, collection: this.collection });
+    this.addSubview(".message-add", messageForm);
+    console.log("wtf!!!!")
   },
 
   render: function () {

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :channels, except: [:new]
     resources :conversations, except: [:new, :update]
     resources :messages, only: [:show, :create]
-    resources :private_messages, only: [:create]
+    resources :private_messages, only: [:show, :create]
     resources :team_site_memberships, only: [:create, :destroy]
   end
 end

@@ -11,9 +11,17 @@ Quack.Views.TeamSitesIndex = Backbone.View.extend({
 
   goToTeam: function(event) {
     var $target = $(event.target);
-    debugger;
-    var url = "/team_sites/" + $target.val();
-    Backbone.history.navigate(url, { trigger: true })
+    // debugger;
+    // var url = "/team_sites/" + $target.val();
+    // Backbone.history.navigate(url, { trigger: true })
+    var teamSite = new Quack.Models.TeamSite({id: $target.val()})
+    teamSite.fetch({
+      success: function() {
+        var channelId = teamSite.get("channel_to_display")
+        var url = "channels/" + channelId
+        Backbone.history.navigate(url, { trigger: true })
+      }
+    })
   },
 
   render: function () {

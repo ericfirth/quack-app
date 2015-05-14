@@ -16,7 +16,6 @@ Quack.Collections.Conversation = Backbone.Collection.extend({
   parse: function (response) {
     this.otherUser = response.other_user;
     this.teamSiteId = response.team_site_id;
-
     return response.messages;
   }
 
