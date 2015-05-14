@@ -28,6 +28,7 @@ column name      | data type | details
 id               | integer   | not null, primary key
 sender_id        | integer   | not null, foreign key (references users)
 receiver_id      | integer   | not null, foreign key (references users)
+team_site_id     | integer   | not null, foreign key (references team sites)
 text             | string    | not null
 
 ## Users

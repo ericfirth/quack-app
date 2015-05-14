@@ -16,7 +16,8 @@ Quack.Routers.Router = Backbone.Router.extend({
   routes: {
     "" : "indexTeamSites",
     "team_sites/new": "newTeamSite",
-    "channels/:id": "channelShow"
+    "channels/:id": "channelShow",
+    "conversations/:id": "conversationShow"
     // "team_sites/:id": "showTeamSite"
   },
 
@@ -39,7 +40,6 @@ Quack.Routers.Router = Backbone.Router.extend({
   },
 
   channelShow: function(id) {
-    // debugger;
     if (!this.teamSite) {
       var channel = new Quack.Models.Channel({id: id})
       channel.fetch({
@@ -49,11 +49,29 @@ Quack.Routers.Router = Backbone.Router.extend({
         }.bind(this)}
       )
     } else {
-      // debugger;
       var channel = this.teamSite.channels().getOrFetch(id);
     }
     var channelShowView = new Quack.Views.ChannelShow({ model: channel });
     this._swapView(channelShowView);
+  },
+
+  conversationShow: function(otherUserId) {
+    if (!this.teamSite) {
+      var conversation = new Quack.Collections.Conversation([], {otherUserId: otherUserId})
+      conversation.fetch({
+        success: function() {
+          this.teamSite = this.teamSites.getOrFetch(conversation.teamSiteId);
+          this.sidebarStart();
+        }.bind(this)
+      })
+    } else {
+      var conversation = new Quack.Collections.Conversation([], {otherUserId: otherUserId})
+      conversation.fetch()
+    }
+    var conversationShowView = new Quack.Views.ConversationShow({ collection: conversation });
+    this._swapView(conversationShowView);
+
+
   },
 
   // showTeamSite: function(id) {

@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     resources :team_sites
     resource :session, only: [:show]
     resources :channels, except: [:new]
+    resources :conversations, except: [:new, :update]
     resources :messages, only: [:show, :create]
+    resources :private_messages, only: [:create]
     resources :team_site_memberships, only: [:create, :destroy]
   end
 end

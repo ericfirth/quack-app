@@ -20,6 +20,14 @@ class User < ActiveRecord::Base
     class_name: "Message",
     foreign_key: :sender_id,
     primary_key: :id
+  has_many :sent_private_messages,
+    class_name: "PrivateMessage",
+    foreign_key: :sender_id,
+    primary_key: :id
+  has_many :received_private_messages,
+    class_name: "PrivateMessage",
+    foreign_key: :receiver_id,
+    primary_key: :id
 
 
 

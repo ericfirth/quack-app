@@ -15,7 +15,7 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
 
   addNewMessageView: function() {
     var newMessage = new Quack.Models.Message();
-    var messageForm = new Quack.Views.MessageForm({ model: newMessage, collection: this.model })
+    var messageForm = new Quack.Views.MessageForm({ model: newMessage, collection: this.model, pm: false })
     this.addSubview(".message-add", messageForm)
 
   },

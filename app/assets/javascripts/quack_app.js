@@ -14,7 +14,3 @@ window.Quack = {
     Backbone.history.start();
   }
 };
-
-$(document).ready(function(){
-  Quack.initialize();
-});

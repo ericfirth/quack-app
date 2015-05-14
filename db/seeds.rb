@@ -37,3 +37,12 @@ Message.create(channel_id: 1, sender_id: 6, text: "y'all make me jealous. i saw 
 Message.create(channel_id: 2, sender_id: 4, text: "I saw Love Actually")
 Message.create(channel_id: 2, sender_id: 1, text: "i like classics, um, maybe casablanca!")
 Message.create(channel_id: 2, sender_id: 5, text: "Both of those movies suck! Not enough bows!")
+
+PrivateMessage.create(team_site_id: 1, sender_id: 1, receiver_id: 2, text: "hey hulk")
+PrivateMessage.create(team_site_id: 1, sender_id: 2, receiver_id: 1, text: "wassup cap")
+PrivateMessage.create(team_site_id: 1, sender_id: 1, receiver_id: 2, text: "new movie made a lot of money")
+PrivateMessage.create(team_site_id: 1, sender_id: 2, receiver_id: 1, text: "sure did")
+PrivateMessage.create(team_site_id: 1, sender_id: 1, receiver_id: 2, text: "you got points? i do. gonna buy a boat with my money")
+PrivateMessage.create(team_site_id: 1, sender_id: 2, receiver_id: 1, text: "yeah i bought one after the last movie, but i smashed it :(")
+PrivateMessage.create(team_site_id: 1, sender_id: 1, receiver_id: 3, text: "hi black widow")
+PrivateMessage.create(team_site_id: 1, sender_id: 3, receiver_id: 1, text: "hi cap")
