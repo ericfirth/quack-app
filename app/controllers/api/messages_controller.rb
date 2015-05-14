@@ -6,16 +6,19 @@ class Api::MessagesController < Api::ApiController
   end
 
   def create
-    @message = current_channel.messages.new(message_params)
-    @message.sender_id = current_user.id
+    @message = current_user.messages.new(message_params)
 
     if @message.save
-      render json: @message
+      render :show
     else
       render json: @message.full_messages, status: :unprocessable_entity
     end
   end
 
+  protected
 
+  def message_params
+    params.require(:message).permit(:text, :sender_id, :channel_id)
+  end
 
 end

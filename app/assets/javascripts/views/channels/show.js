@@ -2,6 +2,8 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
   initialize: function() {
     this.messages = this.model.messages();
     this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.messages, "add", this.addMessageView)
+    this.listenTo(this.messages, "add", this.addNewMessageView)
   },
 
   template: JST["channels/show"],
@@ -11,13 +13,18 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     this.addSubview(".messages", messageView);
   },
 
+  addNewMessageView: function() {
+    var newMessage = new Quack.Models.Message();
+    var messageForm = new Quack.Views.MessageForm({ model: newMessage, collection: this.model })
+    this.addSubview(".message-add", messageForm)
+
+  },
+
   render: function () {
     var content = this.template({ channel: this.model });
     this.$el.html(content);
-
-    var newMessage = new Quack.Models.Message();
-    var messageForm = new Quack.Views.MessageForm({ model: newMessage })
-    this.$el.append(messageForm.render().$el)
+    this.addNewMessageView();
+    // this.attachSubviews();
     this.messages.each(this.addMessageView.bind(this));
     return this;
   }
