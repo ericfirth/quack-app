@@ -1,10 +1,6 @@
 Quack.Views.TeamSiteShow = Backbone.CompositeView.extend({
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);
-
-    this.addUserIndex();
-    this.addChannelIndex();
-
   },
 
   events: {
@@ -27,15 +23,6 @@ Quack.Views.TeamSiteShow = Backbone.CompositeView.extend({
     this.$('.conversation').html(view.render().$el)
   },
 
-  addChannelIndex: function() {
-    var channelIndex = new Quack.Views.ChannelsIndex({ collection: this.model.channels() })
-    this.addSubview(".sidebar", channelIndex);
-  },
-
-  addUserIndex: function() {
-    var userIndex = new Quack.Views.UsersIndex({ collection: this.model.users() })
-    this.addSubview(".sidebar", userIndex);
-  },
 
   render: function() {
     var content = this.template()

@@ -11,6 +11,7 @@ Quack.Views.TeamSitesIndex = Backbone.View.extend({
 
   goToTeam: function(event) {
     var $target = $(event.target);
+    debugger;
     var url = "/team_sites/" + $target.val();
     Backbone.history.navigate(url, { trigger: true })
   },
