@@ -18,6 +18,7 @@ Quack.Views.UsersIndexItem = Backbone.View.extend({
   template: JST["users/index_item"],
 
   render: function() {
+    console.log("hello from user index item")
     this.testSelected();
     var content = this.template({ user: this.model, selected: this.selected });
     this.$el.html(content);
@@ -32,7 +33,6 @@ Quack.Views.UsersIndexItem = Backbone.View.extend({
 
       // debugger
     } else {
-      console.log("not happening")
       this.$el.removeClass("selected")
     }
   }

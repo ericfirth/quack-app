@@ -16,7 +16,21 @@ Quack.Views.ChannelsIndex = Backbone.CompositeView.extend({
     this.addSubview(".channel-list", indexItemView);
   },
 
+  events: {
+    "click .channel-li": "goToChannel"
+  },
+
+  goToChannel: function (event) {
+    var $target = $(event.target);
+    var url = "#channels/" + $target.data("channel-id");
+    $(".channel-li").removeClass("selected");
+    $(".user-li").removeClass("selected");
+    $target.addClass("selected");
+    Backbone.history.navigate(url, { trigger: true });
+  },
+
   render: function() {
+    console.log("hello from the channels index")
     var content = this.template()
     this.$el.html(content);
     this.attachSubviews();

@@ -21,6 +21,8 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
+    console.log("hello from the channel show")
+
     var content = this.template({ channel: this.model });
     this.$el.html(content);
     this.addNewMessageView();

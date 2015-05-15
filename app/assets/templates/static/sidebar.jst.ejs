@@ -13,10 +13,11 @@
 <nav class="users-channels"></nav>
 
 <section class="sidebar-user">
-  <h1 class="sidebar-username"><%= Quack.currentUser.escape("username") %></h1>
+  <h1 class="sidebar-username"><%= Quack.currentUser.escape("username") %>
   <form class="logout" action="/session" method="post">
     <input type="hidden" name="_method" value="delete">
     <input type="hidden" name="authenticity_token" value="<%= authToken %>">
     <button class="logout-button"><svg class="icon icon-exit"><use xlink:href="#icon-exit"></use></svg><span class="mls"> </span></button>
   </form>
+</h1>
 </section>

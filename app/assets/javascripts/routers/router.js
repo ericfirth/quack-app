@@ -16,6 +16,7 @@ Quack.Routers.Router = Backbone.Router.extend({
   routes: {
     "" : "indexTeamSites",
     "team_sites/new": "newTeamSite",
+    "channels/new": "channelNew",
     "channels/:id": "channelShow",
     "conversations/:id": "conversationShow"
     // "team_sites/:id": "showTeamSite"
@@ -53,6 +54,14 @@ Quack.Routers.Router = Backbone.Router.extend({
     }
     var channelShowView = new Quack.Views.ChannelShow({ model: channel });
     this._swapView(channelShowView);
+  },
+
+  channelNew: function () {
+    var newChannel = new Quack.Models.Channel();
+    var newChannelView = new Quack.Views.ChannelForm({
+      model: newChannel,
+      collection: this.teamSite.channels() })
+    this._swapView(newChannelView);
   },
 
   conversationShow: function(otherUserId) {

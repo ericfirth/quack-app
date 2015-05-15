@@ -10,6 +10,7 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
   template: JST["static/sidebar"],
 
   render: function () {
+    console.log("hello from sidebar")
     var authToken = $('meta[name=csrf-token]').attr('content')
     var content = this.template({ team: this.model, authToken: authToken });
     this.$el.html(content)
