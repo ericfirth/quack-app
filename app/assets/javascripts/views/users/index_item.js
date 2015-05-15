@@ -9,6 +9,8 @@ Quack.Views.UsersIndexItem = Backbone.View.extend({
 
   attributes: function() {
     return {
+
+
       'data-user-id': this.model.id
     };
   },
@@ -16,10 +18,22 @@ Quack.Views.UsersIndexItem = Backbone.View.extend({
   template: JST["users/index_item"],
 
   render: function() {
-    var content = this.template({ user: this.model });
+    this.testSelected();
+    var content = this.template({ user: this.model, selected: this.selected });
     this.$el.html(content);
     // this.$el.data("id", this.model.get("id"));
 
     return this;
+  },
+
+  testSelected: function () {
+    if (window.location.hash === "#conversations/" + this.model.id) {
+      this.$el.addClass("selected")
+
+      // debugger
+    } else {
+      console.log("not happening")
+      this.$el.removeClass("selected")
+    }
   }
 })

@@ -18,7 +18,7 @@
  HTML RESET & BASICS
  */
 
- html, h1, label, form, p, ul, li, div, body, main, section {
+ html, h1, label, form, p, ul, li, div, body, main, section, a, button {
    margin: 0;
    padding: 0;
    border: 0;
@@ -27,6 +27,7 @@
    font-size: 100%;
    vertical-align: baseline;
    background: transparent;
+   color: inherit;
  }
 
  ol, ul {
@@ -55,10 +56,12 @@
 
  .header {
    height: 100px;
+   margin: 10px 0;
  }
 
  .header img {
-   float: left;
+   display: block;
+   margin: auto;
  }
 
 /*
@@ -67,14 +70,63 @@ Team Site Show - Sidebar
 
 .sidebar {
   float: left;
-  background: #eee;
-  width: 200px;
+  background: #8A2A1E;
+  width: 300px;
+  color: #FCF9EC;
+}
+
+.sidebar strong, .sidebar-username {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.sidebar li {
+  padding: 5px 20px;
+}
+
+.sidebar li.selected {
+  background: #00BCCC;
 }
 
 .sidebar li:hover {
-  background: #ccc;
+  background: #790002;
+  margin-right: 10px;
   cursor: pointer;
+  border-radius: 0 8px 8px 0;
 }
+
+.sidebar-team, .sidebar-user {
+  padding: 20px;
+  background: #790002;
+}
+
+.users-list:last-child {
+  margin-bottom: 30px;
+}
+
+.sidebar-header {
+  margin-top: 20px;
+  padding: 5px 20px;
+  color: #B7B5AE;
+}
+
+
+.icon {
+  float: left;
+	width: 25px;
+	height: 25px;
+	fill: #8A2A1E;
+  display: block;
+  padding: 10px;
+}
+
+.icon:hover {
+  fill: currentColor;
+}
+
+
+
+
 
 /*
 Team Site Show - Conversation

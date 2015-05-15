@@ -10,8 +10,7 @@ Quack.Views.Header = Backbone.View.extend({
   template: JST["static/header"],
 
   render: function() {
-    var authToken = $('meta[name=csrf-token]').attr('content')
-    var content = this.template({authToken: authToken});
+    var content = this.template();
     this.$el.html(content);
     return this;
   }

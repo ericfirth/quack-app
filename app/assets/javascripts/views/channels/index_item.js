@@ -16,8 +16,19 @@ Quack.Views.ChannelsIndexItem = Backbone.View.extend({
   template: JST["channels/index_item"],
 
   render: function() {
+    this.testSelected();
     var content = this.template({ channel: this.model });
     this.$el.html(content);
     return this;
+  },
+
+  testSelected: function () {
+    if (window.location.hash === "#channels/" + this.model.id) {
+      this.$el.addClass("selected")
+      // debugger;
+    } else {
+      this.$el.removeClass("selected")
+      console.log("cool")
+    }
   }
 })

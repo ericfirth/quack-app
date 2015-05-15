@@ -9,7 +9,7 @@ Quack.Routers.Router = Backbone.Router.extend({
     this.teamSites = new Quack.Collections.TeamSites();
     this.teamSites.fetch();
 
-    this.headerStart();
+    // this.headerStart();
 
   },
 

@@ -9,9 +9,9 @@ Quack.Collections.Conversation = Backbone.Collection.extend({
     this.otherUserId = options.otherUserId;
   },
 
-  comparator: function (message) {
-    return message.get("created_at");
-  },
+  // comparator: function (message) {
+  //   return message.get("created_at");
+  // },
 
   parse: function (response) {
     this.otherUser = response.other_user;

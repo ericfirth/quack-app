@@ -11,6 +11,7 @@ class Api::ConversationsController < Api::ApiController
       .where("sender_id = ?", params[:id]).includes(:sender)
 
     @conversation = sent_pms + received_pms
+    @conversation.sort_by! { |message| message.created_at }
     @other_user = User.find(params[:id])
     @team_site_id = session[:team_site_id]
 

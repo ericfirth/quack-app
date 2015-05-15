@@ -1,22 +1,17 @@
 Quack.Views.Sidebar = Backbone.CompositeView.extend({
   initialize: function () {
     this.listenTo(this.model, "sync", this.render)
-    this.addUserIndex();
     this.addChannelIndex();
+    this.addUserIndex();
   },
 
   className: "sidebar-composite",
 
-  attributes: function () {
-    return {
-      'data-team-site-id': this.model.id
-    };
-  },
-
   template: JST["static/sidebar"],
 
   render: function () {
-    var content = this.template();
+    var authToken = $('meta[name=csrf-token]').attr('content')
+    var content = this.template({ team: this.model, authToken: authToken });
     this.$el.html(content)
     this.attachSubviews();
     return this;

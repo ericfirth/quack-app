@@ -1,8 +1,2 @@
 
 <img src="<%= Quack.logo %>" alt="" />
-<h1>Welcome <%= Quack.currentUser.get("username") %>!</h1>
-<form class="logout" action="/session" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="hidden" name="authenticity_token" value="<%= authToken %>">
-  <button>Log Out</button>
-</form>
