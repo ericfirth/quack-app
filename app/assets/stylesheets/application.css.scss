@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ // @import "icomoon"
 
  /*
  HTML RESET & BASICS
@@ -66,6 +67,9 @@
 
 /*
 Team Site Show - Sidebar
+yellow -
+dark maroon -
+
 */
 
 .sidebar {
@@ -90,6 +94,14 @@ Team Site Show - Sidebar
   background: #00BCCC;
 }
 
+.sidebar li.selected:hover {
+  cursor: default;
+  border-radius: 0;
+  margin-right:0;
+  background: #00BCCC;
+  // color:
+}
+
 .sidebar li:hover {
   background: #790002;
   margin-right: 10px;
@@ -109,9 +121,23 @@ Team Site Show - Sidebar
   font-weight: 300;
 }
 
-// .sidebar-user {
-//   bottom: 0;
-// }
+.add-channel {
+  display: block;
+  margin-top: -2px;
+  font-size: 16px;
+  font-weight: 700;
+  float: right;
+  border: 1px solid #B7B5AE;
+  padding: 0px 6px;
+  border-radius: 50%;
+}
+
+.add-channel:hover {
+  border: 1px solid #790002;
+  cursor: pointer;
+  color: #790002;
+  background: #FCF9EC;
+}
 
 .sidebar-team {
   top: 0;
@@ -122,7 +148,7 @@ Team Site Show - Sidebar
 }
 
 .sidebar-header {
-  margin-top: 20px;
+  margin: 20px 0 5px 0;
   padding: 5px 20px;
   color: #B7B5AE;
   // font-size: 12px;

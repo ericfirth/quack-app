@@ -11,4 +11,8 @@ json.channels @team_site.channels do |channel|
   json.id channel.id
 end
 
-json.channel_to_display @team_site.channels.to_a.sample.id
+if session[:channel_id]
+  json.channel_to_display session[:channel_id]
+else
+  json.channel_to_display @team_site.channels.to_a.sample.id
+end

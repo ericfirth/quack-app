@@ -17,7 +17,8 @@ Quack.Views.ChannelsIndex = Backbone.CompositeView.extend({
   },
 
   events: {
-    "click .channel-li": "goToChannel"
+    "click .channel-li": "goToChannel",
+    "click .add-channel": "newChannel"
   },
 
   goToChannel: function (event) {
@@ -27,6 +28,12 @@ Quack.Views.ChannelsIndex = Backbone.CompositeView.extend({
     $(".user-li").removeClass("selected");
     $target.addClass("selected");
     Backbone.history.navigate(url, { trigger: true });
+  },
+
+  newChannel: function (event) {
+    $(".channel-li").removeClass("selected")
+    $(".user-li").removeClass("selected")
+    Backbone.history.navigate("channels/new", { trigger: true })
   },
 
   render: function() {
