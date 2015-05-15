@@ -67,9 +67,13 @@
 
 /*
 Team Site Show - Sidebar
-yellow -
-dark maroon -
 
+COLORS:
+off-white text - #FCF9EC
+darker grey text - #B7B5AE
+dark maroon - #790002
+lighter maroon - #8A2A1E
+highlight blue green - #00BCCC
 */
 
 .sidebar {
@@ -166,6 +170,36 @@ dark maroon -
   fill: currentColor;
 }
 
+.logout-button {
+  display: block;
+  float: right;
+  font-size: 20px;
+  position: relative;
+  z-index: 3;
+}
+
+.logout-button:hover {
+  cursor: pointer;
+  color: #790002;
+  background: #FCF9EC;
+  padding: 0 4px;
+  margin: 0 -4px 0 0;
+  border-radius: 50%;
+}
+
+// .logout-button:hover::after {
+//   content: "";
+//   position: absolute;
+//   z-index: 2;
+//   left: -10px;
+//   background: white;
+//   padding: 10px;
+//   border-radius: 10px;
+// }
+
+.sidebar-username {
+  float: left;
+}
 
 
 

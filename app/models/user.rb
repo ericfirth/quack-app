@@ -29,6 +29,9 @@ class User < ActiveRecord::Base
     foreign_key: :receiver_id,
     primary_key: :id
 
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, default_url: "missing-person.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
 
 
   def self.find_by_credentials(username, password)
