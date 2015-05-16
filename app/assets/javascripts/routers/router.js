@@ -15,6 +15,7 @@ Quack.Routers.Router = Backbone.Router.extend({
 
   routes: {
     "" : "indexTeamSites",
+    // "users/:id/edit": "editSelf",
     "team_sites/new": "newTeamSite",
     "channels/new": "channelNew",
     "channels/:id": "channelShow",
@@ -79,17 +80,7 @@ Quack.Routers.Router = Backbone.Router.extend({
     }
     var conversationShowView = new Quack.Views.ConversationShow({ collection: conversation });
     this._swapView(conversationShowView);
-
-
   },
-
-  // showTeamSite: function(id) {
-  //   var teamSite = this.teamSites.getOrFetch(id);
-  //   var showView = new Quack.Views.TeamSiteShow({
-  //     model: teamSite
-  //   })
-  //   this._swapView(showView)
-  // },
 
   _swapView: function (view) {
     this._currentView && this._currentView.remove();
@@ -97,9 +88,8 @@ Quack.Routers.Router = Backbone.Router.extend({
     this.$conversation.html(view.render().$el);
   },
 
-  headerStart: function() {
-    var headerView = new Quack.Views.Header();
-    this.$header.html(headerView.render().$el);
+  editSelf: function (id) {
+
   },
 
   sidebarStart: function() {

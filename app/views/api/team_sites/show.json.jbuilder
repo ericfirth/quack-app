@@ -3,6 +3,7 @@ json.extract! @team_site, :id, :name, :owner_id
 json.users do
   json.array!(@team_site.users) do |user|
     json.extract! user, :username, :id
+    json.avatar_url asset_path(user.avatar.url)
   end
 end
 

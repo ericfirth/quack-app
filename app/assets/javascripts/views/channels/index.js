@@ -37,7 +37,7 @@ Quack.Views.ChannelsIndex = Backbone.CompositeView.extend({
   },
 
   render: function() {
-    console.log("hello from the channels index")
+    // console.log("hello from the channels index")
     var content = this.template()
     this.$el.html(content);
     this.attachSubviews();

@@ -19,7 +19,7 @@ Quack.Views.ConversationShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    console.log("hello from the conversation show")
+    // console.log("hello from the conversation show")
     var content = this.template({ conversation: this.collection });
     this.$el.html(content);
     this.collection.each(this.addMessageView.bind(this))

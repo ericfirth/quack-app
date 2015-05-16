@@ -24,7 +24,7 @@ Quack.Views.PrivateMessageForm = Backbone.View.extend({
   template: JST["private_messages/form"],
 
   render: function () {
-    console.log("hello from the message form")
+    // console.log("hello from the message form")
     var content = this.template({ message: this.model, conversation: this.collection});
     this.$el.html(content);
     return this;

@@ -32,7 +32,7 @@ Quack.Views.UsersIndex = Backbone.CompositeView.extend({
   },
 
   render: function() {
-    console.log("hello from user index")
+    // console.log("hello from user index")
     var content = this.template();
     this.$el.html(content);
     return this;

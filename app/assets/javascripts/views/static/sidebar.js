@@ -9,13 +9,24 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
 
   template: JST["static/sidebar"],
 
+  events: {
+    "click .sidebar-username": "addEditAvatarView"
+  },
+
   render: function () {
-    console.log("hello from sidebar")
+    // console.log("hello from sidebar")
     var authToken = $('meta[name=csrf-token]').attr('content')
     var content = this.template({ team: this.model, authToken: authToken });
     this.$el.html(content)
     this.attachSubviews();
     return this;
+  },
+
+  addEditAvatarView: function (event) {
+    var user = this.model.users().get(Quack.currentUser.id)
+    var editUserView = new Quack.Views.UserForm({ model: user, collection: this.model.users() });
+    this.addSubview(".modal", editUserView)
+    this.$(".modal").addClass("is-open")
   },
 
   addChannelIndex: function () {

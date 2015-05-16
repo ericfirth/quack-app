@@ -1,0 +1,16 @@
+<form class="modal-form edit-avatar-form">
+
+  <span class="modal-close js-modal-close">&times;</span>
+
+  <h1 class="avatar-form-title">Pick a new avatar, <%= user.get("username") %>.</h1>
+  <input type="file" name="users[avatar]" id="input-avatar" class="choose-avatar-button"><br>
+  </label>
+  <img src="" id="preview-avatar" class="avatar-preview" /><br>
+
+  <div class="submit">
+  <button class="save-avatar">Save Changes</button>
+    <span class="button-alternative">or <strong class="js-modal-close">Cancel</strong></span>
+  </div>
+
+</form>
+<div class="modal-screen js-modal-close"></div>

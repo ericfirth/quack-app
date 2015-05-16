@@ -20,6 +20,9 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out!
+    session[:team_site_id] = nil
+    
+
     redirect_to new_session_url
   end
 

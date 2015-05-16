@@ -1,0 +1,18 @@
+class Api::UsersController < Api::ApiController
+  wrap_parameters false
+
+  def update
+    @user = User.find(params[:id])
+    if @user.save
+      render :show
+    else
+      render json: @user.errors.full_messages
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:username, :avatar)
+  end
+end
