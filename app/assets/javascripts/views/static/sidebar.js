@@ -10,7 +10,7 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
   template: JST["static/sidebar"],
 
   events: {
-    "click .sidebar-username": "addEditAvatarView"
+    "click .edit-avatar-link": "addEditAvatarView"
   },
 
   render: function () {

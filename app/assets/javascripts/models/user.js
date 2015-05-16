@@ -8,8 +8,6 @@ Quack.Models.User = Backbone.Model.extend({
       json.user.avatar = this._avatar;
     }
 
-    debugger;
-
     return json;
   }
 })

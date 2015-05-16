@@ -55,7 +55,7 @@ Quack.Views.UserForm = Backbone.View.extend({
 
     event.preventDefault();
     this.model.save(formData, {
-      success: function(){
+      success: function () {
         $(".modal").removeClass("is-open");
       }
     })

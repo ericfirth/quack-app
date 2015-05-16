@@ -19,7 +19,7 @@
  HTML RESET & BASICS
  */
 
- html, h1, label, form, p, ul, li, div, body, main, section, a, button {
+ html, h1, label, form, p, ul, li, div, body, main, section, a, button, figure {
    margin: 0;
    padding: 0;
    border: 0;
@@ -47,8 +47,9 @@
  }
 
  img {
-   height:100%;
-   width: relative;
+   display: block;
+   height: relative;
+   width: 100%;
  }
 
  /*
@@ -171,8 +172,6 @@ highlight blue green - #00BCCC
 }
 
 .logout-button {
-  display: block;
-  float: right;
   font-size: 20px;
   position: relative;
   z-index: 3;
@@ -187,24 +186,12 @@ highlight blue green - #00BCCC
   border-radius: 50%;
 }
 
-// .logout-button:hover::after {
-//   content: "";
-//   position: absolute;
-//   z-index: 2;
-//   left: -10px;
-//   background: white;
-//   padding: 10px;
-//   border-radius: 10px;
-// }
-
 .sidebar-username {
-  float: left;
-  padding: 0 10px 10px 0;
+  // padding: 0 10px 10px 0;
 }
 
 .sidebar-username:hover {
   cursor: pointer;
-  background: white;
 }
 
 .edit-avatar-form {
@@ -217,6 +204,16 @@ Team Site Show - Conversation
 
 .message-show {
   margin: 20px;
+}
+
+.avatar-show {
+  float: left;
+  display: block;
+  // border: 1px solid black;
+  width: 50px;
+  margin-right: 15px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 
@@ -283,7 +280,7 @@ MODAL
 
 .modal-screen {
   position: fixed;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.2);
   top: 0;
   bottom: 0;
   left: 0;

@@ -31,7 +31,6 @@ Quack.Views.UsersIndexItem = Backbone.View.extend({
     if (window.location.hash === "#conversations/" + this.model.id) {
       this.$el.addClass("selected")
 
-      // debugger
     } else {
       this.$el.removeClass("selected")
     }

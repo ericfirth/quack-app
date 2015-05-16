@@ -27,7 +27,6 @@ Quack.Views.ChannelsIndexItem = Backbone.View.extend({
   testSelected: function () {
     if (window.location.hash === "#channels/" + this.model.id) {
       this.$el.addClass("selected")
-      // debugger;
     } else {
       this.$el.removeClass("selected")
       console.log("cool")

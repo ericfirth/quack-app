@@ -1,19 +1,28 @@
 <section class="sidebar-team">
+
   <strong><%= team.escape("name") %></strong>
+
+
 </section>
+
 <nav class="users-channels"></nav>
 
-<section class="sidebar-user group">
-    <h1 class="sidebar-username"><%= Quack.currentUser.escape("username") %></h1>
-  <form class="logout" action="/session" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="hidden" name="authenticity_token" value="<%= authToken %>">
-    <button class="logout-button"><i class="icon-exit"></i></button>
-  </form>
+<section class="sidebar-user">
+
+    <figure class="avatar-show edit-avatar-link">
+      <img src="<%= Quack.currentUser.get("avatar_url") %>" alt="" />
+    </figure>
+
+
+    <h1 class="sidebar-username edit-avatar-link"><%= Quack.currentUser.escape("username") %></h1>
+
+    <form class="logout" action="/session" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="authenticity_token" value="<%= authToken %>">
+      <button class="logout-button"><i class="icon-exit"></i></button>
+    </form>
 
 </section>
 
 
 <div class="modal"></div>
-
-<img src="<%= Quack.currentUser.get("avatar_url") %>" alt="" />

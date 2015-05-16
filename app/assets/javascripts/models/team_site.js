@@ -16,14 +16,6 @@ Quack.Models.TeamSite = Backbone.Model.extend({
 
     return this._channels;
   },
-  //
-  // conversations: function() {
-  //   if (!this._conversations) {
-  //     this._conversations = new Quack.Collections.Conversation([], { teamSite: this })
-  //   }
-  //
-  //   return this._conversations;
-  // },
 
   parse: function(response) {
     if (response.users) {

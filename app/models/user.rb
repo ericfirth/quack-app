@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   validates :username, :session_token, :password_digest, :email, presence: true
   validates :username, :session_token, :password_digest, :email, uniqueness: true
   validates :password, length: { minimum: 7, allow_nil: true }
+  validates :username, length: { maximum: 30 }
   validates_format_of :email, with: EMAIL_REGEX, multiline: true
 
   after_initialize :ensure_session_token
@@ -29,7 +30,7 @@ class User < ActiveRecord::Base
     foreign_key: :receiver_id,
     primary_key: :id
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, default_url: "missing-person.png"
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "50x50>" }, default_url: "missing-person.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
 

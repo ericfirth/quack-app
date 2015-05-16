@@ -1,6 +1,6 @@
 Quack.Views.UsersIndex = Backbone.CompositeView.extend({
   initialize: function() {
-    this.listenTo(this.collection, "sync", this.render);
+    // this.listenTo(this.collection, "sync", this.render);
     this.listenTo(this.collection, "add", this.addUserIndexItem);
     // this.collection.each(this.addUserIndexItem.bind(this));
   },
@@ -18,6 +18,7 @@ Quack.Views.UsersIndex = Backbone.CompositeView.extend({
   addUserIndexItem: function(indexItem) {
     if (indexItem.id !== Quack.currentUser.id) {
       var userIndexItemView = new Quack.Views.UsersIndexItem({ model: indexItem });
+    console.log("hmm.")
       this.addSubview('.users-list', userIndexItemView);
     }
   },
@@ -32,6 +33,7 @@ Quack.Views.UsersIndex = Backbone.CompositeView.extend({
   },
 
   render: function() {
+    console.log("hmm.")
     // console.log("hello from user index")
     var content = this.template();
     this.$el.html(content);
