@@ -8,6 +8,8 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
 
   template: JST["channels/show"],
 
+  className: "channel-show",
+
   addMessageView: function(message) {
     var messageView = new Quack.Views.MessageShow({ model: message });
     this.addSubview(".messages", messageView);

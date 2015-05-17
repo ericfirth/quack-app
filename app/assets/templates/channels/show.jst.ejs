@@ -1,8 +1,9 @@
-<h1>Current Channel: #<%= channel.get('title') %></h1>
+<header class="header">
+  <h1><strong>#</strong><%= channel.get('title') %></h1>
+</header>
 
-<ul class="messages">
-</ul>
+<main class="main-conversation">
+  <ul class="messages"></ul>
+</main>
 
-<div class="message-add">
-
-</div>
+<footer class="footer message-add"></footer>
