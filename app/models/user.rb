@@ -20,15 +20,24 @@ class User < ActiveRecord::Base
   has_many :messages,
     class_name: "Message",
     foreign_key: :sender_id,
-    primary_key: :id
+    primary_key: :id,
+    dependent: :destroy
   has_many :sent_private_messages,
     class_name: "PrivateMessage",
     foreign_key: :sender_id,
-    primary_key: :id
+    primary_key: :id,
+    dependent: :destroy
   has_many :received_private_messages,
     class_name: "PrivateMessage",
     foreign_key: :receiver_id,
-    primary_key: :id
+    primary_key: :id,
+    dependent: :destroy
+  has_many :stars, as: :starable, dependent: :destroy
+  has_many :starred_channels, through: :stars, source: :starable, source_type: "Channel"
+  # has_many :starred_users, through: :stars, source: :starable, source_type: "User"
+  has_many :starred_messages, through: :stars, source: :starable, source_type: "Message"
+  has_many :starred_private_messages, through: :stars, source: :starable, source_type: "PrivateMessage"
+
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "50x50>" }, default_url: "missing-person.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/

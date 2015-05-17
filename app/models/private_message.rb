@@ -12,5 +12,7 @@ class PrivateMessage < ActiveRecord::Base
     foreign_key: :receiver_id,
     primary_key: :id
 
+  has_many :stars, as: :starable
+
 
 end

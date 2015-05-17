@@ -6,5 +6,6 @@ class Message < ActiveRecord::Base
     foreign_key: :sender_id,
     primary_key: :id
   belongs_to :channel
+  has_many :stars, as: :starable
 
 end

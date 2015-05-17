@@ -9,7 +9,7 @@ Quack is a clone of Slack built on Rails and Backbone. Users can:
 - [x] Create accounts
 - [x] Create sessions (log in)
 - [x] Create team sites
-- [ ] Create channels on team sites
+- [x] Create channels on team sites
 - [x] Join channels on team sites
 - [x] Create messages on channels
 - [x] Read all messages on channel
@@ -26,7 +26,7 @@ Quack is a clone of Slack built on Rails and Backbone. Users can:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication & Team Site Creation (~1 day)
+### Phase 1 (complete): User Authentication & Team Site Creation (~1 day)
 I will implement user authentication in Rails based on the practices learned at
 App Academy. By the end of this phase, users will be able to log in & start or see
 their a team sites and create channels. The most important part of this phase will
@@ -35,7 +35,7 @@ to phase 2.
 
 [Details][phase-one]
 
-### Phase 2: Channel & Message Creation & Posting (3 days)
+### Phase 2 (complete): Channel & Message Creation & Posting (3 days)
 I will begin add API routes to serve JSON and begin building the app as a single page
 backbone application. The first step to be able to post messages and have messages
 belong to a channel or to a conversation between two people. By the end of this phase,
@@ -77,7 +77,7 @@ They are deleted when viewed.
 - [ ] favorites
 - [ ] searching fetches the context (the two messages before and after the
   message that contains the search phrase).
-- [ ] User avatars
+- [x] User avatars
 - [ ] Typeahead search bar
 - [ ] mentions can be made without using @ and searching for the username in text
 

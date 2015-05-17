@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515184710) do
+ActiveRecord::Schema.define(version: 20150517190338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,28 +26,47 @@ ActiveRecord::Schema.define(version: 20150515184710) do
   add_index "channels", ["team_site_id"], name: "index_channels_on_team_site_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
-    t.integer  "sender_id",  null: false
-    t.integer  "channel_id", null: false
-    t.string   "text",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "sender_id",         null: false
+    t.integer  "channel_id",        null: false
+    t.string   "text",              null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   add_index "messages", ["channel_id"], name: "index_messages_on_channel_id", using: :btree
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
   create_table "private_messages", force: :cascade do |t|
-    t.integer  "sender_id",    null: false
-    t.integer  "receiver_id",  null: false
-    t.integer  "team_site_id", null: false
-    t.string   "text",         null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "sender_id",         null: false
+    t.integer  "receiver_id",       null: false
+    t.integer  "team_site_id",      null: false
+    t.string   "text",              null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   add_index "private_messages", ["receiver_id"], name: "index_private_messages_on_receiver_id", using: :btree
   add_index "private_messages", ["sender_id"], name: "index_private_messages_on_sender_id", using: :btree
   add_index "private_messages", ["team_site_id"], name: "index_private_messages_on_team_site_id", using: :btree
+
+  create_table "stars", force: :cascade do |t|
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "user_id",       null: false
+    t.integer  "starable_id",   null: false
+    t.string   "starable_type", null: false
+  end
+
+  add_index "stars", ["starable_id"], name: "index_stars_on_starable_id", using: :btree
+  add_index "stars", ["user_id"], name: "index_stars_on_user_id", using: :btree
 
   create_table "team_site_memberships", force: :cascade do |t|
     t.integer  "team_site_id", null: false
