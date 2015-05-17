@@ -9,12 +9,30 @@ Quack.Views.MessageForm = Backbone.View.extend({
   className: "message-form",
 
   events: {
-    "submit": "submit"
+    "submit": "submit",
+    "change .file-attachment": "fileInputChange"
+  },
+
+  fileInputChange: function(event){
+    var that = this;
+    var file = event.currentTarget.files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function(){
+      that.model._file = reader.result;
+    }
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      delete that.model._file;
+    }
   },
 
   submit: function(event) {
+    console.log("being submitted")
     event.preventDefault();
-    var text = this.$el.serializeJSON()
+    var text = this.$el.serializeJSON().message
 
     this.model.set(text);
     this.model.save({}, {

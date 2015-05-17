@@ -32,9 +32,10 @@ class User < ActiveRecord::Base
     foreign_key: :receiver_id,
     primary_key: :id,
     dependent: :destroy
-  has_many :stars, as: :starable, dependent: :destroy
+  has_many :stars, dependent: :destroy
+  has_many :received_stars, as: :starable
   has_many :starred_channels, through: :stars, source: :starable, source_type: "Channel"
-  # has_many :starred_users, through: :stars, source: :starable, source_type: "User"
+  has_many :starred_users, through: :stars, source: :starable, source_type: "User"
   has_many :starred_messages, through: :stars, source: :starable, source_type: "Message"
   has_many :starred_private_messages, through: :stars, source: :starable, source_type: "PrivateMessage"
 

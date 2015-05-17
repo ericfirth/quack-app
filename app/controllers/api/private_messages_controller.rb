@@ -10,6 +10,6 @@ class Api::PrivateMessagesController < Api::ApiController
   end
 
   def private_message_params
-    params.require(:private_message).permit(:team_site_id, :receiver_id, :text)
+    params.require(:private_message).permit(:team_site_id, :receiver_id, :text, :file)
   end
 end

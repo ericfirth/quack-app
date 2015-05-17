@@ -14,5 +14,9 @@ class PrivateMessage < ActiveRecord::Base
 
   has_many :stars, as: :starable
 
+  has_attached_file :file
+  validates_attachment :file, size: { in: 0..20.megabytes }
+  do_not_validate_attachment_file_type :file
+
 
 end

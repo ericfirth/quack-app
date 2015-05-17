@@ -23,12 +23,10 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
   },
 
   addEditAvatarView: function (event) {
-    // debugger;
     var user = this.model.users().get(Quack.currentUser.id)
     var editUserView = new Quack.Views.UserForm({ model: user, collection: this.model.users() });
     var $modal = $(".modal");
     $modal.html(editUserView.render().$el);
-    // debugger;
     $modal.addClass("is-open")
   },
 

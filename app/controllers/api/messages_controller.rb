@@ -1,4 +1,5 @@
 class Api::MessagesController < Api::ApiController
+  wrap_parameters false
 
   def show
     @message = Message.find(params[:id])
@@ -18,7 +19,7 @@ class Api::MessagesController < Api::ApiController
   protected
 
   def message_params
-    params.require(:message).permit(:text, :sender_id, :channel_id)
+    params.require(:message).permit(:text, :sender_id, :channel_id, :file)
   end
 
 end
