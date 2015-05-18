@@ -1,20 +1,28 @@
-Quack.Models.Channel = Backbone.Model.extend({
-  urlRoot: "api/channels",
+Quack.Models.Channel = Backbone.Model.extend(
+  _.extend({}, Quack.Mixins.Starable, {
+    urlRoot: "api/channels",
 
-  messages: function() {
-    if (!this._messages) {
-      this._messages = new Quack.Collections.Messages([], { channel: this })
+    messages: function() {
+      if (!this._messages) {
+        this._messages = new Quack.Collections.Messages([], { channel: this })
+      }
+
+      return this._messages;
+    },
+
+    starableOptions: {
+      foreignKey: "starable_id"
+    },
+
+    parse: function (response) {
+      this.parseStar(response);
+
+      if (response.messages) {
+        this.messages().set(response.messages);
+        delete response.messages;
+      }
+
+      return response;
     }
-
-    return this._messages;
-  },
-
-  parse: function (response) {
-    if (response.messages) {
-      this.messages().set(response.messages);
-      delete response.messages;
-    }
-
-    return response;
-  }
-})
+  })
+);

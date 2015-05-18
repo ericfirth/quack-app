@@ -291,10 +291,53 @@ colors:
 .message-input {
   height: 54px;
   // min-width: 300px;
-  width: 100%;
+  float: left;
+  width: calc(100% - 60px);
   background: white;
   border: 1px solid #ccc;
 }
+.file-attachment {
+  float: left;
+  width: 58px;
+  height: 54px;
+  display: block;
+  // padding: 10px;
+
+}
+
+.file-attachment::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.file-attachment::before {
+  content: "↑";
+  display: block;
+  // width: 58px;
+  background: #ccc;
+  // border: 1px solid #999;
+  border-radius: 3px;
+  padding: 12px 22px;
+  // outline: none;
+  // white-space: nowrap;
+  // -webkit-user-select: none;
+  // cursor: pointer;
+  // text-shadow: 1px 1px #fff;
+  // font-weight: 700;
+  font-size: 24px;
+}
+.file-attachment:hover::before {
+  background: #00BCCC;
+  color: white;
+  // border-color: black;
+}
+
+.file-attachment:focus {
+  outline: 0;
+}
+.file-attachment:active::before {
+  // background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+
 
 .message-input:focus {
   outline: 3px solid #00BCCC;
@@ -306,6 +349,7 @@ colors:
   position: absolute;
   bottom: 0;
   height: 90px;
+  overflow: hidden;
 }
 
 
@@ -357,31 +401,3 @@ colors:
    text-align: center;
    font-size: 12px;
  }
-
-
-
-
-.file-attachment::-webkit-file-upload-button {
-  // visibility: hidden;
-}
-.file-attachment::before {
-  // content: "U+2191";
-  // display: inline-block;
-  // background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
-  // border: 1px solid #999;
-  // border-radius: 3px;
-  // padding: 5px 8px;
-  // outline: none;
-  // white-space: nowrap;
-  // -webkit-user-select: none;
-  // cursor: pointer;
-  // text-shadow: 1px 1px #fff;
-  // font-weight: 700;
-  // font-size: 10pt;
-}
-.file-attachment:hover::before {
-  // border-color: black;
-}
-.file-attachment:active::before {
-  // background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-}

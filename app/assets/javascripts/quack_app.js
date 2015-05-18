@@ -1,4 +1,5 @@
 window.Quack = {
+  Mixins: {},
   Models: {},
   Collections: {},
   Views: {},
