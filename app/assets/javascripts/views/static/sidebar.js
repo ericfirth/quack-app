@@ -1,6 +1,7 @@
 Quack.Views.Sidebar = Backbone.CompositeView.extend({
   initialize: function () {
     this.listenTo(this.model, "sync", this.render)
+
     this.addChannelIndex();
     this.addUserIndex();
   },
@@ -14,7 +15,6 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    // console.log("hello from sidebar")
     var authToken = $('meta[name=csrf-token]').attr('content')
     var content = this.template({ team: this.model, authToken: authToken });
     this.$el.html(content)

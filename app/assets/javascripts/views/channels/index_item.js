@@ -29,7 +29,6 @@ Quack.Views.ChannelsIndexItem = Backbone.View.extend({
       this.$el.addClass("selected")
     } else {
       this.$el.removeClass("selected")
-      console.log("cool")
     }
   }
 })

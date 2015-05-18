@@ -252,7 +252,7 @@ colors:
 */
 
 .header {
-  background: #eee;
+  background: #D1E6F6;
   padding: 10px 20px 15px 20px;
   position: absolute;
   top: 0;
@@ -291,6 +291,7 @@ colors:
 .message-input {
   height: 54px;
   // min-width: 300px;
+  // border-radius: 0px 10px 10px 0;
   float: left;
   width: calc(100% - 60px);
   background: white;
@@ -314,14 +315,14 @@ colors:
   // width: 58px;
   background: #ccc;
   // border: 1px solid #999;
-  border-radius: 3px;
+  border-radius: 20px 0px 0px 20px;
   padding: 12px 22px;
   // outline: none;
   // white-space: nowrap;
   // -webkit-user-select: none;
   // cursor: pointer;
   // text-shadow: 1px 1px #fff;
-  // font-weight: 700;
+  font-weight: 700;
   font-size: 24px;
 }
 .file-attachment:hover::before {
@@ -341,6 +342,7 @@ colors:
 
 .message-input:focus {
   outline: 3px solid #00BCCC;
+  // outline-radius: 0px 10px 10px 0;
 }
 
 .footer {

@@ -30,9 +30,9 @@ Quack.Views.MessageForm = Backbone.View.extend({
   },
 
   submit: function(event) {
-    console.log("being submitted")
     event.preventDefault();
     var text = this.$el.serializeJSON().message
+
 
     this.model.set(text);
     this.model.save({}, {

@@ -1,5 +1,6 @@
 Quack.Views.ChannelShow = Backbone.CompositeView.extend({
   initialize: function() {
+    this.starableType = "Channel"
     this.messages = this.model.messages();
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.messages, "add", this.addMessageView)
@@ -18,8 +19,13 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
   addNewMessageView: function() {
     var newMessage = new Quack.Models.Message();
     var messageForm = new Quack.Views.MessageForm({ model: newMessage, collection: this.model })
-    this.addSubview(".message-add", messageForm)
+    this.addSubview(".message-add", messageForm);
 
+  },
+
+  addStarChannelView: function () {
+    var starForm = new Quack.Views.StarForm({ model: this.model, starableType: this.starableType })
+    this.addSubview(".star", starForm);
   },
 
   render: function () {
@@ -28,7 +34,7 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     var content = this.template({ channel: this.model });
     this.$el.html(content);
     this.addNewMessageView();
-    // this.attachSubviews();
+    this.addStarChannelView();
     this.messages.each(this.addMessageView.bind(this));
     return this;
   }

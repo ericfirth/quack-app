@@ -1,1 +1,9 @@
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,600,300,800' rel='stylesheet' type='text/css'>
+Questions:
+
+- How do I get my avatars to persist from db:setup
+
+- Why are my file uploads have a weird filename data filename?
+have to make an attribute of the filename in backbone
+have to make that file an object with that filename in rails
+
+- Whats up with my scrollbars a) normally? and b) in heroku
