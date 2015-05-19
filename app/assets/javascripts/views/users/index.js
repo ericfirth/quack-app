@@ -16,7 +16,7 @@ Quack.Views.UsersIndex = Backbone.CompositeView.extend({
   },
 
   addUserIndexItem: function(indexItem) {
-    if (indexItem.id !== Quack.currentUser.id) {
+    if (indexItem.id !== Quack.currentUser.id && !indexItem.attributes.starred) {
       var userIndexItemView = new Quack.Views.UsersIndexItem({ model: indexItem });
       this.addSubview('.users-list', userIndexItemView);
     }

@@ -17,6 +17,8 @@ Quack.Views.TeamSitesIndex = Backbone.View.extend({
       var teamSite = new Quack.Models.TeamSite({id: $target.val()})
       teamSite.fetch({
         success: function() {
+          Quack.currentUser.set("team_site_id", teamSite.id);
+          Quack.currentUser.fetch();
           var channelId = teamSite.get("channel_to_display")
           var url = "channels/" + channelId
           Backbone.history.navigate(url, { trigger: true })

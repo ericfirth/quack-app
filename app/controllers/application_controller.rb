@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.includes(:starred_channels, :starred_users).find_by(session_token: session[:session_token])
   end
 
+  def current_team_site
+    @current_team_site ||= TeamSite.find(session[:team_site_id])
+  end
+
   def login!(user)
     session[:session_token] = user.reset_token!
   end
@@ -21,6 +25,7 @@ class ApplicationController < ActionController::Base
   def sign_out!
     current_user.reset_token!
     session[:session_token] = nil
+    session[:team_site_id] = nil
   end
 
   def require_sign_in!

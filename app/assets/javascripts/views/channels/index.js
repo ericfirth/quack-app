@@ -12,8 +12,10 @@ Quack.Views.ChannelsIndex = Backbone.CompositeView.extend({
   template: JST["channels/index"],
 
   addChannelIndexItem: function(indexItem) {
-    var indexItemView = new Quack.Views.ChannelsIndexItem({ model: indexItem })
-    this.addSubview(".channel-list", indexItemView);
+    if (!indexItem.attributes.starred) {
+      var indexItemView = new Quack.Views.ChannelsIndexItem({ model: indexItem });
+      this.addSubview(".channel-list", indexItemView);
+    }
   },
 
   events: {

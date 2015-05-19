@@ -2,7 +2,9 @@ class Api::SessionsController < Api::ApiController
 
   def show
     @current_user = current_user
-    @sidebar_items = @current_user.starred_channels + @current_user.starred_users
+    @sidebar_stars = @current_user.starred_channels + @current_user.starred_users
+    @current_team_site = current_team_site
+
     render :show
   end
 
@@ -32,7 +34,8 @@ class Api::SessionsController < Api::ApiController
   # end
   #
   def session_params
-    params.require(:session).permit(:avatar)
+    params.require(:session).permit(:avatar, :team_site_id)
   end
+
 
 end
