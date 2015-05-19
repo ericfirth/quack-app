@@ -9,8 +9,6 @@ Quack.Views.UsersIndexItem = Backbone.View.extend({
 
   attributes: function() {
     return {
-
-
       'data-user-id': this.model.id
     };
   },
@@ -18,7 +16,6 @@ Quack.Views.UsersIndexItem = Backbone.View.extend({
   template: JST["users/index_item"],
 
   render: function() {
-    // console.log("hello from user index item")
     this.testSelected();
     var content = this.template({ user: this.model, selected: this.selected });
     this.$el.html(content);

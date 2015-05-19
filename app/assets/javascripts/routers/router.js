@@ -71,14 +71,17 @@ Quack.Routers.Router = Backbone.Router.extend({
       conversation.fetch({
         success: function() {
           this.teamSite = this.teamSites.getOrFetch(conversation.teamSiteId);
+          var otherUser = this.teamSite.users().get(otherUserId);
           this.sidebarStart();
         }.bind(this)
       })
     } else {
+      var otherUser = this.teamSite.users().get(otherUserId);
       var conversation = new Quack.Collections.Conversation([], {otherUserId: otherUserId})
       conversation.fetch()
     }
-    var conversationShowView = new Quack.Views.ConversationShow({ collection: conversation });
+    otherUser.fetch();
+    var conversationShowView = new Quack.Views.ConversationShow({ model: otherUser, collection: conversation });
     this._swapView(conversationShowView);
   },
 

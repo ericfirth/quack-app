@@ -7,11 +7,12 @@ Quack.Mixins.Starable = {
   },
 
   createStar: function (starableType) {
+    this.star().set("starable_id", this.id)
     this.star().set("starable_type", starableType)
     this.star().set("user_id", Quack.currentUser.id)
     this.star().save({}, {
       success: function () {
-        if ((starableType === "Conversation") || (starableType === "Channel")) {
+        if ((starableType === "User") || (starableType === "Channel")) {
           Quack.currentUser.starredSidebarItems().add(this.star())
         } else {
           Quack.currentUser.starredMessages().add(this.star())
@@ -45,17 +46,6 @@ Quack.Mixins.Starable = {
 
   updateStarCount: function (delta) {
     this.set("num_stars", this.get("num_stars") + delta);
-  },
-
-  parseStar: function (payload) {
-    var attrs = {};
-    attrs[this.starableOptions.foreignKey] = payload.id;
-    this.star().set(attrs);
-
-    if (payload.star) {
-      this.star().set(payload.star);
-      delete payload.star
-    }
   }
 
 

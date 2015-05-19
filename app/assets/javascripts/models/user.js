@@ -2,6 +2,10 @@ Quack.Models.User = Backbone.Model.extend(
   _.extend({}, Quack.Mixins.Starable, {
     urlRoot: "api/users",
 
+    starableOptions: {
+      foreignKey: "starable_id"
+    },
+
     toJSON: function() {
       var json = {user: _.clone(this.attributes)};
 

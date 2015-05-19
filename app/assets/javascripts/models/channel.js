@@ -15,7 +15,6 @@ Quack.Models.Channel = Backbone.Model.extend(
     },
 
     parse: function (response) {
-      this.parseStar(response);
 
       if (response.messages) {
         this.messages().set(response.messages);

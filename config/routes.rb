@@ -11,6 +11,6 @@ Rails.application.routes.draw do
     resources :stars, only: [:create, :destroy]
     resources :team_site_memberships, only: [:create, :destroy]
     resources :team_sites
-    resources :users, only: [:update]
+    resources :users, only: [:update, :show]
   end
 end

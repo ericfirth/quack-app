@@ -241,9 +241,35 @@ Team Site Show - Conversation
 
 .sidebar-avatar {
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.3);
-
 }
 
+.closed {
+  display: none;
+}
+
+.team-menu-icon {
+  float: right;
+  display: block;
+  padding: 5px 10px 10px 10px;
+}
+
+.team-menu-icon:hover {
+  cursor: pointer;
+  background: #8A2A1E;
+}
+
+.team-menu {
+  position: absolute;
+  background: white;
+  color: #00BCCC;
+  right: 20px;
+}
+.team-menu .invite:hover {
+  background: #00BCCC;
+  color: white;
+  border-radius:0;
+  margin-right:0;
+}
 
 /*
 CHANNEL SHOW

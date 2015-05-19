@@ -4,11 +4,6 @@ Quack.Models.Conversation = Backbone.Model.extend(
 
     starableOptions: {
       foreignKey: "starable_id"
-    },
-
-    parse: function (payload) {
-      this.parseStar(payload);
-      return payload;
     }
   })
 )
