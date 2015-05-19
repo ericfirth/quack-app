@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :conversations, except: [:new, :update]
     resources :messages, only: [:show, :create]
     resources :private_messages, only: [:show, :create]
-    resource :session, only: [:show]
+    resource :session, only: [:show, :update]
     resources :stars, only: [:create, :destroy]
     resources :team_site_memberships, only: [:create, :destroy]
     resources :team_sites

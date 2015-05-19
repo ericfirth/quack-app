@@ -231,12 +231,14 @@ Team Site Show - Conversation
 
 .message-information {
   float: left;
+  width: calc(100% - 105px);
 }
 
 .message-file-link {
   color: #00BCCC;
   font-style: italic;
 }
+
 
 .avatar-show {
   float: left;
@@ -289,7 +291,7 @@ colors:
 
 .header {
   background: #D1E6F6;
-  padding: 10px 20px 15px 20px;
+  padding: 10px 0 15px 0px;
   position: absolute;
   top: 0;
   height: 37px;
@@ -316,7 +318,7 @@ colors:
   overflow: auto;
   top: 62px;
   bottom: 69px;
-  padding: 10px 20px;
+  // padding: 10px 20px;
   width: 100%;
 }
 

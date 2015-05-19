@@ -55,8 +55,11 @@ Quack.Views.UserForm = Backbone.View.extend({
     event.preventDefault();
     this.model.save(formData, {
       success: function () {
+        // debugger
+        Quack.currentUser.set("avatar", this.model._avatar)
+        Quack.currentUser.save()
         $(".modal").removeClass("is-open");
-      }
+      }.bind(this)
     })
   }
 

@@ -6,6 +6,14 @@ class Api::SessionsController < Api::ApiController
     render :show
   end
 
+  def update
+    @current_user = current_user
+    # byebug
+    if @current_user.update(session_params)
+      render :show
+    end
+  end
+
   # def starred_users
   #   Users.find_by_sql(<<-SQL, current_user.id)
   #   SELECT
@@ -23,5 +31,8 @@ class Api::SessionsController < Api::ApiController
   #   SQL
   # end
   #
+  def session_params
+    params.require(:session).permit(:avatar)
+  end
 
 end

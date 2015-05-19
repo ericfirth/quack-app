@@ -2,7 +2,7 @@
 <ul class="message-information">
   <li>Created at: <%= message.get("timestamp") %></li>
   <li>From: <strong><%= message.get("sender") %></strong></li>
-  <li><%= message.get("text") %></li>
+  <li class="message-text"><%= message.get("text") %></li>
   <% if (message.attributes.filename)  { %>
   <li class="message-file-link"><a href="<%= message.get('file_url') %>"><%= message.escape("filename") %></a></li>
   <% } %>
