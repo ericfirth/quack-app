@@ -16,7 +16,7 @@ Quack.Views.StarredSidebarIndex = Backbone.CompositeView.extend({
   },
 
   render: function() {
-    console.log(this.collection)
+    // debugger;
     var content = this.template({ collection: this.collection });
     this.$el.html(content);
     this.collection.each(this.addStarredIndexItem.bind(this))

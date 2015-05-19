@@ -1,9 +1,18 @@
 Questions:
 
-- How do I get my avatars to persist from db:setup
 
-- Why are my file uploads have a weird filename data filename?
+[- Why are my file uploads have a weird filename data filename?
 have to make an attribute of the filename in backbone
-have to make that file an object with that filename in rails
+have to make that file an object with that filename in rails]
 
 - Whats up with my scrollbars a) normally? and b) in heroku
+
+-----
+
+- How do i make it so my starred things wait since the information is fetched
+
+- Mailers? should i use action mailer or sendgrid?
+
+- How do I get my current user to sync with the same version of the user in the team site collection
+
+-

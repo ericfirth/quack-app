@@ -17,7 +17,7 @@ Quack.Views.UsersIndexItem = Backbone.View.extend({
 
   render: function() {
     this.testSelected();
-    var content = this.template({ user: this.model, selected: this.selected });
+    var content = this.template({ user: this.model });
     this.$el.html(content);
     // this.$el.data("id", this.model.get("id"));
 

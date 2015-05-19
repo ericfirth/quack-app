@@ -2,7 +2,7 @@ class Api::UsersController < Api::ApiController
   wrap_parameters false
 
   def update
-    @user = User.find(params[:id])
+    @user = current_user
     if @user.update(user_params)
       render :show
     else

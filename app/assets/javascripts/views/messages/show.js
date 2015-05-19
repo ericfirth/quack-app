@@ -5,7 +5,7 @@ Quack.Views.MessageShow = Backbone.View.extend({
 
   tagName: "li",
 
-  className: "message-show",
+  className: "message-show group",
 
   template: JST["messages/show"],
 

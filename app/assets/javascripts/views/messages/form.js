@@ -16,6 +16,7 @@ Quack.Views.MessageForm = Backbone.View.extend({
   fileInputChange: function(event){
     var that = this;
     var file = event.currentTarget.files[0];
+    this.model.set("file_file_name", file.name)
     var reader = new FileReader();
 
     reader.onloadend = function(){

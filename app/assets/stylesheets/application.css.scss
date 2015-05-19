@@ -229,6 +229,15 @@ Team Site Show - Conversation
   margin: 20px;
 }
 
+.message-information {
+  float: left;
+}
+
+.message-file-link {
+  color: #00BCCC;
+  font-style: italic;
+}
+
 .avatar-show {
   float: left;
   display: block;
@@ -248,14 +257,15 @@ Team Site Show - Conversation
 }
 
 .team-menu-icon {
+  font-size: 24px;
   float: right;
   display: block;
-  padding: 5px 10px 10px 10px;
+  padding: 0 0 10px 10px;
 }
 
 .team-menu-icon:hover {
   cursor: pointer;
-  background: #8A2A1E;
+  color: #00BCCC;
 }
 
 .team-menu {

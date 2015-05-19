@@ -8,7 +8,7 @@ class Api::MessagesController < Api::ApiController
 
   def create
     @message = current_user.messages.new(message_params)
-
+    @message.file_file_name = params[:message][:file_file_name]
     if @message.save
       render :show
     else
@@ -19,7 +19,7 @@ class Api::MessagesController < Api::ApiController
   protected
 
   def message_params
-    params.require(:message).permit(:text, :sender_id, :channel_id, :file)
+    params.require(:message).permit(:text, :sender_id, :channel_id, :file_file_name, :file)
   end
 
 end
