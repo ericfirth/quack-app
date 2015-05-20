@@ -4,7 +4,14 @@ class UserMailer < ApplicationMailer
     @invite = invite
     @team_site = TeamSite.find(invite.team_site_id)
     @inviter = User.find(invite.inviter_id)
-    @url = "http://#{domain}#{":3000" if Rails.env == "development"}/invites/new/?invite_code=#{invite.invite_code}"
+
+    if Rails.env == "development"
+      domain = "localhost:3000"
+    else
+      domain = "quack-app.herokuapp.com"
+    end
+
+    @url = "http://#{domain}/invites/new/?invite_code=#{invite.invite_code}"
     mail(from: "#{@inviter.username.capitalize} <#{@inviter.email}>",
         to: @invite.email,
         subject: "You've been invited to a Quack group!")
