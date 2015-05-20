@@ -11,7 +11,7 @@ class Invite < ActiveRecord::Base
   belongs_to :team_site
 
   def ensure_invite_code
-    self.invite_code = SecureRandom.urlsafe_base64(16)
+    self.invite_code ||= SecureRandom.urlsafe_base64(16)
   end
 
 end

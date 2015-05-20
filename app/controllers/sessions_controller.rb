@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       login! user
       redirect_to root_url
     else
-      flash.now[:errors] = "Incorrect Username/Password combination"
+      flash.now[:errors] = ["Incorrect Username/Password combination"]
       render :new
     end
   end
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   def destroy
     sign_out!
     session[:team_site_id] = nil
-    
+
 
     redirect_to new_session_url
   end
