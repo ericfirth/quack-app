@@ -182,6 +182,18 @@ highlight blue green - #00BCCC
   // font-size: 12px;
 }
 
+.users-list > .starred, .channels-list > .starred {
+  display: none;
+}
+
+.starred-list > li {
+  display: none;
+}
+
+.starred-list > .starred {
+  display: block
+}
+
 
 .icon {
 	width: 25px;

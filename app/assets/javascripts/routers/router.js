@@ -52,6 +52,7 @@ Quack.Routers.Router = Backbone.Router.extend({
       )
     } else {
       var channel = this.teamSite.channels().getOrFetch(id);
+      this.sidebarStart();
     }
     var channelShowView = new Quack.Views.ChannelShow({ model: channel });
     this._swapView(channelShowView);
@@ -79,6 +80,7 @@ Quack.Routers.Router = Backbone.Router.extend({
       var otherUser = this.teamSite.users().get(otherUserId);
       var conversation = new Quack.Collections.Conversation([], {otherUserId: otherUserId})
       conversation.fetch()
+      this.sidebarStart();
     }
     otherUser.fetch();
     var conversationShowView = new Quack.Views.ConversationShow({ model: otherUser, collection: conversation });
@@ -96,7 +98,9 @@ Quack.Routers.Router = Backbone.Router.extend({
   },
 
   sidebarStart: function() {
-    this._sidebarView = new Quack.Views.Sidebar({model: this.teamSite});
-    this.$sidebar.html(this._sidebarView.render().$el)
+    if (!this._sidebarView) {
+      this._sidebarView = new Quack.Views.Sidebar({model: this.teamSite});
+      this.$sidebar.html(this._sidebarView.render().$el);
+    }
   }
 })

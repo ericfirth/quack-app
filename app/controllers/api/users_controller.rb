@@ -12,6 +12,8 @@ class Api::UsersController < Api::ApiController
 
   def show
     @user = User.find(params[:id])
+    @hasStar = current_user.starred_channels.include?(@user)
+    @star = Star.find_by(user_id: current_user.id, starable_id: @user.id, starable_type: "User")
     render :show
   end
 

@@ -1,31 +1,35 @@
 Quack.Models.CurrentUser = Backbone.Model.extend({
   url: "api/session",
 
-  starredSidebarItems: function () {
-    if (!this._starredSidebarItems) {
-      this._starredSidebarItems = new Quack.Collections.StarredSidebarItems([], { user: this })
+  sidebarItems: function() {
+    if (!this._sidebarItems) {
+      this._sidebarItems = new Quack.Collections.SidebarItems([], { user: this })
     }
-
-    return this._starredSidebarItems;
+    return this._sidebarItems
   },
 
-  starredMessages: function () {
-    if (!this._starredMessages) {
-      this._starredMessages = new Quack.Collections.StarredMessages([], { user: this })
-    }
-
-    return this._starredMessages;
-  },
+  // otherUsers: function () {
+  //   if (!this._otherUsers) {
+  //     this._otherUsers = new Quack.Collections.Users([], { user: this })
+  //   }
+  //
+  //   return this._otherUsers
+  // }
 
   parse: function (response) {
-    if (response.starred_sidebar_items) {
-      this.starredSidebarItems().set(response.starred_sidebar_items);
-      delete response.starred_sidebar_items
+    console.log(response.users.length + response.channels.length)
+    this.sidebarItems().reset(null);
+
+    if (response.channels) {
+      this.sidebarItems().add(response.channels)
+      console.log(this.sidebarItems().length)
+      delete response.channels
     }
 
-    if (response.starred_messages) {
-      this.starredMessages().set(response.starred_messages)
-      delete response.starred_messages
+    if (response.users) {
+      this.sidebarItems().add(response.users);
+      console.log(this.sidebarItems().length)
+      delete response.users
     }
 
     return response;

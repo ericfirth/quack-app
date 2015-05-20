@@ -1,16 +1,15 @@
 Quack.Views.Sidebar = Backbone.CompositeView.extend({
   initialize: function () {
     this.listenTo(this.model, "sync", this.render)
-    this.listenTo(Quack.currentUser, "sync", this.render)
-    this.addStarredIndex();
-    this.addChannelIndex();
-    this.addUserIndex();
+    this.listenTo(Quack.currentUser.sidebarItems(), "sync", this.render)
+    this.addIndex();
+
     $(window).on("click", this.closeMenu)
   },
 
   className: "sidebar-composite",
 
-  template: JST["static/sidebar"],
+  template: JST["sidebar/show"],
 
   events: {
     "click .edit-avatar-link": "addEditAvatarView",
@@ -26,7 +25,6 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
   },
 
   closeMenu: function(event) {
-    // debugger;
     if (event.target.className === "icon-menu team-menu-icon" ||
     event.targetClass === "team-menu") {
       return
@@ -46,19 +44,25 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
     $modal.addClass("is-open")
   },
 
-  addStarredIndex: function() {
-    var starredIndex = new Quack.Views.StarredSidebarIndex({ collection: Quack.currentUser.starredSidebarItems() })
-    this.addSubview(".users-channels", starredIndex);
-  },
+  addIndex: function() {
+    // debugger;
+    var sidebarIndex = new Quack.Views.SidebarIndex({ collection: Quack.currentUser.sidebarItems() })
+    this.addSubview(".users-channels", sidebarIndex);
+  }//,
 
-  addChannelIndex: function () {
-    var channelIndex = new Quack.Views.ChannelsIndex({ collection: this.model.channels() })
-    this.addSubview(".users-channels", channelIndex);
-  },
-
-  addUserIndex: function () {
-    var userIndex = new Quack.Views.UsersIndex({ collection: this.model.users() })
-    this.addSubview(".users-channels", userIndex);
-  },
+  // addStarredIndex: function() {
+  //   var starredIndex = new Quack.Views.StarredSidebarIndex({ collection: Quack.currentUser.starredSidebarItems() })
+  //   this.addSubview(".users-channels", starredIndex);
+  // },
+  //
+  // addChannelIndex: function () {
+  //   var channelIndex = new Quack.Views.ChannelsIndex({ collection: this.model.channels() })
+  //   this.addSubview(".users-channels", channelIndex);
+  // },
+  //
+  // addUserIndex: function () {
+  //   var userIndex = new Quack.Views.UsersIndex({ collection: this.model.users() })
+  //   this.addSubview(".users-channels", userIndex);
+  // },
 
 });

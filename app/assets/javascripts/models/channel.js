@@ -15,6 +15,13 @@ Quack.Models.Channel = Backbone.Model.extend(
     },
 
     parse: function (response) {
+      // this.set("starred") = response.starred
+      // delete response.starred
+
+      if (response.star_id) {
+        this.star().set("id", response.star_id)
+        delete response.star_id
+      }
 
       if (response.messages) {
         this.messages().set(response.messages);

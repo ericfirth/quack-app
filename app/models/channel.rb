@@ -4,4 +4,5 @@ class Channel < ActiveRecord::Base
   belongs_to :team_site
   has_many :messages
   has_many :stars, as: :starable
+  has_many :user_stars, through: :stars, source: :user
 end

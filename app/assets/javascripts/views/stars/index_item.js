@@ -17,7 +17,6 @@ Quack.Views.StarredSidebarIndexItem = Backbone.View.extend({
   template: JST["stars/index_item"],
 
   render: function() {
-    // debugger;
     this.testSelected();
     var content = this.template({ model: this.model });
     this.$el.html(content);

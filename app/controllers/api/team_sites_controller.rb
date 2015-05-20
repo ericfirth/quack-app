@@ -6,8 +6,6 @@ class Api::TeamSitesController < Api::ApiController
 
   def create
     @team_site = current_user.owned_team_sites.new(team_site_params)
-
-
     if @team_site.save
       TeamSiteMembership.create(user_id: current_user.id, team_site_id: @team_site.id)
       render json: @team_site
@@ -17,9 +15,8 @@ class Api::TeamSitesController < Api::ApiController
   end
 
   def show
-    session[:team_site_id] = params[:id]
-    @team_site = TeamSite.includes(:users, :channels).find(params[:id])
-    current_team_site = @team_site
+    join_team_site
+    @team_site = current_team_site
     render :show
   end
 

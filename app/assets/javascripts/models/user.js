@@ -14,6 +14,14 @@ Quack.Models.User = Backbone.Model.extend(
       }
 
       return json;
+    },
+
+    parse: function(response) {
+      if (response.star_id) {
+        this.star().set("id", response.star_id)
+        delete response.star_id
+      }
+      return response
     }
   })
 )

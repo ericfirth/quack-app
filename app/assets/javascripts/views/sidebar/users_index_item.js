@@ -9,11 +9,11 @@ Quack.Views.UsersIndexItem = Backbone.View.extend({
 
   attributes: function() {
     return {
-      'data-user-id': this.model.id
+      'data-user-id': this.model.get("original_id")
     };
   },
 
-  template: JST["users/index_item"],
+  template: JST["sidebar/user_index_item"],
 
   render: function() {
     this.testSelected();

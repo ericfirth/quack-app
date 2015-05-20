@@ -11,11 +11,15 @@ class ApplicationController < ActionController::Base
   end
 
   def current_team_site
-    @current_team_site ||= TeamSite.find(session[:team_site_id])
+    @current_team_site ||= TeamSite.includes(:users, channels: :messages).find(session[:team_site_id])
   end
 
   def login!(user)
     session[:session_token] = user.reset_token!
+  end
+
+  def join_team_site
+    session[:team_site_id] = params[:id]
   end
 
   def signed_in?

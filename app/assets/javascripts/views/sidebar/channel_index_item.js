@@ -9,15 +9,13 @@ Quack.Views.ChannelsIndexItem = Backbone.View.extend({
 
   attributes: function() {
     return {
-      'data-channel-id': this.model.id
+      'data-channel-id': this.model.get("original_id")
     };
   },
 
-  template: JST["channels/index_item"],
+  template: JST["sidebar/channel_index_item"],
 
   render: function() {
-    // console.log("hello from the channels index item")
-
     this.testSelected();
     var content = this.template({ channel: this.model });
     this.$el.html(content);

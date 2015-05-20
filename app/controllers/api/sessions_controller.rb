@@ -2,9 +2,11 @@ class Api::SessionsController < Api::ApiController
 
   def show
     @current_user = current_user
-    @sidebar_stars = @current_user.starred_channels + @current_user.starred_users
-    @current_team_site = current_team_site
-
+    if session[:team_site_id]
+      @sidebar_stars = @current_user.starred_channels + @current_user.starred_users
+      @current_team_site = current_team_site
+      # byebug
+    end
     render :show
   end
 

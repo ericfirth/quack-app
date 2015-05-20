@@ -24,6 +24,7 @@ Quack.Views.ChannelForm = Backbone.View.extend({
     this.model.save({}, {
       success: function () {
         this.collection.add(this.model);
+        Quack.currentUser.sidebarItems.add(this.model)
         var url = "channels/" + this.model.id;
         Backbone.history.navigate(url, { trigger: true });
       }.bind(this)

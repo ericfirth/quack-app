@@ -1,4 +1,9 @@
 json.extract! @channel, :id, :title, :team_site_id
+json.starred @hasStar
+if @hasStar
+  json.star_id @star.id
+end
+json._type "Channel"
 
 json.messages @channel.messages do |message|
   json.sender message.sender.username
