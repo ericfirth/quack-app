@@ -43,7 +43,27 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "50x50>" }, default_url: "missing-person.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
+  def self.find_or_create_by_auth_hash(auth_hash)
+    credential = Credential.find_by(
+              provider: auth_hash[:provider],
+              uid: auth_hash[:uid])
+    if credential
+      user = User.find(credential.user_id)
+    end
 
+    unless user
+      username = auth_hash[:info][:name].gsub(" ", "_")
+      user = User.create!(
+            username: username,
+            password: SecureRandom::urlsafe_base64,
+            email: auth_hash[:info][:email])
+      Credential.create!(uid: auth_hash[:uid],
+              provider: auth_hash[:provider],
+              user_id: user.id)
+    end
+
+    user
+  end
 
   def self.find_by_credentials(username, password)
     @user = User.find_by(username: username)

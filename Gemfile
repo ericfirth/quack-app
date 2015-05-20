@@ -30,6 +30,14 @@ gem 'figaro'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem "omniauth-google-oauth2"
+gem 'pg_search'
+gem 'kaminari'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

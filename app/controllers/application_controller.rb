@@ -18,6 +18,13 @@ class ApplicationController < ActionController::Base
     session[:session_token] = user.reset_token!
   end
 
+  def successful_invite(user)
+    TeamSiteMembership.create!(team_site_id: session[:team_site_id], user_id: user.id)
+    invite = Invite.find_by(invite_code: session[:invite_code])
+    invite.destroy
+    session[:team_site_id], session[:invite_code] = nil, nil
+  end
+
   def join_team_site
     session[:team_site_id] = params[:id]
   end

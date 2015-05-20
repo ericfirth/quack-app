@@ -15,4 +15,6 @@ Rails.application.routes.draw do
     resources :team_sites
     resources :users, only: [:update, :show]
   end
+
+  get "/auth/google_oauth2/callback", to: "sessions#omniauth"
 end

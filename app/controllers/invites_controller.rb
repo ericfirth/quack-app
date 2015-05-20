@@ -2,6 +2,8 @@ class InvitesController < ApplicationController
 
   def new
     @invite = Invite.includes(:team_site).find_by(invite_code: params[:invite_code])
+    session[:invite_code] = @invite.invite_code
+    session[:team_site_id] = @invite.team_site_id
     render :new
   end
 
@@ -10,7 +12,9 @@ class InvitesController < ApplicationController
     if params[:new_user]
       @user = User.new(invite_params)
       if @user.save
-        successful_invite(@user, params[:team_site_id], params[:invite_code])
+        login! user
+        successful_invite(user)
+        redirect_to root_url
       else
         flash.now[:errors] = @user.errors.full_messages
         @invite = Invite.includes(:team_site).find_by(invite_code: params[:invite_code])
@@ -22,7 +26,9 @@ class InvitesController < ApplicationController
       password = params[:user][:password]
       @user = User.find_by_credentials(username, password)
       if @user
-        successful_invite(@user, params[:team_site_id], params[:invite_code])
+        login! user
+        successful_invite(user)
+        redirect_to root_url
       else
         flash.now[:errors] = ["Incorrect Email/Password Combination"]
         @invite = Invite.includes(:team_site).find_by(invite_code: params[:invite_code])
@@ -31,13 +37,7 @@ class InvitesController < ApplicationController
     end
   end
 
-  def successful_invite(user, team_site_id, invite_code)
-    login! user
-    TeamSiteMembership.create!(team_site_id: team_site_id, user_id: user.id)
-    invite = Invite.find_by(invite_code: invite_code)
-    invite.destroy
-    redirect_to root_url
-  end
+
 
   def invite_params
     params.require(:user).permit(:username, :email, :password)

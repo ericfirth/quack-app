@@ -16,3 +16,4 @@ have to make that file an object with that filename in rails]
 - How do I get my current user to sync with the same version of the user in the team site collection
 
 -
+https://localhost:3000/oauth2callback
