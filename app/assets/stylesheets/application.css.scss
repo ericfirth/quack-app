@@ -194,6 +194,9 @@ highlight blue green - #00BCCC
   display: block
 }
 
+.invisible {
+  display: none;
+}
 
 .icon {
 	width: 25px;
@@ -310,6 +313,13 @@ colors:
   width: 100%;
 }
 
+.star {
+  display: block;
+  float: left;
+  font-size: 30px;
+  padding: 0 10px;
+}
+
 .content {
 }
 
@@ -403,6 +413,7 @@ colors:
   height: 90px;
   overflow: hidden;
 }
+
 
 
  /*

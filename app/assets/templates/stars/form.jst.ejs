@@ -1,1 +1,7 @@
-<button>Star Button for Testing</button>
+<button class="toggleStar">
+<% if(model.get("starred")) { %>
+  <i class="icon-star-full"></i>
+<% } else { %>
+  <i class="icon-star-empty"></i>
+<% } %>
+</button>

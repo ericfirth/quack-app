@@ -26,8 +26,17 @@ Quack.Views.SidebarIndex = Backbone.CompositeView.extend({
     } else {
       $("[data-user-id =" + indexItem.id + "]").toggleClass("starred")
     }
+    this.ensureStarredHeader();
 
-    this.ensureSelected();
+
+  },
+
+  ensureStarredHeader: function() {
+    if (this.collection.numStars() > 0) {
+      this.$(".starred-header").removeClass("invisible")
+    } else {
+      this.$(".starred-header").addClass("invisible")
+    }
   },
 
   ensureSelected: function() {
@@ -65,19 +74,19 @@ Quack.Views.SidebarIndex = Backbone.CompositeView.extend({
 
   goToConversation: function (event) {
     var $target = $(event.target);
-    var url = "#conversations/" + $target.data("user-id");
-    $(".channel-li").removeClass("selected");
-    $(".user-li").removeClass("selected");
-    $target.addClass("selected");
+    var url = "#conversations/" + $target.data("userId");
+    this.$("li").removeClass("selected");
     Backbone.history.navigate(url, { trigger: true });
+    $("[data-user-id=" + $target.data("userId") + "]").addClass("selected")
+    $target.addClass("selected");
   },
 
   goToChannel: function (event) {
     var $target = $(event.target);
-    var url = "#channels/" + $target.data("channel-id");
-    $(".channel-li").removeClass("selected");
-    $(".user-li").removeClass("selected");
-    $target.addClass("selected");
+    var url = "#channels/" + $target.data("channelId");
+    this.$("li").removeClass("selected");
+    $("[data-channel-id=" + $target.data("channelId") + "]").addClass("selected")
+    // debugger;
     Backbone.history.navigate(url, { trigger: true });
   },
 
@@ -93,6 +102,8 @@ Quack.Views.SidebarIndex = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
     this.collection.each(this.addSidebarIndexItem.bind(this));
+    this.ensureStarredHeader();
+
     return this;
   }
 
