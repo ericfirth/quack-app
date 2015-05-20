@@ -4,7 +4,7 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
     this.listenTo(Quack.currentUser.sidebarItems(), "sync", this.render)
     this.addIndex();
 
-    $(window).on("click", this.closeMenu)
+    $(window).on("click", this.closeAvatarMenu)
   },
 
   className: "sidebar-composite",
@@ -13,7 +13,17 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
 
   events: {
     "click .edit-avatar-link": "addEditAvatarView",
-    "click .team-menu-icon": "toggleMenu"
+    "click .team-menu-icon": "toggleMenu",
+    "click .invite": "addInviteView"
+  },
+
+
+  addInviteView: function (event) {
+    var invite = new Quack.Models.Invite();
+    var inviteView = new Quack.Views.InviteForm({ model: invite, team: this.model });
+    var $modal = $(".modal");
+    $modal.html(inviteView.render().$el);
+    $modal.addClass("is-open")
   },
 
   render: function () {
@@ -24,9 +34,9 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
     return this;
   },
 
-  closeMenu: function(event) {
+  closeAvatarMenu: function(event) {
     if (event.target.className === "icon-menu team-menu-icon" ||
-    event.targetClass === "team-menu") {
+    event.target.className === "invite") {
       return
     }
     this.$(".team-menu").addClass("closed")
@@ -35,7 +45,6 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
   toggleMenu: function (event) {
     this.$(".team-menu").toggleClass("closed")
   },
-
   addEditAvatarView: function (event) {
     var user = this.model.users().get(Quack.currentUser.id)
     var editUserView = new Quack.Views.UserForm({ model: user, collection: this.model.users() });

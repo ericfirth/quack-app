@@ -1,0 +1,14 @@
+<form class="modal-form invite-user-form">
+
+  <span class="modal-close js-modal-close">&times;</span>
+
+  <h1 class="invite-form-title">Invite a User to <%= team.get("name") %></h1>
+  <label class="invite-email-label">Their email-address</label>
+  <input type="text" name="invite[email]" class="invite-email">
+  <input type="hidden" name="invite[team_site_id]" value="<%= team.id %>">
+
+  <button class="send-invite">Send Invite</button>
+    <span class="button-alternative">or <strong class="js-modal-close">Cancel</strong></span>
+
+</form>
+<div class="modal-screen js-modal-close"></div>

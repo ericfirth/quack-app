@@ -2,7 +2,7 @@ Quack.Views.ConversationShow = Backbone.CompositeView.extend({
   initialize: function() {
     this.starableType = "User";
     this.listenTo(this.collection, "sync", this.render);
-    // this.listenTo(this.collection, "add", this.addMessageView)
+    this.listenTo(this.model, "sync", this.render)
     this.listenTo(this.collection, "add", this.addNewMessageView)
   },
 
@@ -20,7 +20,7 @@ Quack.Views.ConversationShow = Backbone.CompositeView.extend({
   },
 
   addStarConversationView: function () {
-    console.log(this.model.attributes)
+    debugger;
     var starForm = new Quack.Views.StarForm({ model: this.model, starableType: this.starableType })
     this.addSubview(".star", starForm);
   },

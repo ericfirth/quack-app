@@ -133,6 +133,7 @@ highlight blue green - #00BCCC
 
 .sidebar-team {
   top: 0;
+  height: 23px;
 }
 
 .sidebar-user {
@@ -210,18 +211,14 @@ highlight blue green - #00BCCC
 }
 
 .logout-button {
-  font-size: 20px;
+  font-size: 30px;
   position: relative;
   z-index: 3;
 }
 
 .logout-button:hover {
   cursor: pointer;
-  color: #790002;
-  background: #FCF9EC;
-  padding: 0 4px;
-  margin: 0 -4px 0 0;
-  border-radius: 50%;
+  color: #00BCCC;
 }
 
 .sidebar-username {
@@ -230,6 +227,8 @@ highlight blue green - #00BCCC
 
 .sidebar-username:hover {
   cursor: pointer;
+  color: #00BCCC;
+
 }
 
 .edit-avatar-form {
@@ -318,6 +317,15 @@ colors:
   float: left;
   font-size: 30px;
   padding: 0 10px;
+}
+
+.star:hover {
+  cursor: pointer;
+}
+
+.star i:hover {
+  cursor: pointer;
+  color: yellow;
 }
 
 .content {

@@ -1,0 +1,31 @@
+<h1 class="sign-inup-header">Welcome to Quack & <%= @invite.team_site.name %></h1>
+
+  <%= render 'layouts/errors' %>
+  <form action="<%= invites_url %>" method="post">
+    <input type="hidden" name="_method" value="Post">
+    <%= auth_token %>
+    <label for="user_username">Username<br>
+      <input type="text" name="user[username]" value="">
+    </label><br>
+    <input type="hidden" name="team_site_id" value="<%= @invite.team_site_id %>">
+    <label for="user_password">Password<br>
+    <input type="password" name="user[password]">
+    </label><br>
+    <button>Sign In</button>
+  </form>
+
+  <form action="<%= invites_url %>" method="post">
+    <input type="hidden" name="_method" value="Post">
+    <%= auth_token %>
+    <label for="user_username">Username<br>
+      <input type="text" name="user[username]" value="">
+    </label><br>
+    <input type="hidden" name="new_user" value="true">
+    <input type="hidden" name="user[email]" value="<%= @invite.email %>">
+    <input type="hidden" name="team_site_id" value="<%= @invite.team_site_id %>">
+    <label for="user_password">Password<br>
+    <input type="password" name="user[password]">
+    </label><br>
+    <button>Sign Up</button>
+  </form>
+</main>
