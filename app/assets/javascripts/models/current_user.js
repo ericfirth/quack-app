@@ -17,7 +17,6 @@ Quack.Models.CurrentUser = Backbone.Model.extend({
   // }
 
   parse: function (response) {
-    console.log(response.users.length + response.channels.length)
     this.sidebarItems().reset(null);
 
     if (response.channels) {

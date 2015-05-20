@@ -16,18 +16,16 @@ Quack.Views.UsersIndexItem = Backbone.View.extend({
   template: JST["sidebar/user_index_item"],
 
   render: function() {
-    this.testSelected();
     var content = this.template({ user: this.model });
     this.$el.html(content);
+    this.testSelected();
     // this.$el.data("id", this.model.get("id"));
 
     return this;
   },
-
-  testSelected: function () {
-    if (window.location.hash === "#conversations/" + this.model.id) {
+  testSelected: function() {
+    if (window.location.hash === "#conversations/" + this.model.get("original_id")) {
       this.$el.addClass("selected")
-
     } else {
       this.$el.removeClass("selected")
     }

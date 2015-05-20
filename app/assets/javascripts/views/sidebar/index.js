@@ -1,7 +1,9 @@
 Quack.Views.SidebarIndex = Backbone.CompositeView.extend({
   initialize: function() {
     this.listenTo(this.collection, "sync", this.render);
-    this.listenTo(this.collection, "add", this.render);
+    this.listenTo(this.collection, "add change:starred", this.changeSidebar);
+
+
   },
 
   tagName: "section",
@@ -16,38 +18,49 @@ Quack.Views.SidebarIndex = Backbone.CompositeView.extend({
     "click .add-channel": "newChannel"
   },
 
-  changeSidebarIndexItem: function(indexItem) {
+  changeSidebar: function(indexItem) {
+    // debugger;
     //remove starred class if its now not starred
     if (indexItem.get("_type") === "Channel") {
       $("[data-channel-id =" + indexItem.id + "]").toggleClass("starred")
     } else {
       $("[data-user-id =" + indexItem.id + "]").toggleClass("starred")
     }
-    console.log("called")
+
+    this.ensureSelected();
+  },
+
+  ensureSelected: function() {
+    $(".users-li").removeClass("selected")
+    $(".channels-li").removeClass("selected")
+
   },
 
   addSidebarIndexItem: function(indexItem) {
-    var indexItemView
+    var indexItemView1, indexItemView2
     // Check and make the right kind of index item view
     if (indexItem.get("_type") === "Channel") {
-      indexItemView = new Quack.Views.ChannelsIndexItem({ model: indexItem });
+      indexItemView1 = new Quack.Views.ChannelsIndexItem({ model: indexItem });
+      indexItemView2 = new Quack.Views.ChannelsIndexItem({ model: indexItem });
     } else if (indexItem.get("_type") === "User" &&  indexItem.get("original_id") !== Quack.currentUser.id) {
-      indexItemView = new Quack.Views.UsersIndexItem({ model: indexItem });
+      indexItemView1 = new Quack.Views.UsersIndexItem({ model: indexItem });
+      indexItemView2 = new Quack.Views.UsersIndexItem({ model: indexItem });
     }
 
     // if its starred, give it the the starred class
     if (indexItem.get("starred")) {
-      indexItemView.$el.addClass("starred")
+      indexItemView1.$el.addClass("starred");
+      indexItemView2.$el.addClass("starred");
     }
-
-    this.addSubview(".starred-list", indexItemView)
-
+    // debugger;
     // Attach it to the right ul + the starred list
     if (indexItem.get("_type") === "User") {
-      this.addSubview(".users-list", indexItemView)
+      this.addSubview(".users-list", indexItemView1);
     } else {
-      this.addSubview(".channels-list", indexItemView)
+      this.addSubview(".channels-list", indexItemView1);
     }
+
+    this.addSubview(".starred-list", indexItemView2);
   },
 
   goToConversation: function (event) {
@@ -75,9 +88,10 @@ Quack.Views.SidebarIndex = Backbone.CompositeView.extend({
   },
 
   render: function() {
-    console.log("called");
+
     var content = this.template({ collection: this.collection});
     this.$el.html(content);
+    this.attachSubviews();
     this.collection.each(this.addSidebarIndexItem.bind(this));
     return this;
   }

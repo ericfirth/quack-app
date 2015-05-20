@@ -10,7 +10,7 @@ Quack.Views.PrivateMessageForm = Backbone.View.extend({
 
   submit: function(event) {
     event.preventDefault();
-    var text = this.$el.serializeJSON()
+    var text = this.$el.serializeJSON().private_message
 
     this.model.set(text);
     this.model.save({}, {

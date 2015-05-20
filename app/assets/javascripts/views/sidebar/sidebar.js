@@ -48,21 +48,6 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
     // debugger;
     var sidebarIndex = new Quack.Views.SidebarIndex({ collection: Quack.currentUser.sidebarItems() })
     this.addSubview(".users-channels", sidebarIndex);
-  }//,
-
-  // addStarredIndex: function() {
-  //   var starredIndex = new Quack.Views.StarredSidebarIndex({ collection: Quack.currentUser.starredSidebarItems() })
-  //   this.addSubview(".users-channels", starredIndex);
-  // },
-  //
-  // addChannelIndex: function () {
-  //   var channelIndex = new Quack.Views.ChannelsIndex({ collection: this.model.channels() })
-  //   this.addSubview(".users-channels", channelIndex);
-  // },
-  //
-  // addUserIndex: function () {
-  //   var userIndex = new Quack.Views.UsersIndex({ collection: this.model.users() })
-  //   this.addSubview(".users-channels", userIndex);
-  // },
+  }
 
 });
