@@ -12,8 +12,8 @@ class InvitesController < ApplicationController
     if params[:new_user]
       @user = User.new(invite_params)
       if @user.save
-        login! user
-        successful_invite(user)
+        login! @user
+        successful_invite(@user)
         redirect_to root_url
       else
         flash.now[:errors] = @user.errors.full_messages
@@ -26,8 +26,8 @@ class InvitesController < ApplicationController
       password = params[:user][:password]
       @user = User.find_by_credentials(username, password)
       if @user
-        login! user
-        successful_invite(user)
+        login! @user
+        successful_invite(@user)
         redirect_to root_url
       else
         flash.now[:errors] = ["Incorrect Email/Password Combination"]
