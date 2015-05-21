@@ -28,6 +28,11 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     this.addSubview(".star", starForm);
   },
 
+  addSearchBarView: function () {
+    var searchShow = new Quack.Views.SearchBar();
+    this.addSubview(".search-header", searchShow)
+  },
+
   render: function () {
     // console.log("hello from the channel show")
 
@@ -35,6 +40,7 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.addNewMessageView();
     this.addStarChannelView();
+    this.addSearchBarView();
     this.messages.each(this.addMessageView.bind(this));
     return this;
   }

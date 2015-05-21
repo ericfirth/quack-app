@@ -1,10 +1,19 @@
-<header class="header">
-<aside class="star"></aside>
-  <h1><strong>@</strong><%= conversation.otherUser %></h1></h1>
+<header class="header group">
+  <div class="conversation-header">
+    <button class="star">Star</button>
+    <h1><strong>#</strong><%= channel.get('title') %></h1>
+  </div>
+
+  <div class="search-header"></div>
 </header>
+
 
 <main class="main-conversation">
   <ul class="messages"></ul>
 </main>
+
+<section id="search">
+  <ul class="search-messages"></ul>
+</section>
 
 <footer class="footer message-add"></footer>

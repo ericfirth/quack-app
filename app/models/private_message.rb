@@ -1,4 +1,6 @@
 class PrivateMessage < ActiveRecord::Base
+  include PgSearch
+  multisearchable :against => [:text]
   validates :sender_id, :receiver_id, :team_site_id, :text, presence: true
 
   belongs_to :team_site

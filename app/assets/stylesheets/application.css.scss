@@ -21,7 +21,7 @@
 
 
 
- html, h1, label, form, p, ul, li, div, body, main, section, a, button, figure, input {
+ html, h1, label, form, p, ul, li, div, body, main, section, a, button, figure, input, aside {
    margin: 0;
    padding: 0;
    border: 0;
@@ -309,7 +309,11 @@ colors:
   position: absolute;
   top: 0;
   height: 37px;
-  width: 100%;
+  right: 0;
+  left: 240px;
+  position: fixed;
+  top: 0;
+  z-index: 5;
 }
 
 .star {
@@ -317,6 +321,7 @@ colors:
   float: left;
   font-size: 30px;
   padding: 0 10px;
+
 }
 
 .star:hover {
@@ -328,11 +333,10 @@ colors:
   color: yellow;
 }
 
-.content {
-}
 
 .header h1 {
-  font-size: 30px;
+  padding-top: 10px;
+  font-size: 22px;
   font-family: 'Merriweather', serif;
   font-style: italic;
 
@@ -352,6 +356,20 @@ colors:
   width: 100%;
 }
 
+.main-conversation.search-on {
+  width: 50%;
+}
+
+#search.visible {
+  position: absolute;
+  width: 50%;
+  overflow: visible;
+  height: 100%;
+  top: 62px;
+  right: 0;
+  border-left: 10px solid #ccc;
+}
+
 .message-form {
   padding: 15px;
 }
@@ -365,6 +383,27 @@ colors:
   background: white;
   border: 1px solid #ccc;
 }
+.conversation-header {
+  float: left;
+  width: calc(100% - 200px);
+}
+
+.search-header {
+  display: block;
+  float: right;
+  margin: -33px 20px;
+}
+
+.search-input {
+  background: white;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.search-input:focus {
+  outline: 0;
+}
+
 .file-attachment {
   float: left;
   width: 58px;
@@ -416,7 +455,7 @@ colors:
 .footer {
   width: 100%;
   background: #eee;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   height: 90px;
   overflow: hidden;

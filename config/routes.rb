@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :team_site_memberships, only: [:create, :destroy]
     resources :team_sites
     resources :users, only: [:update, :show]
+
+    get "search", to: "static_pages#search"
   end
 
   get "/auth/google_oauth2/callback", to: "sessions#omniauth"

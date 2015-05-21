@@ -14,6 +14,14 @@ Quack.Models.Message = Backbone.Model.extend(
       }
 
       return json;
-    }
+    },
+
+    date: function () {
+      var date = this.get("created_at");
+      date = new Date(date);
+      return date
+    },
+
+    
   })
 )

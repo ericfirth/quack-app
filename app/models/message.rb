@@ -1,4 +1,6 @@
 class Message < ActiveRecord::Base
+  include PgSearch
+  multisearchable :against => [:text]
   validates :sender_id, :channel_id, :text, presence: true
 
   belongs_to :sender,
