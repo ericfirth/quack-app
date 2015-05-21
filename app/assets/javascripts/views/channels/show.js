@@ -3,7 +3,10 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     this.starableType = "Channel"
     this.messages = this.model.messages();
     this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.messages, "add", this.addMessageView)
+    this.listenTo(this.messages, "sync", function() {
+      this.render()
+      this.listenTo(this.messages, "add", this.render)
+    }.bind(this))
     this.listenTo(this.messages, "add", this.addNewMessageView)
   },
 
@@ -38,10 +41,37 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
 
     var content = this.template({ channel: this.model });
     this.$el.html(content);
+    var previousMessage = null;
+    this.messages.each(function(message) {
+      // debugger;
+      if (!previousMessage || !message.compareDateTruthy(previousMessage)) {
+        var $dateDivider = $("<div>").addClass("date").text(message.date().toDateString());
+        this.$(".messages").append($dateDivider)
+      }
+      this.addMessageView(message);
+      previousMessage = message
+    }.bind(this))
+
     this.addNewMessageView();
     this.addStarChannelView();
     this.addSearchBarView();
-    this.messages.each(this.addMessageView.bind(this));
+    // this.messages.each(this.addMessageView.bind(this));
+    this.ensureBottomAlignment();
     return this;
+  },
+
+  ensureBottomAlignment: function() {
+    var $container = this.$(".main-conversation")
+    var $messagesUl = this.$(".messages")
+    if ($messagesUl.height() < $container.height()) {
+      $messagesUl.addClass("bottom")
+      console.log("test");
+    } else {
+      $messagesUl.removeClass("bottom")
+      $container.scrollTop($container.prop("scrollHeight") - $container.height());
+    }
+  // $container.scrollTop($container.prop("scrollHeight") - $container.height());
   }
 })
+
+// myPanel.scrollTop(myPanel[0].scrollHeight - myPanel.height());

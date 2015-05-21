@@ -13,6 +13,14 @@ Quack.Collections.Conversation = Backbone.Collection.extend({
   //   return message.get("created_at");
   // },
 
+  otherUser: function () {
+    if (!this._otherUser) {
+      this._otherUser = new Quack.Models.User();
+    }
+
+    return this._otherUser
+  },
+
   parse: function (response) {
     this.otherUser = response.other_user;
     this.teamSiteId = response.team_site_id;

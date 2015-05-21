@@ -48,14 +48,15 @@ Quack.Routers.Router = Backbone.Router.extend({
         success: function() {
           this.teamSite = this.teamSites.getOrFetch(channel.get("team_site_id"));
           this.sidebarStart();
-        }.bind(this)}
-      )
+          var channelShowView = new Quack.Views.ChannelShow({ model: channel });
+          this._swapView(channelShowView);
+        }.bind(this)})
     } else {
       var channel = this.teamSite.channels().getOrFetch(id);
       this.sidebarStart();
+      var channelShowView = new Quack.Views.ChannelShow({ model: channel });
+      this._swapView(channelShowView);
     }
-    var channelShowView = new Quack.Views.ChannelShow({ model: channel });
-    this._swapView(channelShowView);
   },
 
   channelNew: function () {
@@ -67,25 +68,27 @@ Quack.Routers.Router = Backbone.Router.extend({
   },
 
   conversationShow: function(otherUserId) {
+    var conversation, otherUser
+    conversation = new Quack.Collections.Conversation([], {otherUserId: otherUserId})
     if (!this.teamSite) {
-      var conversation = new Quack.Collections.Conversation([], {otherUserId: otherUserId})
       conversation.fetch({
-        success: function() {
+        success: function () {
           this.teamSite = this.teamSites.getOrFetch(conversation.teamSiteId);
-          var otherUser = this.teamSite.users().get(otherUserId);
+          otherUser = this.teamSite.users().getOrFetch(otherUserId)
           this.sidebarStart();
+          var conversationShowView = new Quack.Views.ConversationShow({
+                                    model: otherUser,
+                                    collection: conversation });
+          this._swapView(conversationShowView);
         }.bind(this)
       })
     } else {
-      var otherUser = this.teamSite.users().get(otherUserId);
-      debugger;
-      var conversation = new Quack.Collections.Conversation([], {otherUserId: otherUserId})
       conversation.fetch()
+      otherUser = this.teamSite.users().getOrFetch(otherUserId)
       this.sidebarStart();
+      var conversationShowView = new Quack.Views.ConversationShow({ model: otherUser, collection: conversation });
+      this._swapView(conversationShowView);
     }
-    otherUser.fetch();
-    var conversationShowView = new Quack.Views.ConversationShow({ model: otherUser, collection: conversation });
-    this._swapView(conversationShowView);
   },
 
   _swapView: function (view) {

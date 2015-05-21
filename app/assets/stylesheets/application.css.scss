@@ -347,13 +347,27 @@ colors:
   padding-right: 5px;
 }
 
+.messages {
+  position: absolute;
+  left: 0;
+  right: 0;
+  // bottom: 0;
+}
+
+.messages.bottom {
+  bottom: 0;
+}
+
 .main-conversation {
   position: absolute;
   overflow: auto;
+  overflow-x: hidden;
+
   top: 62px;
-  bottom: 69px;
+  bottom: 90px;
   // padding: 10px 20px;
-  width: 100%;
+  left: 0;
+  right: 0;
 }
 
 .main-conversation.search-on {
@@ -398,6 +412,7 @@ colors:
   background: white;
   padding: 5px;
   border-radius: 15px;
+  padding-left: 10px;
 }
 
 .search-input:focus {
@@ -453,10 +468,11 @@ colors:
 }
 
 .footer {
-  width: 100%;
   background: #eee;
   position: fixed;
   bottom: 0;
+  left:240px;
+  right:0;
   height: 90px;
   overflow: hidden;
 }

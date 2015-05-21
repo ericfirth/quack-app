@@ -1,9 +1,16 @@
-# json.extract! @channel, :id, :title, :team_site_id
-
+json.team_site_id @team_site_id
 json.id @other_user.id
 json.other_user @other_user.username
-json.team_site_id @team_site_id
 
+# json.other_user do
+#   json.extract! @other_user, :username, :id
+#   json.avatar_url asset_path(@other_user.avatar.url)
+#   json.starred @hasStar
+#   if @hasStar
+#     json.star_id @star.id
+#   end
+#   json._type "User"
+# end
 
 json.messages @conversation do |message|
   json.sender message.sender.username
