@@ -12,7 +12,8 @@ class Api::SessionsController < Api::ApiController
 
   def update
     @current_user = current_user
-    # byebug
+    @current_team_site = current_team_site
+    @sidebar_stars = @current_user.starred_channels + @current_user.starred_users
     if @current_user.update(session_params)
       render :show
     end
