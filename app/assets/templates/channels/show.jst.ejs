@@ -1,7 +1,7 @@
 <header class="header group">
   <div class="conversation-header">
     <button class="star"></button>
-    <h1><strong>#</strong><%= channel.get('title') %></h1>
+    <h1><strong>#</strong><%= channel.escape('title') %></h1>
   </div>
 
   <div class="search-header"></div>
@@ -9,7 +9,12 @@
 
 <div class="full-convo-area group">
   <main class="main-conversation">
-    <ul class="messages"></ul>
+    <ul class="messages">
+      <li class="first-message">
+          This is the beginning of the <%= channel.escape('title') %> channel. Welcome.
+      </li>
+
+    </ul>
 
   <footer class="footer message-add"></footer>
 

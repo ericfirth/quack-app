@@ -7,6 +7,19 @@ Quack.Views.SearchResults = Backbone.CompositeView.extend({
 
   template: JST["static/search"],
 
+  className: "search-results",
+
+  events: {
+    "click .close-search": "closeSearch"
+  },
+
+  closeSearch: function() {
+    $(".main-conversation").removeClass("search-on")
+    $(".footer").removeClass("search-on")
+    var $searchArea = $("#search").empty().removeClass("visible");
+    this.remove();
+  },
+
   beginSearch: function() {
     this.collection.searchInfo.query = this.$input.val();
     this.collection.searchInfo.page = 1;

@@ -80,7 +80,7 @@ highlight blue green - #00BCCC
   top: 0;
   left: 0;
   height: 100%;
-  overflow: auto;
+  // overflow: auto;
 }
 
 .content {
@@ -101,10 +101,12 @@ highlight blue green - #00BCCC
   padding: 5px 20px;
   font-weight: 300;
   font-style: italic;
+  margin-right: 10px;
 }
 
 .sidebar li.selected {
   background: #00BCCC;
+  margin-right:0;
 }
 
 .sidebar li.selected:hover {
@@ -146,7 +148,7 @@ highlight blue green - #00BCCC
   font-weight: 300;
   position: absolute;
   top: 62px;
-  bottom: 69px;
+  bottom: 90px;
   overflow: auto;
 }
 
@@ -371,17 +373,45 @@ colors:
 }
 
 .main-conversation.search-on {
-  width: 50%;
+  right: 400px;
+}
+
+.footer.search-on {
+  right: 425px;
 }
 
 #search.visible {
   position: absolute;
-  width: 50%;
+  width: 400px;
   overflow: visible;
   height: 100%;
   top: 62px;
   right: 0;
   border-left: 10px solid #ccc;
+}
+
+.close-search {
+  position: fixed;
+  cursor: pointer;
+  right: 0;
+  display: block;
+}
+
+.close-search:before {
+  content: "x";
+  font-size: 30px;
+  padding: 10px;
+  background: #8A2A1E;
+  display: block;
+  color: #FCF9EC;
+  opacity: .75;
+  display: block;
+  left: 200px;;
+  overflow: hidden;
+}
+
+.close-search:hover:before {
+  opacity: 1;
 }
 
 .message-form {

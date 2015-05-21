@@ -17,6 +17,7 @@ Quack.Views.SearchBar = Backbone.View.extend({
     var $input = this.$("#query");
     var $searchArea = $("#search").addClass("visible");
     $(".main-conversation").addClass("search-on")
+    $(".footer").addClass("search-on")
     var searchResultsView = new Quack.Views.SearchResults({collection: results, $input: $input})
     $searchArea.html(searchResultsView.render().$el)
   },

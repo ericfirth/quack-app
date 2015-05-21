@@ -16,7 +16,7 @@ Quack is a clone of Slack built on Rails and Backbone. Users can:
 - [x] Create & read private messages to other users
 - [x] Invite others to join Team Site
 - [x] OAuth - Google
-- [ ] Search for messages by text
+- [x] Search for messages by text
 
 ## Design Docs
 * [View Wireframes][views]

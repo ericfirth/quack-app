@@ -5,5 +5,6 @@ Quack.Collections.Messages = Backbone.Collection.extend({
 
   initialize: function(model, options) {
     this.channel = options.channel;
+    this.pageNum = 1;
   }
 });

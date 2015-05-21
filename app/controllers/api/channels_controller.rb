@@ -2,6 +2,8 @@ class Api::ChannelsController < Api::ApiController
   def show
     @channel = Channel.includes(messages: :sender).find(params[:id])
     @hasStar = current_user.starred_channels.include?(@channel)
+
+    @messages = @channel.messages.page(params[:page])
     @star = Star.find_by(user_id: current_user.id, starable_id: @channel.id, starable_type: "Channel")
     session[:channel_id] = @channel.id
     render :show

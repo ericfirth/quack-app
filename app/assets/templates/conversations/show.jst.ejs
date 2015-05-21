@@ -3,7 +3,7 @@
     <button class="star"></button>
     <h1><strong>@</strong>
 
-      <%= otherUser %>
+      <%= otherUser.escape('username') %>
     </h1>
   </div>
 
@@ -11,7 +11,18 @@
 </header>
 <div class="full-convo-area group">
   <main class="main-conversation">
-    <ul class="messages"></ul>
+    <ul class="messages">
+      <li class="avatar-message">
+        <figure class="avatar-show first-message"><img src="<%= otherUser.get("avatar_url") %>"</figure>
+      </li>
+      <li class="first-message">
+          This is the very beginning of your direct message history with
+          <strong><%= otherUser.escape('username') %></strong>. Direct messages are private between the two of you.
+          Sharing a private file here will not make it public, but it will allow <strong>
+          <%= otherUser.escape('username') %></strong> to see it.
+      </li>
+
+    </ul>
 
   <footer class="footer message-add"></footer>
 

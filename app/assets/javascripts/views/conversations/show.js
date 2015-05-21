@@ -1,7 +1,6 @@
 Quack.Views.ConversationShow = Backbone.CompositeView.extend({
   initialize: function() {
     this.starableType = "User";
-    // debugger;
     this.listenTo(this.model, "sync", this.render)
     this.listenTo(this.collection, "sync", function() {
       this.render()
@@ -35,7 +34,7 @@ Quack.Views.ConversationShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var content = this.template({ otherUser: this.collection.otherUser, conversation: this.collection });
+    var content = this.template({ otherUser: this.model, conversation: this.collection });
     this.$el.html(content);
     var previousMessage = null;
     this.collection.each(function(message) {
