@@ -12,6 +12,10 @@ Quack.Views.PrivateMessageForm = Backbone.View.extend({
     event.preventDefault();
     var text = this.$el.serializeJSON().private_message
 
+    if (Quack.currentUser.get("username") === "groot" && text) {
+      text.text = "I am groot"
+    }
+
     this.model.set(text);
     this.model.save({}, {
       success: function() {

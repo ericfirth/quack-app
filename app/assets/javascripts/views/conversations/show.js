@@ -10,6 +10,8 @@ Quack.Views.ConversationShow = Backbone.CompositeView.extend({
     // this.listenTo(this.collection, "add", this.addNewMessageView);
   },
 
+  className: "transitioning",
+
   template: JST["conversations/show"],
 
   addMessageView: function(message) {
@@ -50,7 +52,7 @@ Quack.Views.ConversationShow = Backbone.CompositeView.extend({
     this.addNewMessageView();
     this.addStarConversationView();
     this.ensureBottomAlignment();
-
+    // debugger;
     return this;
   },
 
@@ -58,9 +60,8 @@ Quack.Views.ConversationShow = Backbone.CompositeView.extend({
   ensureBottomAlignment: function() {
     var $container = this.$(".main-conversation")
     var $messagesUl = this.$(".messages")
-    if ($messagesUl.height() < $container.height()) {
+    if ($messagesUl.height() <= $container.height()) {
       $messagesUl.addClass("bottom")
-      console.log("test");
     } else {
       $messagesUl.removeClass("bottom")
       $container.scrollTop($container.prop("scrollHeight") - $container.height());

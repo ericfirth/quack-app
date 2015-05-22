@@ -101,7 +101,7 @@ highlight blue green - #00BCCC
   padding: 5px 20px;
   font-weight: 300;
   font-style: italic;
-  margin-right: 10px;
+  padding-right: 10px;
 }
 
 .sidebar li.selected {
@@ -119,7 +119,7 @@ highlight blue green - #00BCCC
 
 .sidebar li:hover {
   background: #790002;
-  margin-right: 10px;
+  padding-right: 10px;
   cursor: pointer;
   border-radius: 0 8px 8px 0;
 }
@@ -291,12 +291,27 @@ Team Site Show - Conversation
   background: white;
   color: #00BCCC;
   right: 20px;
+  margin-right: 0;
 }
-.team-menu .invite:hover {
+
+.invite {
+  margin-right: 0;
+}
+
+.invite:hover {
+  margin-right: 0;
   background: #00BCCC;
+
   color: white;
   border-radius:0;
-  margin-right:0;
+}
+
+.team-menu:hover .invite:hover, .team-menu:hover {
+  background: #00BCCC;
+
+  color: white;
+  border-radius:0;
+  // margin-right:0;
 }
 
 /*
@@ -358,6 +373,10 @@ colors:
 
 .messages.bottom {
   bottom: 0;
+}
+
+.messages.hidden {
+  display:none;
 }
 
 .main-conversation {
@@ -556,4 +575,8 @@ colors:
  .appacademy {
    text-align: center;
    font-size: 12px;
+ }
+
+ .hidden {
+   display: none;
  }

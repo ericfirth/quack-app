@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :channels, except: [:new]
     resources :conversations, except: [:new, :update]
-    resources :messages, only: [:show, :create]
+    resources :messages, only: [:show, :create, :index]
     resources :private_messages, only: [:show, :create]
     resource :session, only: [:show, :update]
     resources :invites, only: [:create]

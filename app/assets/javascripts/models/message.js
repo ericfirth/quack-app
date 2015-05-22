@@ -17,14 +17,13 @@ Quack.Models.Message = Backbone.Model.extend(
     },
 
     date: function () {
-
       var date = this.get("timestamp");
-      // debugger;
       date = new Date(date);
       return date
     },
 
-    compareDateTruthy: function (otherMessage) {
+    isOnSameDateAs: function (otherMessage) {
+      // debugger;
       var date = this.date();
       var date2 = otherMessage.date();
 

@@ -32,12 +32,16 @@ Quack.Views.MessageForm = Backbone.View.extend({
 
   submit: function(event) {
     event.preventDefault();
-    var text = this.$el.serializeJSON().message
+    var message = this.$el.serializeJSON().message
 
+    if (Quack.currentUser.get("username") === "groot" && message) {
+      message.text = "I am groot"
+    }
 
-    this.model.set(text);
+    this.model.set(message);
     this.model.save({}, {
       success: function() {
+        this.model.typed = true;
         this.collection.messages().add(this.model, { merge: true });
         this.remove();
       }.bind(this)

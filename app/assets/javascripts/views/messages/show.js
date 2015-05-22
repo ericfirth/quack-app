@@ -10,8 +10,10 @@ Quack.Views.MessageShow = Backbone.View.extend({
   template: JST["messages/show"],
 
   render: function() {
+    // console.log("testing if I render more than once");
     var content = this.template({ message: this.model });
     this.$el.html(content);
+    // debugger;
     return this;
   }
 });

@@ -2,6 +2,8 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
   initialize: function() {
     this.starableType = "Channel"
     this.messages = this.model.messages();
+    this._page = 1
+    this.loadData(this._page);
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.messages, "sync", function() {
       this.render()
@@ -14,14 +16,36 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
 
   className: "channel-show",
 
+  scrollListen: function() {
+    this.$(".main-conversation").scroll(this.loadNextPage.bind(this));
+  },
+
+  loadNextPage: function (event) {
+    console.log("called");
+    if (this.$(".main-conversation").scrollTop() === 0) {
+      if (this.messages.total_pages > this._page) {
+        this._page++;
+        this.loadData(this._page);
+      } else {
+        this.$(".before-channel").removeClass("hidden")
+      }
+    }
+  },
+
   addMessageView: function(message) {
     var messageView = new Quack.Views.MessageShow({ model: message });
-    this.addSubview(".messages", messageView);
+    if (message.typed) {
+      this.addSubview(".messages", messageView);
+    } else {
+      this.addSubview(".messages", messageView, true);
+
+    }
   },
 
   addNewMessageView: function() {
     var newMessage = new Quack.Models.Message();
-    var messageForm = new Quack.Views.MessageForm({ model: newMessage, collection: this.model })
+    var messageForm = new Quack.Views.MessageForm({ model: newMessage,
+                                      collection: this.model })
     this.addSubview(".message-add", messageForm);
 
   },
@@ -36,27 +60,38 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     this.addSubview(".search-header", searchShow)
   },
 
+
   render: function () {
-    // console.log("hello from the channel show")
+    console.log("hello from the channel show")
 
     var content = this.template({ channel: this.model });
     this.$el.html(content);
+    // build the page with date dividers
     var previousMessage = null;
-    this.messages.each(function(message) {
-      // debugger;
-      if (!previousMessage || !message.compareDateTruthy(previousMessage)) {
-        var $dateDivider = $("<div>").addClass("date").text(message.date().toDateString());
-        this.$(".messages").append($dateDivider)
-      }
+    this.messages.each(function(message, index) {
+      // first check if the date of the current messageis different from the last
+      // & if so put the last ones date before you
+      if (previousMessage && !message.isOnSameDateAs(previousMessage)) {
+          var $dateDivider = $("<li>").addClass("date").text(previousMessage.date().toDateString());
+          this.$(".messages").prepend($dateDivider)
+        }
       this.addMessageView(message);
+      // then check if the current message is the top of the list or the the first message
+      if (index + 1 === this.messages.total_messages || index + 1 === this.messages.length) {
+        var $dateDivider = $("<li>").addClass("date").text(message.date().toDateString());
+        this.$(".messages").prepend($dateDivider)
+      }
       previousMessage = message
     }.bind(this))
 
+    //add subviews
     this.addNewMessageView();
     this.addStarChannelView();
     this.addSearchBarView();
-    // this.messages.each(this.addMessageView.bind(this));
+
+    //add bottom alignment and the scroll listener
     this.ensureBottomAlignment();
+    this.scrollListen();
     return this;
   },
 
@@ -64,13 +99,23 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     var $container = this.$(".main-conversation")
     var $messagesUl = this.$(".messages")
     if ($messagesUl.height() < $container.height()) {
-      $messagesUl.addClass("bottom")
+      $messagesUl.addClass("bottom").removeClass("hidden")
       console.log("test");
     } else {
-      $messagesUl.removeClass("bottom")
+      $messagesUl.removeClass("bottom hidden")
       $container.scrollTop($container.prop("scrollHeight") - $container.height());
     }
   // $container.scrollTop($container.prop("scrollHeight") - $container.height());
+  },
+
+  loadData: function(pageNum) {
+    this.messages.fetch({
+      data: { page: pageNum,
+      id: this.model.id},
+      success: function() {
+        this.render();
+      }.bind(this)
+    });
   }
 })
 

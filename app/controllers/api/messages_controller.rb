@@ -16,6 +16,14 @@ class Api::MessagesController < Api::ApiController
     end
   end
 
+  def index
+    @messages = Channel.find(params[:id]).messages.includes(:sender).reverse
+    @count = @messages.count
+    @messages = Kaminari.paginate_array(@messages).page(params[:page])
+    @page = params[:page].to_i
+    render :index
+  end
+
   protected
 
   def message_params
