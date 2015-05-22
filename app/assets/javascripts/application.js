@@ -11,9 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require jquery.serializejson
 //= require jquery-ui
+//= require jquery_ujs
 //= require underscore
 //= require backbone
 //= require quack_app
