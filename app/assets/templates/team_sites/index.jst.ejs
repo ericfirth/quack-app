@@ -1,6 +1,12 @@
-<h1>Welcome <%= Quack.currentUser.escape("username") %>! First, pick a team:</h1>
+<form class="modal-form edit-avatar-form index-modal">
 
-<form>
+
+
+<figure><img src="<%= Quack.logo %>" alt="Quack Logo" /> </figure>
+
+<h1>Welcome <%= Quack.currentUser.escape("username") %>!</h1>
+<h2>First, pick a team:</h2>
+<form class="team-site-index">
   <select class="team-select">
     <option value="" disabled selected>Select A Team!</option>
   <% teamSites.forEach(function(teamSite) { %>
@@ -14,4 +20,6 @@
   <input type="hidden" name="_method" value="delete">
   <input type="hidden" name="authenticity_token" value="<%= authToken %>">
   <button>Log Out</button>
+</form>
+
 </form>

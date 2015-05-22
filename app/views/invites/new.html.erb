@@ -1,34 +1,69 @@
-<h1 class="sign-inup-header">Welcome to Quack & <%= @invite.team_site.name %></h1>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,900italic' rel='stylesheet' type='text/css'>
 
-  <%= render 'layouts/errors' %>
-  <form action="<%= invites_url %>" method="post">
-    <input type="hidden" name="_method" value="Post">
-    <%= auth_token %>
-    <label for="user_username">Username<br>
-      <input type="text" name="user[username]" value="">
-    </label><br>
-    <input type="hidden" name="invite_code" value="<%= @invite.invite_code %>">
-    <input type="hidden" name="team_site_id" value="<%= @invite.team_site_id %>">
-    <label for="user_password">Password<br>
-    <input type="password" name="user[password]">
-    </label><br>
-    <button>Sign In</button>
-  </form>
+<style media="screen">
 
-  <form action="<%= invites_url %>" method="post">
-    <input type="hidden" name="_method" value="Post">
-    <%= auth_token %>
-    <label for="user_username">Username<br>
-      <input type="text" name="user[username]" value="">
-    </label><br>
-    <input type="hidden" name="new_user" value="true">
-    <input type="hidden" name="invite_code" value="<%= @invite.invite_code %>">
-    <input type="hidden" name="user[email]" value="<%= @invite.email %>">
-    <input type="hidden" name="team_site_id" value="<%= @invite.team_site_id %>">
-    <label for="user_password">Password<br>
-    <input type="password" name="user[password]">
-    </label><br>
-    <button>Sign Up</button>
-  </form>
+  html, body {
+    overflow: auto;
+    background: #790002;
+  }
 
-<a href="/auth/google_oauth2">Sign in with Google</a>
+</style>
+<main class="splash-main">
+
+  <header class="splash-header">
+
+
+    <figure class="splash-logo">
+      <img src="<%= asset_path("quack-logo.png") %>" alt="Quack logo"/>
+    </figure>
+  </header>
+
+  <section class="splash-content">
+
+    <figure class="splash-image">
+
+      <div class="session-forms group">
+
+        <form action="<%= invites_url %>" method="post" class="sign-in existing">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <label class="form-header">Already a User? <strong>Sign In</strong></label>
+            <input name="user[username]" type="text">
+            <label>Username</label>
+            <input type="hidden" name="invite_code" value="<%= @invite.invite_code %>">
+            <input type="hidden" name="team_site_id" value="<%= @invite.team_site_id %>">
+            <input name="user[password]" type="password">
+            <label>Password</label>
+
+          <button class="sign-in-button">Sign In</button>
+        </form>
+
+        <form action="<%= invites_url %>" method="post" class="sign-in new">
+          <input type="hidden" name="_method" value="Post">
+          <%= auth_token %>
+          <label class="form-header">New to Quack? <strong>Sign Up</strong></label>
+            <input type="text" name="user[username]" value="">
+            <label for="user_username">Username</label>
+            <input type="hidden" name="new_user" value="true">
+            <input type="hidden" name="invite_code" value="<%= @invite.invite_code %>">
+            <input type="hidden" name="user[email]" value="<%= @invite.email %>">
+            <input type="hidden" name="team_site_id" value="<%= @invite.team_site_id %>">
+          <input type="text" name="user[email]" value="">
+          <label for="user_email">Email</label>
+
+          <input type="password" name="user[password]">
+          <label for="user_password">Password</label>
+
+          <button class="sign-in-button">Sign Up</button>
+        </form>
+
+      </div>
+
+          <a href="/auth/google_oauth2" class="google-auth">Sign in with Google</a>
+
+
+      <h1 class="splash-tag-line">Communication is <strong>essential</strong> for teams.</h1>
+      <h1 class="splash-tag-line">Quack is <strong>essential</strong> for communcation.</h1>
+    </figure>
+
+  </section>
+</main>

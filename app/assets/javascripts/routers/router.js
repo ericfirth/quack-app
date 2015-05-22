@@ -15,20 +15,20 @@ Quack.Routers.Router = Backbone.Router.extend({
 
   routes: {
     "" : "indexTeamSites",
-    // "users/:id/edit": "editSelf",
     "team_sites/new": "newTeamSite",
-    "channels/new": "channelNew",
     "channels/:id": "channelShow",
     "conversations/:id": "conversationShow"
-    // "team_sites/:id": "showTeamSite"
   },
 
   indexTeamSites: function() {
     this._sidebarView && this._sidebarView.remove()
+    $(".sidebar").addClass("hidden");
     var indexView = new Quack.Views.TeamSitesIndex({
       collection: this.teamSites
     });
-    this._swapView(indexView);
+    var $modal = $(".modal");
+    $modal.html(indexView.render().$el);
+    $modal.addClass("is-open")
   },
 
   newTeamSite: function () {

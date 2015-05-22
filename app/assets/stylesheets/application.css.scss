@@ -101,7 +101,7 @@ highlight blue green - #00BCCC
   padding: 5px 20px;
   font-weight: 300;
   font-style: italic;
-  padding-right: 10px;
+  margin-right: 20px;
 }
 
 .sidebar li.selected {
@@ -119,7 +119,7 @@ highlight blue green - #00BCCC
 
 .sidebar li:hover {
   background: #790002;
-  padding-right: 10px;
+  margin-right: 20px;
   cursor: pointer;
   border-radius: 0 8px 8px 0;
 }
@@ -396,7 +396,7 @@ colors:
 }
 
 .footer.search-on {
-  right: 425px;
+  right: 420px;
 }
 
 #search.visible {
@@ -415,7 +415,6 @@ colors:
   right: 0;
   display: block;
 }
-
 .close-search:before {
   content: "x";
   font-size: 30px;
@@ -579,4 +578,18 @@ colors:
 
  .hidden {
    display: none;
+ }
+
+ .date {
+   display: block;
+   margin: auto;
+   text-align: center;
+ }
+
+ .message-show {
+   color: #444;
+ }
+
+ .message-show:hover {
+   color: black;
  }

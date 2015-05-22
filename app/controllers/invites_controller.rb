@@ -9,6 +9,7 @@ class InvitesController < ApplicationController
 
   def create
     # check if they are a new user & deal with that scenario
+      
     if params[:new_user]
       @user = User.new(invite_params)
       if @user.save
