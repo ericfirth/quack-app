@@ -2,8 +2,6 @@ Quack.Views.SidebarIndex = Backbone.CompositeView.extend({
   initialize: function() {
     this.listenTo(this.collection, "sync", this.render);
     this.listenTo(this.collection, "add change:starred", this.changeSidebar);
-
-
   },
 
   tagName: "section",
@@ -27,8 +25,6 @@ Quack.Views.SidebarIndex = Backbone.CompositeView.extend({
       $("[data-user-id =" + indexItem.id + "]").toggleClass("starred")
     }
     this.ensureStarredHeader();
-
-
   },
 
   ensureStarredHeader: function() {
@@ -93,7 +89,14 @@ Quack.Views.SidebarIndex = Backbone.CompositeView.extend({
   newChannel: function (event) {
     $(".channel-li").removeClass("selected")
     $(".user-li").removeClass("selected")
-    Backbone.history.navigate("channels/new", { trigger: true })
+    var newChannel = new Quack.Models.Channel();
+    var newChannelView = new Quack.Views.ChannelForm({
+      model: newChannel,
+      collection: this.model.channels() })
+    var $modal = $(".modal");
+    $modal.html(newChannelView.render().$el);
+    $modal.addClass("is-open")
+
   },
 
   render: function() {
