@@ -21,13 +21,11 @@ Quack.Models.CurrentUser = Backbone.Model.extend({
 
     if (response.channels) {
       this.sidebarItems().add(response.channels)
-      console.log(this.sidebarItems().length)
       delete response.channels
     }
 
     if (response.users) {
       this.sidebarItems().add(response.users);
-      console.log(this.sidebarItems().length)
       delete response.users
     }
 

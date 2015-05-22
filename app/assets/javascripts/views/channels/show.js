@@ -2,14 +2,16 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
   initialize: function() {
     this.starableType = "Channel"
     this.messages = this.model.messages();
-    this._page = 1
+    this._page = 1;
     this.loadData(this._page);
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.messages, "sync", function() {
-      this.render()
-      this.listenTo(this.messages, "add", this.render)
-    }.bind(this))
-    this.listenTo(this.messages, "add", this.addNewMessageView)
+      this.render();
+      // this.listenTo(this.messages, "sync", )
+    })
+    this.listenTo(this.messages, "add", this.addMessageView)
+
+
   },
 
   template: JST["channels/show"],
@@ -21,11 +23,14 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
   },
 
   loadNextPage: function (event) {
-    console.log("called");
-    if (this.$(".main-conversation").scrollTop() === 0) {
+    var $container = this.$(".main-conversation")
+    if ($container.scrollTop() < 100) {
       if (this.messages.total_pages > this._page) {
-        this._page++;
+        this.preloadScrollHeight = $container.prop("scrollHeight");
+        this.preloadScrollTop = $container.scrollTop();
+        this._page++
         this.loadData(this._page);
+        this.flagged = true
       } else {
         this.$(".before-channel").removeClass("hidden")
       }
@@ -38,7 +43,6 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
       this.addSubview(".messages", messageView);
     } else {
       this.addSubview(".messages", messageView, true);
-
     }
   },
 
@@ -62,10 +66,13 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
 
 
   render: function () {
-    console.log("hello from the channel show")
-
-    var content = this.template({ channel: this.model });
+    // console.log("hello from the channel show")
+    // debugger
+    var content = this.template({ channel: this.model});
     this.$el.html(content);
+    if (!this.flagged) {
+      this.$(".messages").addClass("bottom")
+    }
     // build the page with date dividers
     var previousMessage = null;
     this.messages.each(function(message, index) {
@@ -77,7 +84,7 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
         }
       this.addMessageView(message);
       // then check if the current message is the top of the list or the the first message
-      if (index + 1 === this.messages.total_messages || index + 1 === this.messages.length) {
+      if (index + 1 === this.messages.total_messages) {
         var $dateDivider = $("<li>").addClass("date").text(message.date().toDateString());
         this.$(".messages").prepend($dateDivider)
       }
@@ -90,17 +97,24 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     this.addSearchBarView();
 
     //add bottom alignment and the scroll listener
-    this.ensureBottomAlignment();
     this.scrollListen();
+    if (!this.flagged) {
+      this.ensureBottomAlignment();
+    } else {
+      var $container = this.$(".main-conversation")
+      $container.scrollTop($container.prop("scrollHeight") - this.preloadScrollHeight + this.preloadScrollTop)
+
+    }
+      // debugger;
+    this.flagged = false
     return this;
   },
 
   ensureBottomAlignment: function() {
     var $container = this.$(".main-conversation")
     var $messagesUl = this.$(".messages")
-    if ($messagesUl.height() < $container.height()) {
+    if ($messagesUl.height() <= $container.height()) {
       $messagesUl.addClass("bottom").removeClass("hidden")
-      console.log("test");
     } else {
       $messagesUl.removeClass("bottom hidden")
       $container.scrollTop($container.prop("scrollHeight") - $container.height());
@@ -108,13 +122,11 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
   // $container.scrollTop($container.prop("scrollHeight") - $container.height());
   },
 
-  loadData: function(pageNum) {
+  loadData: function(pageNum, preloadScrollHeight, preloadScrollTop) {
     this.messages.fetch({
+      remove: false,
       data: { page: pageNum,
-      id: this.model.id},
-      success: function() {
-        this.render();
-      }.bind(this)
+      id: this.model.id}
     });
   }
 })

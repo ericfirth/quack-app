@@ -1,0 +1,107 @@
+.splash-header {
+  background: #D1E6F6;
+  padding: 20px;
+}
+
+.splash-main {
+  height: 100%;
+  background: #790002;
+  position: relative;
+}
+
+.splash-logo {
+  width: 150px;
+  margin: auto;
+}
+
+.splash-content {
+  position: relative;
+}
+
+.splash-image {
+  display: block;
+  width:100%;
+  position: absolute;
+  opacity: .8;
+  background-image: url("office-gradient.jpg");
+  background-repeat: no-repeat;
+  // backgroun
+}
+
+.splash-tag-line {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 60px;
+  color: white;
+  text-align: center;
+  margin: 20px;
+  opacity: 1;
+}
+
+.splash-tag-line strong {
+  font-weight: 900;
+  font-style: italic;
+}
+
+.session-forms {
+  display: block;
+  padding-top: 30px;
+  // width: 700px;
+  // margin: auto;
+}
+
+.sign-in {
+  background: rgba(255,255,255,.5);
+  width: 300px;
+  height: 375px;
+  margin: 0 100px;
+}
+
+.new {
+  float: right;
+}
+
+.existing {
+  float: left;
+}
+
+.sign-in:first-child {
+  margin-right: 100px;
+}
+
+.form-header {
+  padding-top: 10px;
+  font-size: 16px;
+  font-style: italic;
+}
+.form-header strong {
+  display: block;
+  font-size: 36px;
+  color: #790002;
+  padding-bottom: 10px;
+  text-align:center;
+}
+
+.sign-in label {
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+
+.sign-in input {
+  width: calc(100% - 20px);
+  display: block;
+  background: white;
+  padding: 10px;
+  opacity: 0;
+}
+
+.sign-in input:hover {
+  opacity: .3;
+}
+
+.sign-in input:focus {
+  opacity: 1;
+  outline: 0;
+}

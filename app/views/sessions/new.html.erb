@@ -1,15 +1,67 @@
-<h1 class="sign-inup-header">Sign In</h1>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,900italic' rel='stylesheet' type='text/css'>
+<main class="splash-main">
+
+  <header class="splash-header">
+
+
+    <figure class="splash-logo">
+      <img src="<%= asset_path("quack-logo.png") %>" alt="Quack logo"/>
+    </figure>
+  </header>
+
+  <section class="splash-content">
+
+    <figure class="splash-image">
+
+      <div class="session-forms group">
+
+        <form action="/session" method="post" class="sign-in existing">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <label class="form-header">Already a User? <strong>Sign In</strong></label>
+            <input name="user[username]" type="text">
+            <label>Username</label>
+
+            <input name="user[password]" type="password">
+            <label>Password</label>
+
+          <button class="sign-in-button">Sign In</button>
+        </form>
+
+        <form action="<%= users_url %>" method="post" class="sign-in new">
+          <input type="hidden" name="_method" value="Post">
+          <%= auth_token %>
+          <label class="form-header">New to Quack? <strong>Sign Up</strong></label>
+            <input type="text" name="user[username]" value="<%= @user.username %>">
+            <label for="user_username">Username</label>
+
+          <input type="text" name="user[email]" value="<%= @user.email %>">
+          <label for="user_email">Email</label>
+
+          <input type="password" name="user[password]">
+          <label for="user_password">Password</label>
+
+          <button class="sign-in-button">Sign Up</button>
+        </form>
+
+      </div>
+
+        <button class="google-auth">
+          <a href="/auth/google_oauth2">Sign in with Google</a>
+        </button>
+
+
+      <h1 class="splash-tag-line">Communication is <strong>essential</strong> for teams.</h1>
+      <h1 class="splash-tag-line">Quack is <strong>essential</strong> for communcation.</h1>
+    </figure>
+
+  </section>
+</main>
+
+
+
+<!-- <h1 class="sign-inup-header">Sign In</h1> -->
 <section class="sign-inup">
-  <form action="/session" method="post">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <label>Username
-      <input name="user[username]" type="text"><br>
-    </label><br>
-    <label>Password
-      <input name="user[password]" type="password"><br>
-    </label><br>
-    <button>Sign In</button>
-  </form>
+
 </section>
   <p class="signup">Don't have a Quack account? <a href="<%= new_user_url %>">Sign up here!</a>
 <br>
