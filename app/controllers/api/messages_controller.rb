@@ -10,6 +10,7 @@ class Api::MessagesController < Api::ApiController
     @message = current_user.messages.new(message_params)
     @message.file_file_name = params[:message][:file_file_name]
     if @message.save
+      push_message(@message)
       render :show
     else
       render json: @message.full_messages, status: :unprocessable_entity

@@ -11,6 +11,16 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     })
     this.listenTo(this.messages, "add", this.addMessageView)
 
+    var channel = window.pusher.subscribe('messages');
+    //
+    channel.bind('new_message', function(data) {
+      // debugger
+      // console.log(data)
+      // alert("hello")
+      var message = new Quack.Models.Message(data);
+      message.typed = true;
+      this.messages.add(message);
+    }.bind(this))
 
   },
 
@@ -20,6 +30,10 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
 
   scrollListen: function() {
     this.$(".main-conversation").scroll(this.loadNextPage.bind(this));
+  },
+
+  pusher: function() {
+
   },
 
   loadNextPage: function (event) {

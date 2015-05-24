@@ -36,7 +36,8 @@ gem 'omniauth-twitter'
 gem "omniauth-google-oauth2"
 gem 'pg_search'
 gem 'kaminari'
-
+gem 'pusher'
+gem 'twilio-ruby'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

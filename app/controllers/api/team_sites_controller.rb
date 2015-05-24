@@ -7,7 +7,8 @@ class Api::TeamSitesController < Api::ApiController
   def create
     @team_site = current_user.owned_team_sites.new(team_site_params)
     if @team_site.save
-      TeamSiteMembership.create(user_id: current_user.id, team_site_id: @team_site.id)
+      Channel.create!(team_site_id: @team_site.id, title: "General")
+      TeamSiteMembership.create!(user_id: current_user.id, team_site_id: @team_site.id)
       render json: @team_site
     else
       render json: @team_site.errors.full_messages, status: :unprocessable_entity

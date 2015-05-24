@@ -12,6 +12,7 @@ window.Quack = {
       $header: $("#header"),
       $footer: $("#footer")
     })
+
     Backbone.history.start();
   }
 };

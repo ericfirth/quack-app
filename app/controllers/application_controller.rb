@@ -14,6 +14,21 @@ class ApplicationController < ActionController::Base
     @current_team_site ||= TeamSite.includes(:users, channels: :messages).find(session[:team_site_id])
   end
 
+  def push_message(message)
+    Pusher.trigger('messages', 'new_message', jbuilder_pusher_message(message))
+  end
+
+  def jbuilder_pusher_message(message)
+    JbuilderTemplate.new(message).tap do |json|
+      json.sender message.sender.username
+      json.text message.text
+      json.filename message.file_file_name
+      json.file_url ActionController::Base.helpers.asset_path(message.file.url)
+      json.timestamp message.created_at
+      json.avatar_url ActionController::Base.helpers.asset_path(message.sender.avatar.url)
+    end.to_json
+  end
+
   def login!(user)
     session[:session_token] = user.reset_token!
   end
