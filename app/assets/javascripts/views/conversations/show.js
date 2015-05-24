@@ -37,6 +37,7 @@ Quack.Views.ConversationShow = Backbone.CompositeView.extend({
 
   render: function () {
     var content = this.template({ otherUser: this.model, conversation: this.collection });
+    this.checkForSearch();
     this.$el.html(content);
     var previousMessage = null;
     this.collection.each(function(message) {
@@ -54,6 +55,14 @@ Quack.Views.ConversationShow = Backbone.CompositeView.extend({
     this.ensureBottomAlignment();
     // debugger;
     return this;
+  },
+
+  checkForSearch: function () {
+    $searchArea = $("#search")
+    if ($searchArea.hasClass("visible")) {
+      $(".main-conversation").addClass("search-on")
+      $(".footer").addClass("search-on")
+    }
   },
 
 

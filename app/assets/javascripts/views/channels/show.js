@@ -70,6 +70,7 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     // debugger
     var content = this.template({ channel: this.model});
     this.$el.html(content);
+    this.checkForSearch();
     if (!this.flagged) {
       this.$(".messages").addClass("bottom")
     }
@@ -128,6 +129,14 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
       data: { page: pageNum,
       id: this.model.id}
     });
+  },
+
+  checkForSearch: function () {
+    $searchArea = $("#search")
+    if ($searchArea.hasClass("visible")) {
+      $(".main-conversation").addClass("search-on")
+      $(".footer").addClass("search-on")
+    }
   }
 })
 

@@ -73,7 +73,7 @@ They are deleted when viewed.
 
 
 ### Bonus Features
-- [ ] infinite scroll
+- [x] infinite scroll
 - [ ] conversation show in a single SQL query rather than 4
 - [ ] searching fetches the context (the two messages before and after the
   message that contains the search phrase).

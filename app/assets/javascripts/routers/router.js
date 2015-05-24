@@ -55,6 +55,7 @@ Quack.Routers.Router = Backbone.Router.extend({
       var channel = this.teamSite.channels().getOrFetch(id);
       this.sidebarStart();
       var channelShowView = new Quack.Views.ChannelShow({ model: channel });
+
       this._swapView(channelShowView);
     }
   },
@@ -107,4 +108,6 @@ Quack.Routers.Router = Backbone.Router.extend({
       this.$sidebar.html(this._sidebarView.render().$el);
     }
   }
+
+
 })

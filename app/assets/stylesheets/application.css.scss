@@ -396,13 +396,13 @@ colors:
 }
 
 .footer.search-on {
-  right: 420px;
+  right: 410px;
 }
 
 #search.visible {
   position: absolute;
   width: 400px;
-  overflow: visible;
+  overflow: auto;
   height: 100%;
   top: 62px;
   right: 0;
