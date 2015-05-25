@@ -18,10 +18,10 @@ User.create!(username: 'groot', email: "g@avengers.com", password: "password") #
 User.create!(username: 'rocket_raccoon', email: "rr@avengers.com", password: "password") #10
 User.create!(username: 'black_panther', email: "bp@avengers.com", password: "password") #11
 User.create!(username: 'star_lord', email: "sl@avengers.com", password: "password") #12
-User.create!(username: 'captain_marvel', email: "sl@avengers.com", password: "password") #13
+User.create!(username: 'captain_marvel', email: "cm@avengers.com", password: "password") #13
 
 TeamSite.create!(name: "cool_company", owner_id: 1)
-TeamSite.create!(name: "avengers_assemble", owner_id: 1)
+TeamSite.create!(name: "avengers_assemble", owner_id: 2)
 
 TeamSiteMembership.create!(team_site_id: 1, user_id: 1)
 TeamSiteMembership.create!(team_site_id: 2, user_id: 1)
@@ -44,13 +44,13 @@ Channel.create!(team_site_id: 2, title: "Big Battle in NYC a couple years ago")
 Channel.create!(team_site_id: 2, title: "Favorite movies")
 Channel.create!(team_site_id: 2, title: "Tony's bad fashion/facial hair choices")
 
-Message.create(channel_id: 1, sender_id: 1, text: "that was a fun battle, very harrowing")
-Message.create(channel_id: 1, sender_id: 4, text: "remember when hulk smashed loki? that was funny")
-Message.create(channel_id: 1, sender_id: 2, text: "haha! don't make me angry because that's when you won't like me!")
-Message.create(channel_id: 1, sender_id: 6, text: "y'all make me jealous. i saw some footage, looked hella fun")
-Message.create(channel_id: 2, sender_id: 4, text: "I saw Love Actually")
-Message.create(channel_id: 2, sender_id: 1, text: "i like classics, um, maybe casablanca!")
-Message.create(channel_id: 2, sender_id: 5, text: "Both of those movies suck! Not enough bows!")
+Message.create(channel_id: 3, sender_id: 2, text: "that was a fun battle, very harrowing")
+Message.create(channel_id: 3, sender_id: 5, text: "remember when hulk smashed loki? that was funny")
+Message.create(channel_id: 3, sender_id: 2, text: "haha! don't make me angry because that's when you won't like me!")
+Message.create(channel_id: 3, sender_id: 7, text: "y'all make me jealous. i saw some footage, looked hella fun")
+Message.create(channel_id: 4, sender_id: 5, text: "I saw Love Actually")
+Message.create(channel_id: 4, sender_id: 2, text: "i like classics, um, maybe casablanca!")
+Message.create(channel_id: 4, sender_id: 6, text: "Both of those movies suck! Not enough bows!")
 
 PrivateMessage.create(team_site_id: 1, sender_id: 2, receiver_id: 3, text: "hey hulk")
 PrivateMessage.create(team_site_id: 1, sender_id: 3, receiver_id: 2, text: "wassup cap")

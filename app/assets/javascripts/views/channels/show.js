@@ -13,11 +13,9 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     channel.bind('new_message', function(data) {
       var message = new Quack.Models.Message(data);
       message.typed = true;
-      debugger
-      if (true) {
-
+      if (data.sender !== Quack.currentUser.get("username")) {
+        this.messages.add(message);      
       }
-      this.messages.add(message);
     }.bind(this))
 
   },

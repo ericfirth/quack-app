@@ -21,6 +21,8 @@ Quack.Routers.Router = Backbone.Router.extend({
   },
 
   indexTeamSites: function() {
+    $(".content").addClass("none");
+    $(".sidebar").addClass("full");
     this._sidebarView && this._sidebarView.remove()
     var indexView = new Quack.Views.TeamSitesIndex({
       collection: this.teamSites

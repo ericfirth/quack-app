@@ -61,13 +61,11 @@ subview. This view will look similar to the channel composite view.
 
 [Details][phase-four]
 
-### Phase 5: Notifications & Mentions (2 days)
-In this phase, I will need to add mentions. When someone types a message to a
-channel that includes the username of a person in the team, that is a mention.
-Mentions stay around. I will have to make a backbone composite view. This will
-hold MessageShow subviews of each mention. In this phase I will also make notifications.
-Notifications are created with mentions and new messages in private conversations.
-They are deleted when viewed.
+### Phase 5: Scrolling (2 days)
+In this phase, I will need to make the feed act the way Slack's feed does. Messages
+start at the bottom and work their way up. If there aren't enough messages, the feed
+is aligned to the bottom of the page. Also a scroll up should fetch more messages
+with pagination that the user doesn't notice.
 
 [Details][phase-five]
 
