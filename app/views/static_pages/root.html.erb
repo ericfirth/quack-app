@@ -1,6 +1,12 @@
 <script>
 Quack.logo = "<%= asset_path("quack-logo.png") %>"
 $(document).ready(function(){
+  if (!window.pusher) {
+    Pusher.log = function(message) {
+      console.log(message);
+    };
+    window.pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>');
+  }
   Quack.initialize();
 });
 
