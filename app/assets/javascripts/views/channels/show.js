@@ -5,20 +5,18 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     this._page = 1;
     this.loadData(this._page);
     this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.messages, "sync", function() {
-      this.render();
-      // this.listenTo(this.messages, "sync", )
-    })
-    this.listenTo(this.messages, "add", this.addMessageView)
+    this.listenTo(this.messages, "sync", this.render);
+    this.listenTo(this.messages, "add", this.addMessageView);
 
     var channel = window.pusher.subscribe('messages');
-    //
+
     channel.bind('new_message', function(data) {
-      // debugger
-      // console.log(data)
-      // alert("hello")
       var message = new Quack.Models.Message(data);
       message.typed = true;
+      debugger
+      if (true) {
+
+      }
       this.messages.add(message);
     }.bind(this))
 
@@ -32,19 +30,16 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     this.$(".main-conversation").scroll(this.loadNextPage.bind(this));
   },
 
-  pusher: function() {
-
-  },
-
   loadNextPage: function (event) {
     var $container = this.$(".main-conversation")
-    if ($container.scrollTop() < 100) {
+    if ($container.scrollTop() < 100 && !this.flagged) {
       if (this.messages.total_pages > this._page) {
         this.preloadScrollHeight = $container.prop("scrollHeight");
         this.preloadScrollTop = $container.scrollTop();
         this._page++
         this.loadData(this._page);
         this.flagged = true
+        // console.log("hit this");
       } else {
         this.$(".before-channel").removeClass("hidden")
       }
@@ -118,9 +113,7 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     } else {
       var $container = this.$(".main-conversation")
       $container.scrollTop($container.prop("scrollHeight") - this.preloadScrollHeight + this.preloadScrollTop)
-
     }
-      // debugger;
     this.flagged = false
     return this;
   },
@@ -134,7 +127,6 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
       $messagesUl.removeClass("bottom hidden")
       $container.scrollTop($container.prop("scrollHeight") - $container.height());
     }
-  // $container.scrollTop($container.prop("scrollHeight") - $container.height());
   },
 
   loadData: function(pageNum, preloadScrollHeight, preloadScrollTop) {
