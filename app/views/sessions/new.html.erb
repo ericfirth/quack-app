@@ -1,65 +1,56 @@
 <link href='http://fonts.googleapis.com/css?family=Lato:300,900italic' rel='stylesheet' type='text/css'>
 
-<style media="screen">
-
-  html, body {
-    overflow: auto;
-    background: #790002;
-  }
-
-</style>
 <main class="splash-main">
-
-  <header class="splash-header">
-
 
     <figure class="splash-logo">
       <img src="<%= asset_path("quack-logo.png") %>" alt="Quack logo"/>
     </figure>
-  </header>
 
   <section class="splash-content">
 
-    <figure class="splash-image">
 
-      <div class="session-forms group">
 
         <form action="/session" method="post" class="sign-in existing">
           <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-          <label class="form-header">Already a User? <strong>Sign In</strong></label>
-            <input name="user[username]" type="text">
-            <label>Username</label>
+          <label class="form-header">Register or login here</label>
+            <input name="user[username]"
+              placeholder="Username"
+              type="text"
+              class="username-input"
+              value="<%= @user.username %>">
+            <!-- <label class-"username-label">Username</label> -->
+            <input name="user[password]"
+              type="password"
+              class="password-input"
+              placeholder="Password">
+            <!-- <label>Password</label> -->
 
-            <input name="user[password]" type="password">
-            <label>Password</label>
+            <input type="text"
+              name="user[email]"
+              class="password-input"
+              value="<%= @user.email %>"
+              placeholder="Email (for new users)">
+            <!-- <label for="user_email">Email (for new users)</label> -->
+          <div class="sign-in-buttons group">
+            <button class="sign-in-button">Sign In or Sign Up</button>
+            <a href="/session/guest" class="sign-in-button">Use Demo Account</a>
+            <a href="/auth/google_oauth2" class="sign-in-button">Sign in with Google</a>
+          </div>
 
-          <button class="sign-in-button">Sign In</button>
         </form>
 
-        <form action="<%= users_url %>" method="post" class="sign-in new">
-          <input type="hidden" name="_method" value="Post">
-          <%= auth_token %>
-          <label class="form-header">New to Quack? <strong>Sign Up</strong></label>
-            <input type="text" name="user[username]" value="<%= @user.username %>">
-            <label for="user_username">Username</label>
 
-          <input type="text" name="user[email]" value="<%= @user.email %>">
-          <label for="user_email">Email</label>
-
-          <input type="password" name="user[password]">
-          <label for="user_password">Password</label>
-
-          <button class="sign-in-button">Sign Up</button>
-        </form>
-
+      <div class="why-quack">
+        <p>
+          Quack is a platform for team communication, where you and your team can
+          talk, share files and work together. Searchable, easy and beautiful. It's
+          also a clone of slack.
+        </p>
       </div>
 
-          <a href="/auth/google_oauth2" class="google-auth">Sign in with Google</a>
 
 
-      <h1 class="splash-tag-line">Communication is <strong>essential</strong> for teams.</h1>
-      <h1 class="splash-tag-line">Quack is <strong>essential</strong> for communcation.</h1>
-    </figure>
+
 
   </section>
 </main>

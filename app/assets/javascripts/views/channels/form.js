@@ -23,6 +23,21 @@ Quack.Views.ChannelForm = Backbone.View.extend({
     this.remove()
   },
 
+  setChannelAttrs: function(channel) {
+    var id = channel.id
+    channel.set("original_id", id);
+    channel.set("_type", "Channel");
+    channel.set("id", "channel" + id);
+    channel.set("starred", false)
+  },
+
+  addChannelToSidebar: function(channel) {
+    var channelSidebarIndexView = new Quack.Views.ChannelsIndexItem({ model: channel })
+    var channelStarredSidebarIndexView = new Quack.Views.ChannelsIndexItem({ model: channel })
+    $(".channels-list").append(channelSidebarIndexView.render().$el).addClass("selected");
+    $(".starred-list").append(channelStarredSidebarIndexView.render().$el).addClass("selected");
+  },
+
   submit: function (event) {
     event.preventDefault();
     var name = $(event.target).serializeJSON().channel;
@@ -31,12 +46,9 @@ Quack.Views.ChannelForm = Backbone.View.extend({
       success: function () {
         this.collection.add(this.model);
         var url = "channels/" + this.model.id;
-        var id = this.model.id
-        this.model.set("original_id", id);
-        this.model.set("_type", "Channel");
-        this.model.set("id", "channel" + id);
-        this.model.set("starred", false)
-        Quack.currentUser.sidebarItems().add(this.model)
+        this.setChannelAttrs(this.model);
+        this.addChannelToSidebar(this.model)
+        // Quack.currentUser.sidebarItems().add(this.model)
         this.closeModal();
         Backbone.history.navigate(url, { trigger: true });
       }.bind(this)

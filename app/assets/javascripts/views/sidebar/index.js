@@ -89,6 +89,7 @@ Quack.Views.SidebarIndex = Backbone.CompositeView.extend({
   newChannel: function (event) {
     $(".channel-li").removeClass("selected")
     $(".user-li").removeClass("selected")
+    // debugger
     var newChannel = new Quack.Models.Channel();
     var newChannelView = new Quack.Views.ChannelForm({
       model: newChannel,
