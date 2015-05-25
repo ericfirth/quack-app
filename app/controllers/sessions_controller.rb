@@ -24,6 +24,12 @@ class SessionsController < ApplicationController
     redirect_to new_session_url
   end
 
+  def guest
+    user = User.find(1)
+    login! user
+    redirect_to root_url
+  end
+
   def omniauth
     user = User.find_or_create_by_auth_hash(auth_hash)
     successful_invite(user) if session[:invite_code]

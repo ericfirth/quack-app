@@ -1,25 +1,24 @@
-<form class="modal-form edit-avatar-form index-modal">
+<form class="modal-form edit-avatar-form team-site-index-modal">
 
+<figure class="index-logo"><img src="<%= Quack.logo %>" alt="Quack Logo" /> </figure>
 
-
-<figure><img src="<%= Quack.logo %>" alt="Quack Logo" /> </figure>
-
-<h1>Welcome <%= Quack.currentUser.escape("username") %>!</h1>
-<h2>First, pick a team:</h2>
+<h1>Welcome to Quack, <%= Quack.currentUser.escape("username") %>!</h1>
 <form class="team-site-index">
-  <select class="team-select">
-    <option value="" disabled selected>Select A Team!</option>
-  <% teamSites.forEach(function(teamSite) { %>
-    <option value="<%= teamSite.get("id") %>"><%= teamSite.get("name") %></option>
-    <% }) %>
-    <option value="new">Create A New Team Site</option>
-  </select>
-</form>
+  <label>
+    <span class="custom-dropdown custom-dropdown--white">
+      <select class="team-select custom-dropdown__select custom-dropdown__select--white">
+        <option value="" disabled selected>First, select your team!</option>
+      <% teamSites.forEach(function(teamSite) { %>
+        <option value="<%= teamSite.get("id") %>"><%= teamSite.get("name") %></option>
+        <% }) %>
+        <option value="new">Create A New Team Site</option>
+      </select>
+    </span>
+  </label>
 
-<form class="logout" action="/session" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="hidden" name="authenticity_token" value="<%= authToken %>">
-  <button>Log Out</button>
-</form>
-
+  <form class="logout" action="/session" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="hidden" name="authenticity_token" value="<%= authToken %>">
+    <button class="log-out-index">Log Out</button>
+  </form>
 </form>

@@ -1,6 +1,7 @@
 Quack.Views.TeamSitesIndex = Backbone.View.extend({
   initialize: function () {
 
+
     this.listenTo(this.collection, "sync add remove change:name", this.render);
   },
 
@@ -8,6 +9,8 @@ Quack.Views.TeamSitesIndex = Backbone.View.extend({
     "change .team-select": "goToTeam",
     "click .js-modal-close": "closeModal"
   },
+
+  className: "team-site-index",
 
   template: JST["team_sites/index"],
 
@@ -23,7 +26,8 @@ Quack.Views.TeamSitesIndex = Backbone.View.extend({
           Quack.currentUser.fetch();
           $(".modal").removeClass("is-open");
           this.remove();
-          $(".sidebar").removeClass("hidden");
+          $(".content").removeClass("none");
+          $(".sidebar").removeClass("full");
           var channelId = teamSite.get("channel_to_display")
           var url = "channels/" + channelId
           Backbone.history.navigate(url, { trigger: true })

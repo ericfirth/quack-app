@@ -21,7 +21,7 @@
 
 
 
- html, h1, label, form, p, ul, li, div, body, main, section, a, button, figure, input, aside {
+ html, h1, label, form, p, ul, li, div, body, main, section, a, button, figure, input, aside, select {
    margin: 0;
    padding: 0;
    border: 0;
@@ -80,7 +80,13 @@ highlight blue green - #00BCCC
   top: 0;
   left: 0;
   height: 100%;
+  transition: width .5s;
   // overflow: auto;
+}
+
+
+.sidebar.full {
+  width:100%;
 }
 
 .content {
@@ -90,6 +96,11 @@ highlight blue green - #00BCCC
   height: 100%;
   left: 240px;
   overflow: auto;
+  transition: left .5s;
+}
+
+.content.none {
+  left:100%
 }
 
 .sidebar strong, .sidebar-username {
@@ -593,3 +604,142 @@ colors:
  .message-show:hover {
    color: black;
  }
+
+ .team-site-index {
+   background: green;
+ }
+
+ .team-site-index-modal > h1 {
+   font-size: 36px;
+   color: white;
+   text-align: center;
+   padding-top: 10px;
+ }
+
+ .team-site-index-modal > label {
+   display: block;
+   font-size: 24px;
+   padding: 20px;
+   text-align: center;
+   color: #790002;
+ }
+
+ .team-site-index-modal {
+   background: #00BCCC;
+   border: 3px solid white;
+ }
+
+ .index-logo {
+   width: 150px;
+   margin: auto;
+ }
+
+ .team-select:focus {
+   outline: 0;
+ }
+
+
+.custom-dropdown__select{
+    font-size: 16px; /* inherit size from .custom-dropdown */
+    margin-top: 10px;
+    padding: 10px; /* add some space*/
+    margin: 0; /* remove default margins */
+    font-weight: 300;
+}
+
+.custom-dropdown__select--white {
+    background-color: #fff;
+    color: white;
+}
+
+@supports (pointer-events: none) and
+      ((-webkit-appearance: none) or
+      (-moz-appearance: none) or
+      (appearance: none)) {
+
+    .custom-dropdown {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .custom-dropdown__select {
+        padding-right: 6.5em; /* accommodate with the pseudo elements for the dropdown arrow */
+        border: 0;
+        border-radius: 10px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: #8A2A1E;
+    }
+
+    .custom-dropdown::before,
+    .custom-dropdown::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        top: 6px;
+    }
+
+    .custom-dropdown::after { /*  Custom dropdown arrow */
+        content: "\25BC";
+        height: 1px;
+        font-size: 18px;
+        line-height: 1;
+        right: 8px;
+        top: 50%;
+        margin-top: -8px;
+    }
+
+    .custom-dropdown::before { /*  Custom dropdown arrow cover */
+        width: 35px;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    .custom-dropdown__select[disabled] {
+        color: rgba(0,0,0,.3);
+    }
+
+    .custom-dropdown.custom-dropdown--disabled::after {
+        color: rgba(0,0,0,.1);
+    }
+
+    /* White dropdown style */
+    .custom-dropdown--white::before {
+        background-color: #790002;
+        border-left: 1px solid rgba(0,0,0,.1);
+    }
+
+    .custom-dropdown--white::after {
+        color: rgba(255,255,255,.6);
+    }
+
+    /* FF only temp fix */
+    @-moz-document url-prefix() {
+        .custom-dropdown__select             { padding-right: .9em }
+        .custom-dropdown--large .custom-dropdown__select { padding-right: 1.3em }
+        .custom-dropdown--small .custom-dropdown__select { padding-right: .5em }
+    }
+}
+
+.log-out-index {
+  cursor: pointer;
+  display: block;
+  padding: 10px 20px;
+  margin: auto;
+  font-weight: 300;
+  color: #790002;
+  background: #FCF9EC;
+  border: 2px solid #790002;
+  border-radius: 10px;
+}
+
+
+.log-out-index:hover {
+  color: #FCF9EC;
+  background: #790002;
+  border: 2px solid #FCF9EC;
+
+}

@@ -7,11 +7,19 @@ $(document).ready(function(){
 </script>
 <main id="main">
 
+<% if session[:team_site_id] %>
   <section class="sidebar"></section>
+<% else %>
+  <section class="sidebar full"></section>
+<% end %>
 
   <section class="content">
 
+  <% if session[:team_site_id] %>
     <section class="conversation"></section>
+  <% else  %>
+    <section class="conversation none"></section>
+  <% end %>
 
   </section>
   <section id="search">

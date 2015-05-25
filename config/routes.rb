@@ -18,5 +18,7 @@ Rails.application.routes.draw do
     get "search", to: "static_pages#search"
   end
 
+  get "session/guest", to: "sessions#guest"
+
   get "/auth/google_oauth2/callback", to: "sessions#omniauth"
 end

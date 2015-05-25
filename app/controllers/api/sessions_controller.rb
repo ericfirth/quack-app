@@ -4,6 +4,7 @@ class Api::SessionsController < Api::ApiController
     @current_user = current_user
     if session[:team_site_id]
       @sidebar_stars = @current_user.starred_channels + @current_user.starred_users
+      # fail
       @current_team_site = current_team_site
       # byebug
     end
