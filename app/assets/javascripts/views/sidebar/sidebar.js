@@ -47,6 +47,7 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
   toggleMenu: function (event) {
     this.$(".team-menu").toggleClass("closed")
   },
+
   addEditAvatarView: function (event) {
     var user = this.model.users().get(Quack.currentUser.id)
     var editUserView = new Quack.Views.UserForm({ model: user, collection: this.model.users() });

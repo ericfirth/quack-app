@@ -2,12 +2,13 @@ Quack.Views.TeamSitesIndex = Backbone.View.extend({
   initialize: function () {
 
 
-    this.listenTo(this.collection, "sync add remove change:name", this.render);
+    this.listenTo(this.collection, "sync add remove change:name change:email", this.render);
   },
 
   events: {
     "change .team-select": "goToTeam",
-    "click .js-modal-close": "closeModal"
+    "click .js-modal-close": "closeModal",
+    "click .no-email": "changeEmail"
   },
 
   className: "team-site-index",
@@ -34,6 +35,23 @@ Quack.Views.TeamSitesIndex = Backbone.View.extend({
         }.bind(this)
       })
     }
+  },
+
+  changeEmail: function (event) {
+    event.preventDefault();
+    email = $("#email-input").val();
+    Quack.currentUser.set("email", email);
+    Quack.currentUser.save({}, {
+      success: function() {
+        $(".email-check").empty();
+        $(".email-check").text("Thank You!");
+      },
+      error: function() {
+        $errorMessage = $("<span>");
+        $errorMessage.addClass("error-message").text("That is an invalid or already used email, sorry. Try again.");
+        $(".email-check").prepend($errorMessage);
+      }
+    });
   },
 
   render: function () {

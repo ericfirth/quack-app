@@ -12,8 +12,11 @@ class Api::SessionsController < Api::ApiController
   end
 
   def update
+
     @current_user = current_user
-    @current_team_site = current_team_site
+    if session[:team_site_id]
+      @current_team_site = current_team_site
+    end
     @sidebar_stars = @current_user.starred_channels + @current_user.starred_users
     if @current_user.update(session_params)
       render :show
@@ -38,7 +41,7 @@ class Api::SessionsController < Api::ApiController
   # end
   #
   def session_params
-    params.require(:session).permit(:avatar, :team_site_id)
+    params.require(:session).permit(:avatar, :team_site_id, :email)
   end
 
 

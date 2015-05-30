@@ -3,13 +3,27 @@
 <figure class="index-logo"><img src="<%= Quack.logo %>" alt="Quack Logo" /> </figure>
 
 <h1>Welcome to Quack, <%= Quack.currentUser.escape("username") %>!</h1>
+
+
+
 <form class="team-site-index">
+<% if (Quack.currentUser.escape("email").split("@")[1] === "quack-app.net")  { %>
+  <div class="email-check">
+    <p>
+      It looks like we have a temporary email, probably because you signed up using Twitter. However, in order to get invitations, we will need your real email. Please provide it here.
+    </p>
+    <input id="email-input" type="text" name="username[email]">
+    <button class="no-email">Submit</button>
+    
+  </div>
+
+<% } %>
   <label>
     <span class="custom-dropdown custom-dropdown--white">
       <select class="team-select custom-dropdown__select custom-dropdown__select--white">
         <option value="" disabled selected>First, select your team!</option>
       <% teamSites.forEach(function(teamSite) { %>
-        <option value="<%= teamSite.get("id") %>"><%= teamSite.get("name") %></option>
+        <option value="<%= teamSite.get("id") %>"><%= teamSite.escape("name") %></option>
         <% }) %>
         <option value="new">Create A New Team Site</option>
       </select>
@@ -17,4 +31,3 @@
   </label>
 
 </form>
-  

@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   get "session/guest", to: "sessions#guest"
 
   get "/auth/google_oauth2/callback", to: "sessions#omniauth"
+  get "/auth/facebook/callback", to: "sessions#omniauth"
+  get "/auth/twitter/callback", to: "sessions#omniauth"
 end

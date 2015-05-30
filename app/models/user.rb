@@ -53,11 +53,11 @@ class User < ActiveRecord::Base
 
     unless user
       username = auth_hash[:info][:name].gsub(" ", "_")
-      user = User.create!(
+      user = User.new(
             username: username,
             password: SecureRandom::urlsafe_base64,
-            email: auth_hash[:info][:email])
-      Credential.create!(uid: auth_hash[:uid],
+            email: auth_hash[:info][:email] || "#{SecureRandom::urlsafe_base64(12)}@quack-app.net")
+      Credential.new(uid: auth_hash[:uid],
               provider: auth_hash[:provider],
               user_id: user.id)
     end
