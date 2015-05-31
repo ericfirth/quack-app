@@ -1,13 +1,12 @@
 class User < ActiveRecord::Base
   EMAIL_REGEX = /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
 
-  validates :username, :session_token, :password_digest, :email, presence: true
-  validates :username, :session_token, :password_digest, :email, uniqueness: true
+  validates :username, :password_digest, :email, presence: true
+  validates :username, :password_digest, :email, uniqueness: true
   validates :password, length: { minimum: 7, allow_nil: true }
   validates :username, length: { maximum: 30 }
   validates_format_of :email, with: EMAIL_REGEX, multiline: true
 
-  after_initialize :ensure_session_token
 
   attr_reader :password
 
@@ -39,6 +38,7 @@ class User < ActiveRecord::Base
   has_many :starred_messages, through: :stars, source: :starable, source_type: "Message"
   has_many :starred_private_messages, through: :stars, source: :starable, source_type: "PrivateMessage"
   has_many :credentials, dependent: :destroy
+  has_many :sessions, dependent: :destroy
 
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "50x50>" }, default_url: "missing-person.png"
@@ -75,9 +75,7 @@ class User < ActiveRecord::Base
     @user.is_password?(password) ? @user : nil
   end
 
-  def self.generate_session_token
-    SecureRandom.urlsafe_base64(16)
-  end
+
 
   def password=(password)
     @password = password
@@ -88,14 +86,6 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
-  def reset_token!
-    self.session_token = self.class.generate_session_token
-    self.save!
-    self.session_token
-  end
 
-  def ensure_session_token
-    self.session_token ||= self.class.generate_session_token
-  end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520231224) do
+ActiveRecord::Schema.define(version: 20150531141546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,16 @@ ActiveRecord::Schema.define(version: 20150520231224) do
   add_index "private_messages", ["sender_id"], name: "index_private_messages_on_sender_id", using: :btree
   add_index "private_messages", ["team_site_id"], name: "index_private_messages_on_team_site_id", using: :btree
 
+  create_table "sessions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "token",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sessions", ["token"], name: "index_sessions_on_token", using: :btree
+  add_index "sessions", ["user_id"], name: "index_sessions_on_user_id", using: :btree
+
   create_table "stars", force: :cascade do |t|
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -124,7 +134,6 @@ ActiveRecord::Schema.define(version: 20150520231224) do
   create_table "users", force: :cascade do |t|
     t.string   "username",            null: false
     t.string   "password_digest",     null: false
-    t.string   "session_token",       null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "email",               null: false
@@ -136,7 +145,7 @@ ActiveRecord::Schema.define(version: 20150520231224) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["password_digest"], name: "index_users_on_password_digest", unique: true, using: :btree
-  add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "sessions", "users"
 end

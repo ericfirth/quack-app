@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
 
   private
   def current_user
-    @current_user ||= User.includes(:starred_channels, :starred_users).find_by(session_token: session[:session_token])
+    return nil unless session[:session_token]
+    @current_user ||= Session.find_user(session[:session_token])
   end
 
   def current_team_site
@@ -30,7 +31,9 @@ class ApplicationController < ActionController::Base
   end
 
   def login!(user)
-    session[:session_token] = user.reset_token!
+    @current_user = user
+    @session = user.sessions.create()
+    session[:session_token] = @session.token
   end
 
   def successful_invite(user)
@@ -49,7 +52,6 @@ class ApplicationController < ActionController::Base
   end
 
   def sign_out!
-    current_user.reset_token!
     session[:session_token] = nil
     session[:team_site_id] = nil
   end
