@@ -2,8 +2,6 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
   initialize: function () {
     this.listenTo(this.model, "sync", this.render)
     this.listenTo(Quack.currentUser.sidebarItems(), "sync", this.render)
-    // this.listenTo(Quack.currentUser.sidebarItems(), "sync", this.render)
-
     this.addIndex();
 
     $(window).on("click", this.closeAvatarMenu)
@@ -57,7 +55,6 @@ Quack.Views.Sidebar = Backbone.CompositeView.extend({
   },
 
   addIndex: function() {
-    // debugger;
     var sidebarIndex = new Quack.Views.SidebarIndex({
           collection: Quack.currentUser.sidebarItems(),
           model: this.model })

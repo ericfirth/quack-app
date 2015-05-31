@@ -4,9 +4,6 @@
 
 <h1>Welcome to Quack, <%= Quack.currentUser.escape("username") %>!</h1>
 
-
-
-<form class="team-site-index">
 <% if (Quack.currentUser.escape("email").split("@")[1] === "quack-app.net")  { %>
   <div class="email-check">
     <p>
@@ -14,10 +11,29 @@
     </p>
     <input id="email-input" type="text" name="username[email]">
     <button class="no-email">Submit</button>
-    
+
   </div>
 
 <% } %>
+
+<% if (Quack.currentUser.escape("username").slice(0, 7) === "invalid")  { %>
+  <div class="username-check">
+    <p>
+      Uh-oh! You have an invalid Username. Most likely, you have tried to login with a service like twitter or facebook and your username is already taken (usually because you've used a different one already).
+    </p>
+    <p>
+      You have a few choices. Submit a new username, or destroy this account and start over.
+    </p>
+    <input id="username-input" type="text" name="username[username]">
+    <button class="no-user">Submit</button>
+    <button class="destroy-me">Destroy this account</button>
+  </div>
+
+<% } %>
+
+<form class="team-site-index">
+
+
   <label>
     <span class="custom-dropdown custom-dropdown--white">
       <select class="team-select custom-dropdown__select custom-dropdown__select--white">
@@ -29,5 +45,11 @@
       </select>
     </span>
   </label>
+
+  <div class="make-new-site invisible">
+    <label>Name Your Team Site</label>
+    <input type="text" class="team-site-name" value="">
+    <button class="make-team-site-button">Create</button>
+  </div>
 
 </form>

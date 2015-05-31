@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
   has_many :starred_users, through: :stars, source: :starable, source_type: "User"
   has_many :starred_messages, through: :stars, source: :starable, source_type: "Message"
   has_many :starred_private_messages, through: :stars, source: :starable, source_type: "PrivateMessage"
+  has_many :credentials, dependent: :destroy
 
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "50x50>" }, default_url: "missing-person.png"
@@ -53,11 +54,14 @@ class User < ActiveRecord::Base
 
     unless user
       username = auth_hash[:info][:name].gsub(" ", "_")
-      user = User.new(
+      if User.exists?(username: username)
+        username = "invalid#{SecureRandom::urlsafe_base64(12)}"
+      end
+      user = User.create!(
             username: username,
             password: SecureRandom::urlsafe_base64,
             email: auth_hash[:info][:email] || "#{SecureRandom::urlsafe_base64(12)}@quack-app.net")
-      Credential.new(uid: auth_hash[:uid],
+      Credential.create!(uid: auth_hash[:uid],
               provider: auth_hash[:provider],
               user_id: user.id)
     end

@@ -8,17 +8,26 @@ Quack.Views.TeamSitesIndex = Backbone.View.extend({
   events: {
     "change .team-select": "goToTeam",
     "click .js-modal-close": "closeModal",
-    "click .no-email": "changeEmail"
+    "click .no-email": "changeEmail",
+    "click .make-team-site-button": "makeNewTeamSite"
   },
 
   className: "team-site-index",
 
   template: JST["team_sites/index"],
 
+  makeNewTeamSite: function(event) {
+    event.preventDefault();
+    var name = $(".team-site-name").val();
+    var newTeamSite = new Quack.Models.TeamSite();
+    newTeamSite.set("name", name);
+    newTeamSite.save()
+  },
+
   goToTeam: function(event) {
     var $target = $(event.target);
     if ($target.val() === "new") {
-      Backbone.history.navigate("team_sites/new", { trigger: true });
+      $(".make-new-site").removeClass("invisible");
     } else {
       var teamSite = new Quack.Models.TeamSite({id: $target.val()})
       teamSite.fetch({

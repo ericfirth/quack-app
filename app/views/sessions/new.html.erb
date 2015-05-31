@@ -33,12 +33,12 @@
             <button id="signin" class="sign-in-button">Sign In</button>
             <button id="signup" class="sign-in-button">Sign Up</button>
             <a href="/session/guest" class="sign-in-button">Use Demo Account</a>
-            <button id="oauth" class="sign-in-button">Sign in with   ∇
+            <button id="oauth" class="sign-in-button oauth">Sign in with   ∇
             </button>
-              <ul id="oauth-options" class="oauth-options">
-                <li><a href="/auth/google_oauth2">Google</a></li>
-                <li><a href="/auth/twitter">Twitter</a></li>
-                <li><a href="/auth/facebook">Facebook</a></li>
+              <ul id="oauth-options" class="oauth-options oauth invisible">
+                <li class="oauth"><a href="/auth/google_oauth2">Google</a></li>
+                <li class="oauth"><a href="/auth/twitter">Twitter</a></li>
+                <li class="oauth"><a href="/auth/facebook">Facebook</a></li>
               </ul>
 
           </div>
@@ -49,8 +49,7 @@
       <div class="why-quack">
         <p>
           Quack is a platform for team communication, where you and your team can
-          talk, share files and work together. Searchable, easy and beautiful. It's
-          also a clone of slack.
+          talk, share files and work together. Searchable, easy and beautiful. Inspired by Slack.
         </p>
       </div>
 
@@ -59,12 +58,20 @@
 
 <script>
   $(function() {
-    // debugger;
     $("#signup").on("click", function (event) {
       $("#signin-form").attr("action", "/users")
     })
     $("#oauth").on("click", function(event) {
+      event.preventDefault();
+      $("#oauth-options").removeClass("invisible");
 
+    })
+    $(window).on("click", function (event) {
+      if ($(event.target).hasClass("oauth")) {
+        return
+      } else {
+        $("#oauth-options").addClass("invisible")
+      }
     })
   })
 </script>

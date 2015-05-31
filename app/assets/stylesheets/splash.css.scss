@@ -132,3 +132,28 @@
   padding: 10px 30px;
   text-align: center;
 }
+
+.oauth-options {
+  position: absolute;
+  background: white;
+  color: #00BCCC;
+  right: 40px;
+  bottom: -75px;
+  margin-right: 0;
+  width: 175px;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.oauth-options li {
+  padding: 5px 0;
+}
+
+.oauth-options > li a {
+  padding-left: 5px;
+}
+
+.oauth-options li:hover {
+  background: #00BCCC;
+  color: white;
+}
