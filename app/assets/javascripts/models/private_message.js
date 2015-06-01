@@ -15,7 +15,6 @@ Quack.Models.PrivateMessage = Backbone.Model.extend(
     date: function () {
 
       var date = this.get("timestamp");
-      // debugger;
       date = new Date(date);
       return date
     },

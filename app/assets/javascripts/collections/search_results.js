@@ -17,7 +17,6 @@ Quack.Collections.SearchResults = Backbone.Collection.extend({
 
     var newModel;
     newModel = new Quack.Models[type](attrs);
-    // debugger;
 
     return newModel;
   }

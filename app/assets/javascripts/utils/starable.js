@@ -41,7 +41,6 @@ Quack.Mixins.Starable = {
   },
 
   toggleStar: function (starableType) {
-    // debugger;
     if (this.get("starred")) {
       this.destroyStar(starableType);
     } else {

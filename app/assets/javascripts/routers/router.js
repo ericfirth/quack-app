@@ -50,12 +50,14 @@ Quack.Routers.Router = Backbone.Router.extend({
           this.teamSite = this.teamSites.getOrFetch(channel.get("team_site_id"));
           this.sidebarStart();
           var channelShowView = new Quack.Views.ChannelShow({ model: channel });
+          console.log("no team-site");
           this._swapView(channelShowView);
         }.bind(this)})
     } else {
       var channel = this.teamSite.channels().getOrFetch(id);
       this.sidebarStart();
       var channelShowView = new Quack.Views.ChannelShow({ model: channel });
+      console.log("already a team-site");
 
       this._swapView(channelShowView);
     }

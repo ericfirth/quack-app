@@ -13,9 +13,9 @@
   <main class="main-conversation">
     <ul class="messages">
       <li class="avatar-message">
-        <figure class="avatar-show first-message"><img src="<%= otherUser.get("avatar_url") %>"</figure>
+        <figure class="avatar-show conversation-avatar"><img src="<%= otherUser.get("avatar_url") %>"</figure>
       </li>
-      <li class="first-message">
+      <li class="first-message message-show">
           This is the very beginning of your direct message history with
           <strong><%= otherUser.escape('username') %></strong>. Direct messages are private between the two of you.
           Sharing a private file here will not make it public, but it will allow <strong>

@@ -23,7 +23,6 @@ Quack.Models.Message = Backbone.Model.extend(
     },
 
     isOnSameDateAs: function (otherMessage) {
-      // debugger;
       var date = this.date();
       var date2 = otherMessage.date();
 

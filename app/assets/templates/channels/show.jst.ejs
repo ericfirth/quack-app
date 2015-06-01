@@ -13,7 +13,10 @@
       Whew, that was a lot of scrolling. You've reached the beginning of this <%= channel.escape('title') %>.
     </p>
     <ul class="messages">
-
+      <li id="first-message" class="hidden message-show">
+          No messages yet in <strong><%= channel.escape('title') %></strong>. Let's get the
+          conversation started!
+      </li>
     </ul>
 
   <footer class="footer message-add"></footer>

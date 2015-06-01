@@ -3,18 +3,18 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     this.starableType = "Channel"
     this.messages = this.model.messages();
     this._page = 1;
-    this.loadData(this._page);
+    this.preloadData(this._page);
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.messages, "sync", this.render);
+
     this.listenTo(this.messages, "add", this.addMessageView);
 
     var channel = window.pusher.subscribe('messages');
-
     channel.bind('new_message', function(data) {
       var message = new Quack.Models.Message(data);
       message.typed = true;
       if (data.sender !== Quack.currentUser.get("username")) {
-        this.messages.add(message);      
+        this.messages.add(message);
       }
     }.bind(this))
 
@@ -45,6 +45,7 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
   },
 
   addMessageView: function(message) {
+    $("#first-message").addClass("hidden")
     var messageView = new Quack.Views.MessageShow({ model: message });
     if (message.typed) {
       this.addSubview(".messages", messageView);
@@ -71,17 +72,7 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
     this.addSubview(".search-header", searchShow)
   },
 
-
-  render: function () {
-    // console.log("hello from the channel show")
-    // debugger
-    var content = this.template({ channel: this.model});
-    this.$el.html(content);
-    this.checkForSearch();
-    if (!this.flagged) {
-      this.$(".messages").addClass("bottom")
-    }
-    // build the page with date dividers
+  buildMessagesWithDividers: function() {
     var previousMessage = null;
     this.messages.each(function(message, index) {
       // first check if the date of the current messageis different from the last
@@ -98,6 +89,18 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
       }
       previousMessage = message
     }.bind(this))
+  },
+
+
+  render: function () {
+    var content = this.template({ channel: this.model});
+    this.$el.html(content);
+    this.checkForSearch();
+    if (!this.flagged) {
+      this.$(".messages").addClass("bottom")
+    }
+    // build the page with date dividers
+    this.buildMessagesWithDividers();
 
     //add subviews
     this.addNewMessageView();
@@ -106,6 +109,7 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
 
     //add bottom alignment and the scroll listener
     this.scrollListen();
+
     if (!this.flagged) {
       this.ensureBottomAlignment();
     } else {
@@ -113,6 +117,10 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
       $container.scrollTop($container.prop("scrollHeight") - this.preloadScrollHeight + this.preloadScrollTop)
     }
     this.flagged = false
+    if (this.subviews(".messages").size() === 0) {
+      $("#first-message").removeClass("hidden")
+    }
+
     return this;
   },
 
@@ -130,6 +138,13 @@ Quack.Views.ChannelShow = Backbone.CompositeView.extend({
   loadData: function(pageNum, preloadScrollHeight, preloadScrollTop) {
     this.messages.fetch({
       remove: false,
+      data: { page: pageNum,
+      id: this.model.id}
+    });
+  },
+
+  preloadData: function(pageNum) {
+    this.messages.fetch({
       data: { page: pageNum,
       id: this.model.id}
     });

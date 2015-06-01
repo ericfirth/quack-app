@@ -3,6 +3,9 @@
   <li><strong><%= message.get("sender") %></strong> <%= message.formatTime() %></li>
   <li class="message-text"><%= message.get("text") %></li>
   <% if (message.attributes.filename)  { %>
+    <% if (message.get("filetype").slice(0,5) === "image") { %>
+      <li class="message-image"><img src="<%= message.get('file_url') %>" alt="" /></li>
+    <% } %>
   <li class="message-file-link"><a href="<%= message.get('file_url') %>"><%= message.escape("filename") %></a></li>
   <% } %>
 

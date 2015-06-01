@@ -21,6 +21,7 @@ Quack.Views.MessageForm = Backbone.View.extend({
 
     reader.onloadend = function(){
       that.model._file = reader.result;
+      $(".file-attachment").addClass("has-file")
     }
 
     if (file) {

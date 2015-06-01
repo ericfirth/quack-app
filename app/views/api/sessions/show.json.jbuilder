@@ -2,17 +2,6 @@ json.extract! @current_user, :username, :email, :id
 json.avatar_url asset_path(@current_user.avatar.url)
 
 if @current_team_site
-  # json.sidebar do
-    # json.starred_sidebar_items @sidebar_stars do |sidebar_item|
-    #   json.id sidebar_item.id
-    #   if sidebar_item.is_a?(User)
-    #     json.star_type "User"
-    #     json.title sidebar_item.username
-    #   else
-    #     json.star_type "Channel"
-    #     json.title sidebar_item.title
-    #   end
-    # end
   json.channels @current_team_site.channels do |channel|
     json.id "channel#{channel.id}"
     json.original_id channel.id
@@ -32,7 +21,7 @@ if @current_team_site
         json.username user.username
         json.id "user#{user.id}"
         json.original_id user.id
-    
+
         json.avatar_url asset_path(user.avatar.url)
         if @sidebar_stars.include?(user)
           json.starred true
@@ -44,11 +33,10 @@ if @current_team_site
     end
   end
 
+  if session[:channel_id] && @current_team_site.channels.exists?(id: session[:channel_id])
+    json.channel_to_display session[:channel_id]
+  else
+    json.channel_to_display @current_team_site.channels.to_a.sample.id
+  end
 
-end
-
-if session[:channel_id]
-  json.channel_to_display session[:channel_id]
-else
-  json.channel_to_display @current_team_site.channels.to_a.sample.id
 end

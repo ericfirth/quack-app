@@ -744,3 +744,17 @@ colors:
   border: 2px solid #FCF9EC;
 
 }
+
+
+.message-image {
+  max-width: 400px;
+}
+
+.has-file::before {
+  background: green;
+}
+
+.conversation-avatar {
+  float: none;
+  margin: auto;
+}
