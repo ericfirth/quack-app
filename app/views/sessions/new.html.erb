@@ -51,13 +51,11 @@
             <button id="signin" class="sign-in-button">Sign In</button>
             <button id="signup" class="sign-in-button">Sign Up</button>
             <a href="/session/guest" class="sign-in-button">Use Demo Account</a>
-            <button id="oauth" class="sign-in-button oauth">Sign in with   ∇
-            </button>
-              <ul id="oauth-options" class="oauth-options oauth invisible">
-                <a href="/auth/google_oauth2"><li class="oauth">Google</li></a>
-                <a href="/auth/twitter"><li class="oauth">Twitter</li></a>
-                <a href="/auth/facebook"><li class="oauth">Facebook</li></a>
-              </ul>
+            <div class="oauth-options group">
+              <a href="/auth/google_oauth2" class="oauth-button"><i class="icon-google oauth-icon"></i></a>
+              <a href="/auth/facebook" class="oauth-button"><i class="icon-facebook2 oauth-icon"></i></a>
+              <a href="/auth/twitter" class="oauth-button"><i class="icon-twitter oauth-icon"></i></a>
+            </div>
 
           </div>
 
@@ -79,17 +77,6 @@
     $("#signup").on("click", function (event) {
       $("#signin-form").attr("action", "/users")
     })
-    $("#oauth").on("click", function(event) {
-      event.preventDefault();
-      $("#oauth-options").removeClass("invisible");
 
-    })
-    $(window).on("click", function (event) {
-      if ($(event.target).hasClass("oauth")) {
-        return
-      } else {
-        $("#oauth-options").addClass("invisible")
-      }
-    })
   })
 </script>
