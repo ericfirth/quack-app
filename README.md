@@ -1,8 +1,8 @@
-# quack-proposal
+# Quack
 
-[Heroku link][heroku]
+[Live Link][heroku]
 
-[heroku]: https://quack-app.herokuapp.com/
+[heroku]: http://www.quack-app.net/
 
 ## Minimum Viable Product
 Quack is a clone of Slack built on Rails and Backbone. Users can:
@@ -72,6 +72,7 @@ with pagination that the user doesn't notice.
 
 ### Bonus Features
 - [x] infinite scroll
+- [x] OAuth in Facebook & Twitter
 - [ ] conversation show in a single SQL query rather than 4
 - [ ] searching fetches the context (the two messages before and after the
   message that contains the search phrase).
